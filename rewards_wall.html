@@ -47,19 +47,19 @@
   @media (max-width: 420px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
   .slot {
-    aspect-ratio: 1 / 1.15; border: 2px solid var(--brown); border-radius: 8px;
+    aspect-ratio: 1 / 1.15; min-width: 0; border: 2px solid var(--brown); border-radius: 8px;
     background: var(--paper-dark); display: flex; flex-direction: column;
     align-items: center; justify-content: center; text-align: center;
     padding: 10px 6px; position: relative; cursor: default; user-select: none;
-    transition: transform .15s ease;
+    transition: transform .15s ease; overflow: hidden;
   }
   .slot .num {
     position: absolute; top: 4px; left: 6px; font-size: 11px;
     color: var(--brown); font-weight: bold;
   }
   .slot .icon { font-size: 40px; line-height: 1; }
-  .slot .label { font-size: 11px; color: var(--ink); margin-top: 6px; line-height: 1.25; }
-  .slot .label-zh { font-size: 10px; color: var(--brown); margin-top: 3px; line-height: 1.25; }
+  .slot .label { font-size: 11px; color: var(--ink); margin-top: 8px; line-height: 1.5; overflow-wrap: break-word; max-width: 100%; }
+  .slot .label-zh { font-size: 10px; color: var(--brown); margin-top: 5px; line-height: 1.5; overflow-wrap: break-word; max-width: 100%; }
 
   .slot.locked { opacity: 0.55; }
   .slot.locked .icon { filter: grayscale(1); }

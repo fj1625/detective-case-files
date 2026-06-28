@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #01 - The Lost Picture</title>
+  <title>Felix's Case File #02 - The Garbage Snatcher</title>
   <style>
     * {
       box-sizing: border-box;
@@ -572,6 +572,33 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
+    .monster-zone.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .board-hint {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Courier New', monospace;
+      font-size: 26px;
+      padding: 12px 26px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 20;
+    }
+
+    .board-hint.show {
+      opacity: 0.97;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .placed-row {
       display: flex;
       justify-content: center;
@@ -964,13 +991,13 @@
     <section class="page cover active" data-page="0">
       <div class="cover-stamp">TOP<br>SECRET</div>
       <h1>Felix's Case File</h1>
-      <div class="subtitle">#01 — The Lost Picture</div>
+      <div class="subtitle">#02 — The Garbage Snatcher</div>
       <div class="cover-info">
-        <div><strong>Client:</strong> Annie</div>
-        <div><strong>Missing:</strong> A picture of Fang</div>
-        <div><strong>Location:</strong> Down the street</div>
+        <div><strong>Client:</strong> Oliver</div>
+        <div><strong>Missing:</strong> Garbage, snatched every night</div>
+        <div><strong>Location:</strong> Oliver's garbage can</div>
         <div><strong>Status:</strong> OPEN
-          <button class="speak-inline" data-speak="Client, Annie. Missing, a picture of Fang. Location, down the street. Status, open." title="Read aloud">🔊</button>
+          <button class="speak-inline" data-speak="Client, Oliver. Missing, garbage, snatched every night. Location, Oliver's garbage can. Status, open." title="Read aloud">🔊</button>
         </div>
       </div>
       <button class="btn" onclick="goToPage(1)">Open File</button>
@@ -980,7 +1007,7 @@
     <section class="page" data-page="1">
       <div class="page-header">
         <h2 class="page-title">The Case Timeline</h2>
-        <div class="case-badge">CASE #01</div>
+        <div class="case-badge">CASE #02</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Put the case cards in order. Drag each card to the right spot on the timeline.</p>
 
@@ -995,14 +1022,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Fang buried bones but stayed in the yard.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Harry's orange monster hid the picture.</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Annie called Felix. Her Fang picture was gone.</div>
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Felix found Rosamond's lost cat.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix checked the yellow room. No picture.</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Esmeralda said no one would go near Oliver.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Sludge knocked off the cover. Sludge did it!</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Oliver said a snatcher tipped his can each night.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Felix hid in the garbage can at night.</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix asked Rosamond. She hates garbage.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. The trail is getting warm.</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. The snatcher comes out at night.</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1012,43 +1039,43 @@
     <section class="page" data-page="2">
       <div class="page-header">
         <h2 class="page-title">Suspect Files</h2>
-        <div class="case-badge">CASE #01</div>
+        <div class="case-badge">CASE #02</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right suspect's folder.</p>
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Annie">
-            <h3>Annie</h3>
-            <div class="folder-zone"></div>
-            <div class="folder-status"></div>
-          </div>
-          <div class="folder" data-suspect="Fang">
-            <h3>Fang</h3>
-            <div class="folder-zone"></div>
-            <div class="folder-status"></div>
-          </div>
           <div class="folder" data-suspect="Rosamond">
             <h3>Rosamond</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Harry" id="harryFolder">
-            <h3>Harry</h3>
+          <div class="folder" data-suspect="Esmeralda">
+            <h3>Esmeralda</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="Skunk">
+            <h3>Skunk</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="Sludge" id="harryFolder">
+            <h3>Sludge</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Fang">big dog with big teeth</div>
-          <div class="clue" data-suspect="Harry">paints everything red</div>
-          <div class="clue" data-suspect="Annie">lost a yellow picture of her dog</div>
-          <div class="clue" data-suspect="Rosamond">has four cats named Hex</div>
-          <div class="clue" data-suspect="Fang">never leaves the yard without a leash</div>
-          <div class="clue" data-suspect="Annie">has a yellow room</div>
-          <div class="clue" data-suspect="Harry">painted an orange monster with three heads</div>
-          <div class="clue" data-suspect="Rosamond">only likes cats</div>
+          <div class="clue" data-suspect="Skunk">found near garbage in a field</div>
+          <div class="clue" data-suspect="Rosamond">would eat 2000 things before garbage</div>
+          <div class="clue" data-suspect="Sludge">sniffed the garbage can a lot</div>
+          <div class="clue" data-suspect="Esmeralda">keeps her mouth open to say wise things</div>
+          <div class="clue" data-suspect="Skunk">sprayed Felix with a big stink</div>
+          <div class="clue" data-suspect="Esmeralda">would never go near Oliver the pest</div>
+          <div class="clue" data-suspect="Rosamond">her cats eat cat food, not garbage</div>
+          <div class="clue" data-suspect="Sludge">was tired of pancakes and hungry</div>
         </div>
       </div>
 
@@ -1059,49 +1086,50 @@
     <section class="page" data-page="3">
       <div class="page-header">
         <h2 class="page-title">Evidence Board</h2>
-        <div class="case-badge">CASE #01</div>
+        <div class="case-badge">CASE #02</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the right evidence to the board to show how Felix solved the case.</p>
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
+          <div class="board-hint" id="boardHint">Not the skunk! Felix ruled it out.</div>
           <div class="monster-zone" id="monsterZone">
             <div class="placed-row" id="placedRow"></div>
-            <div class="monster-drawing">👹</div>
-            <div class="monster-label">The Orange Monster</div>
+            <div class="monster-drawing">🐕</div>
+            <div class="monster-label">The Garbage Snatcher</div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Harry painted a red monster over the wet yellow picture. Yellow plus red makes orange. The monster had dog ears and a tail. That was Fang!" title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. No person would go near Oliver the pest. So a night animal took the garbage. Felix watched the can. Sludge knocked off the cover and looked inside. Sludge was tired of pancakes and just wanted his own snack. The snatcher was Sludge, Felix's own dog!" title="Read aloud">🔊</button>
               <br>
-              Harry painted a red monster over the wet yellow picture.<br>
+              No person would go near Oliver, so a night animal did it.<br>
               <div class="color-mix">
-                <span class="color-dot" style="background: var(--yellow);"></span> Yellow
-                <span>+</span>
-                <span class="color-dot" style="background: var(--red);"></span> Red
-                <span>=</span>
-                <span class="color-dot" style="background: var(--orange);"></span> Orange
+                <span>🚷 Not a person</span>
+                <span>→</span>
+                <span>🌙 Night animal</span>
+                <span>→</span>
+                <span>🐕 Sludge!</span>
               </div>
-              The monster had dog ears and a tail. That was Fang!
+              Sludge was tired of pancakes. He just wanted his own snack!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="yellow" data-used="false">
-            <div class="evidence-icon">🎨</div>
-            <div class="evidence-label">Wet Yellow Paint</div>
+          <div class="evidence" data-type="noperson" data-used="false">
+            <div class="evidence-icon">🚷</div>
+            <div class="evidence-label">No Person</div>
           </div>
-          <div class="evidence" data-type="brush" data-used="false">
-            <div class="evidence-icon">🖌️</div>
-            <div class="evidence-label">Red Paintbrush</div>
+          <div class="evidence" data-type="night" data-used="false">
+            <div class="evidence-icon">🌙</div>
+            <div class="evidence-label">Night Animal</div>
           </div>
-          <div class="evidence" data-type="monster" data-used="false">
-            <div class="evidence-icon">👹</div>
-            <div class="evidence-label">Monster Drawing</div>
+          <div class="evidence" data-type="sniff" data-used="false">
+            <div class="evidence-icon">👃</div>
+            <div class="evidence-label">Sludge Sniffs</div>
           </div>
-          <div class="evidence" data-type="pancake" data-used="false">
-            <div class="evidence-icon">🥞</div>
-            <div class="evidence-label">Pancakes</div>
+          <div class="evidence" data-type="skunk" data-used="false">
+            <div class="evidence-icon">🦨</div>
+            <div class="evidence-label">Smelly Skunk</div>
           </div>
         </div>
       </div>
@@ -1113,27 +1141,27 @@
     <section class="page" data-page="4">
       <div class="page-header">
         <h2 class="page-title">Solve the Case</h2>
-        <div class="case-badge">CASE #01</div>
+        <div class="case-badge">CASE #02</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the culprit to the accusation zone.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="Annie">
-            <div class="suspect-avatar">👧</div>
-            <div class="suspect-name">Annie</div>
-          </div>
-          <div class="suspect-card" data-suspect="Fang">
-            <div class="suspect-avatar">🐕</div>
-            <div class="suspect-name">Fang</div>
-          </div>
           <div class="suspect-card" data-suspect="Rosamond">
             <div class="suspect-avatar">🐈‍⬛</div>
             <div class="suspect-name">Rosamond</div>
           </div>
-          <div class="suspect-card" data-suspect="Harry">
-            <div class="suspect-avatar">🧒</div>
-            <div class="suspect-name">Harry</div>
+          <div class="suspect-card" data-suspect="Esmeralda">
+            <div class="suspect-avatar">👧</div>
+            <div class="suspect-name">Esmeralda</div>
+          </div>
+          <div class="suspect-card" data-suspect="Skunk">
+            <div class="suspect-avatar">🦨</div>
+            <div class="suspect-name">Skunk</div>
+          </div>
+          <div class="suspect-card" data-suspect="Sludge">
+            <div class="suspect-avatar">🐕</div>
+            <div class="suspect-name">Sludge</div>
           </div>
         </div>
 
@@ -1146,14 +1174,14 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #01 — The Lost Picture</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective Felix! You solved the case! Harry painted a red monster over Annie's wet yellow picture. Yellow and red mixed to make orange. Great work!" title="Read aloud">🔊</button>
+          <strong>Case #02 — The Garbage Snatcher</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You solved the case! The garbage snatcher was Sludge, Felix's own dog. He was tired of pancakes and just wanted his own snack. Great work!" title="Read aloud">🔊</button>
           <br>
-          Harry painted a red monster over Annie's wet yellow picture. The yellow and red mixed to make orange.
-          <div class="felix-quote">"I, Fantastic Felix, have found your picture. Are there any pancakes left?"</div>
+          The garbage snatcher was Sludge, Felix's own dog! He was tired of pancakes and just wanted his own snack.
+          <div class="felix-quote">"I, Fantastic Felix, solved my first night case. Sludge needs a bone — not my pancakes!"</div>
         </div>
         <div class="case-nav">
-          <a class="btn" id="nextCaseBtn" href="detective_case_file_02.html">➡️ 下一案 Case #02</a>
+          <a class="btn" id="nextCaseBtn" href="detective_case_file_03.html">➡️ 下一案 Case #03</a>
           <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
         </div>
       </div>
@@ -1334,8 +1362,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Annie: 0, Fang: 0, Rosamond: 0, Harry: 0 };
-    const folderTargets = { Annie: 2, Fang: 2, Rosamond: 2, Harry: 2 };
+    const folderCounts = { Rosamond: 0, Esmeralda: 0, Skunk: 0, Sludge: 0 };
+    const folderTargets = { Rosamond: 2, Esmeralda: 2, Skunk: 2, Sludge: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1346,7 +1374,7 @@
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
           zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Harry') {
+          if (suspect === 'Sludge') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
             zone.parentElement.querySelector('.folder-status').textContent = 'SUSPICIOUS...';
@@ -1370,23 +1398,30 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { yellow: false, brush: false, monster: false, pancake: false };
+    let evidenceState = { noperson: false, night: false, sniff: false };
+    let hintTimer = null;
+
+    function showBoardHint() {
+      const hint = document.getElementById('boardHint');
+      hint.classList.add('show');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(() => hint.classList.remove('show'), 1800);
+    }
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'pancake') {
-        // Pancake is a fun, unrelated prop — accept it as a throwaway gag.
-        placeEvidenceOnBoard(dragEl);
-        evidenceState.pancake = true;
-        dragEl.classList.add('hidden');
-        checkEvidenceComplete();
-        return true;
+      if (type === 'skunk') {
+        // The skunk is a red herring — Felix ruled it out. Reject it.
+        zone.classList.add('shake');
+        setTimeout(() => zone.classList.remove('shake'), 400);
+        showBoardHint();
+        return false;
       }
-      if (type === 'yellow' || type === 'brush' || type === 'monster') {
+      if (type === 'noperson' || type === 'night' || type === 'sniff') {
         placeEvidenceOnBoard(dragEl);
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.yellow && evidenceState.brush && evidenceState.monster) {
+        if (evidenceState.noperson && evidenceState.night && evidenceState.sniff) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1414,7 +1449,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.yellow && evidenceState.brush && evidenceState.monster) {
+      if (evidenceState.noperson && evidenceState.night && evidenceState.sniff) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1422,9 +1457,9 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'Harry') {
+      if (dragEl.dataset.suspect === 'Sludge') {
         dragEl.classList.add('hidden');
-        zone.innerHTML = '<h3>Culprit Identified</h3><p>Harry</p>';
+        zone.innerHTML = '<h3>Culprit Identified</h3><p>Sludge</p>';
         zone.classList.add('highlight');
         setTimeout(showFinalMessage, 500);
         return true;
@@ -1445,7 +1480,7 @@
       const congratsBtn = document.getElementById('finalSpeakBtn');
       setTimeout(() => speak(congratsBtn.dataset.speak, congratsBtn), 900);
       // 解锁本案奖励并弹窗（共享 rewards.js）。CASE_NUMBER 每个案件改这一处。
-      const CASE_NUMBER = 1;
+      const CASE_NUMBER = 2;
       if (window.DetectiveRewards) {
         const reward = DetectiveRewards.unlockReward(CASE_NUMBER);
         setTimeout(() => DetectiveRewards.showRewardToast(reward), 1400);
