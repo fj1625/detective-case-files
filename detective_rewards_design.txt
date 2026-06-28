@@ -1,0 +1,116 @@
+侦探游戏奖励系统设计稿
+Fantastic Felix Detective Case File — Rewards System
+=====================================================
+
+一、奖励机制
+------------
+1. 每完成 1 个案件，解锁 1 个奖励。
+2. 案件结束时（Case Closed 弹窗），额外弹出奖励提示：
+   "You earned: [图标] [奖励名]!"
+3. 奖励进度保存在浏览器 localStorage，key：felix_detective_rewards
+4. 收集满 28 个案件后，解锁终极纪念奖或特殊彩蛋。
+
+二、奖励清单（共 28 个）
+------------------------
+格式：编号 | 图标 | 英文名称 | 中文说明
+
+【工具类】
+01 | 🔍 | Magnifying Glass         | 放大镜
+02 | 📓 | Detective Notebook       | 侦探笔记本
+03 | 🖊️ | Sleuth Pen               | 侦探钢笔
+04 | 📁 | File Folder              | 案件文件夹
+05 | 📏 | Evidence Ruler           | 证物尺子
+06 | 🔦 | Flashlight               | 手电筒
+07 | 🎙️ | Voice Recorder           | 录音机
+
+【观察类】
+08 | 📷 | Proof Camera             | 照相机
+09 | 🗺️ | Mystery Map              | 神秘地图
+10 | 🧭 | Direction Compass        | 指南针
+11 | 🔭 | Far-Away Finder          | 远距离观察镜
+12 | 🖐️ | Fingerprint Kit          | 指纹采集套装
+13 | 🎖️ | Detective Badge          | 侦探徽章
+
+【伪装与潜入】
+14 | 🕵️ | Disguise Kit             | 伪装套装
+15 | 🔑 | Skeleton Key             | 万能钥匙
+16 | 💍 | Decoder Ring             | 密码戒指
+17 | 🧪 | Invisible Ink            | 隐形墨水
+
+【整理与记录】
+18 | 🏷️ | Evidence Tags            | 证物标签
+19 | 💼 | Detective Briefcase      | 侦探手提箱
+20 | ⌚ | Sleuth Watch             | 侦探手表
+21 | 🎩 | Detective Hat            | 侦探帽
+22 | 📎 | Clue Clips               | 线索回形针
+
+【外出现场】
+23 | 💡 | UV Blacklight            | 紫外线灯
+24 | 🪏 | Clue Digger              | 小铲子
+25 | 🛍️ | Evidence Bag             | 证物袋
+26 | 🔗 | Culprit Cuffs            | 手铐
+27 | 📱 | Partner Phone            | 对讲机
+
+【特别纪念】
+28 | 🔱 | Guardian Multi-Tool      | Felix 的多功能防身器（终极纪念奖）
+
+三、JavaScript 数据结构参考
+---------------------------
+const REWARDS = [
+  { id: 1,  icon: '🔍', name: 'Magnifying Glass' },
+  { id: 2,  icon: '📓', name: 'Detective Notebook' },
+  { id: 3,  icon: '🖊️', name: 'Sleuth Pen' },
+  { id: 4,  icon: '📁', name: 'File Folder' },
+  { id: 5,  icon: '📏', name: 'Evidence Ruler' },
+  { id: 6,  icon: '🔦', name: 'Flashlight' },
+  { id: 7,  icon: '🎙️', name: 'Voice Recorder' },
+  { id: 8,  icon: '📷', name: 'Proof Camera' },
+  { id: 9,  icon: '🗺️', name: 'Mystery Map' },
+  { id: 10, icon: '🧭', name: 'Direction Compass' },
+  { id: 11, icon: '🔭', name: 'Far-Away Finder' },
+  { id: 12, icon: '🖐️', name: 'Fingerprint Kit' },
+  { id: 13, icon: '🎖️', name: 'Detective Badge' },
+  { id: 14, icon: '🕵️', name: 'Disguise Kit' },
+  { id: 15, icon: '🔑', name: 'Skeleton Key' },
+  { id: 16, icon: '💍', name: 'Decoder Ring' },
+  { id: 17, icon: '🧪', name: 'Invisible Ink' },
+  { id: 18, icon: '🏷️', name: 'Evidence Tags' },
+  { id: 19, icon: '💼', name: 'Detective Briefcase' },
+  { id: 20, icon: '⌚', name: 'Sleuth Watch' },
+  { id: 21, icon: '🎩', name: 'Detective Hat' },
+  { id: 22, icon: '📎', name: 'Clue Clips' },
+  { id: 23, icon: '💡', name: 'UV Blacklight' },
+  { id: 24, icon: '🪏', name: 'Clue Digger' },
+  { id: 25, icon: '🛍️', name: 'Evidence Bag' },
+  { id: 26, icon: '🔗', name: 'Culprit Cuffs' },
+  { id: 27, icon: '📱', name: 'Partner Phone' },
+  { id: 28, icon: '🔱', name: 'Guardian Multi-Tool' }
+];
+
+// 获取当前案件编号（从页面里的某个变量或 case badge 读取）
+const currentCase = 1; // 改成 1~28
+
+// 解锁奖励
+function unlockReward(caseNumber) {
+  let unlocked = JSON.parse(localStorage.getItem('felix_detective_rewards') || '[]');
+  if (!unlocked.includes(caseNumber)) {
+    unlocked.push(caseNumber);
+    localStorage.setItem('felix_detective_rewards', JSON.stringify(unlocked));
+  }
+  return REWARDS[caseNumber - 1];
+}
+
+// 读取已解锁奖励
+function getUnlockedRewards() {
+  const unlocked = JSON.parse(localStorage.getItem('felix_detective_rewards') || '[]');
+  return unlocked.map(n => REWARDS[n - 1]);
+}
+
+四、后续可扩展
+--------------
+- 做一个独立的 rewards_wall.html 奖励墙，显示 28 格收集盘。
+- 已获得的奖励高亮显示；未获得显示灰色问号 ❔。
+- 每个奖励可以加一句话描述，点击可朗读英文名称。
+- 集齐 28 个后触发特殊动画或 Felix 终极台词。
+
+备注：所有奖励图标使用 emoji，保持单文件、离线可用。

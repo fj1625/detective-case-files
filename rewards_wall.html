@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix's Reward Wall · 侦探奖励墙</title>
+<style>
+  :root {
+    --paper: #f5f0e1; --paper-dark: #e8e0c8; --ink: #2c2416;
+    --brown: #6b4e3d; --brown-dark: #4a3528; --red: #b83a2a;
+    --red-dark: #8f2a1d; --yellow: #e6b84a; --orange: #e07b39;
+    --shadow: rgba(44, 36, 22, 0.25);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; font-family: 'Georgia', 'Times New Roman', serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(107,78,61,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(74,53,40,0.2) 0%, transparent 40%),
+      #3d2e24;
+    padding: 24px 16px 60px;
+  }
+  .board {
+    max-width: 860px; margin: 0 auto; background: var(--paper);
+    border: 3px solid var(--ink); border-radius: 10px;
+    box-shadow: 8px 8px 0 var(--shadow); padding: 28px 26px 34px;
+  }
+  header { text-align: center; border-bottom: 2px dashed var(--brown); padding-bottom: 16px; margin-bottom: 22px; }
+  h1 { margin: 0; font-size: 30px; letter-spacing: 1px; }
+  .subtitle { color: var(--brown); font-size: 15px; margin-top: 4px; }
+  .progress-wrap { margin-top: 16px; }
+  .progress-bar {
+    height: 18px; background: var(--paper-dark); border: 2px solid var(--ink);
+    border-radius: 10px; overflow: hidden; max-width: 420px; margin: 0 auto;
+  }
+  .progress-fill {
+    height: 100%; width: 0; background: linear-gradient(90deg, var(--yellow), var(--orange));
+    transition: width .8s ease;
+  }
+  .progress-text { margin-top: 8px; font-weight: bold; color: var(--brown-dark); }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px;
+  }
+  @media (max-width: 720px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 420px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .slot {
+    aspect-ratio: 1 / 1.15; border: 2px solid var(--brown); border-radius: 8px;
+    background: var(--paper-dark); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 10px 6px; position: relative; cursor: default; user-select: none;
+    transition: transform .15s ease;
+  }
+  .slot .num {
+    position: absolute; top: 4px; left: 6px; font-size: 11px;
+    color: var(--brown); font-weight: bold;
+  }
+  .slot .icon { font-size: 40px; line-height: 1; }
+  .slot .label { font-size: 11px; color: var(--ink); margin-top: 6px; line-height: 1.25; }
+  .slot .label-zh { font-size: 10px; color: var(--brown); margin-top: 3px; line-height: 1.25; }
+
+  .slot.locked { opacity: 0.55; }
+  .slot.locked .icon { filter: grayscale(1); }
+  .slot.unlocked {
+    background: var(--paper); border-color: var(--ink);
+    box-shadow: 2px 2px 0 var(--shadow); cursor: pointer;
+  }
+  .slot.unlocked:hover { transform: translateY(-3px) rotate(-1deg); }
+  .slot.final { border-color: var(--red); }
+  .slot.unlocked.final { box-shadow: 2px 2px 0 var(--red-dark); }
+
+  .actions { margin-top: 24px; text-align: center; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    background: var(--brown); color: var(--paper); border: 2px solid var(--ink);
+    border-radius: 6px; padding: 9px 20px; font-family: inherit; font-size: 14px;
+    cursor: pointer; box-shadow: 2px 2px 0 var(--shadow); text-decoration: none;
+    display: inline-block;
+  }
+  .btn:hover { background: var(--brown-dark); }
+  .btn.ghost { background: transparent; color: var(--brown); }
+
+  /* 终极纪念：集齐 28 */
+  .finale {
+    display: none; margin-top: 26px; text-align: center;
+    border-top: 2px dashed var(--brown); padding-top: 22px;
+  }
+  .finale.show { display: block; }
+  .finale .finale-icon { font-size: 88px; animation: rumble 0.4s infinite; }
+  @keyframes rumble {
+    0%,100% { transform: translateX(0) rotate(0); }
+    25% { transform: translateX(-2px) rotate(-1deg); }
+    75% { transform: translateX(2px) rotate(1deg); }
+  }
+  .finale .quote {
+    font-style: italic; color: var(--red-dark); font-size: 18px;
+    margin-top: 12px; max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .finale-features {
+    list-style: none; max-width: 520px; margin: 16px auto 0;
+    padding: 12px 16px; background: var(--paper-dark);
+    border: 2px solid var(--brown); border-radius: 8px;
+    text-align: left;
+  }
+  .finale-features li {
+    font-size: 14px; color: var(--ink); line-height: 1.7;
+    border-bottom: 1px dashed rgba(107, 78, 61, 0.3); padding: 4px 0;
+  }
+  .finale-features li:last-child { border-bottom: none; }
+
+  /* 奖励放大弹窗 */
+  .zoom-overlay {
+    position: fixed; inset: 0; z-index: 99999;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(44, 36, 22, 0.65); opacity: 0; transition: opacity .3s ease;
+  }
+  .zoom-card {
+    background: var(--paper); border: 3px solid var(--ink); border-radius: 12px;
+    box-shadow: 8px 8px 0 rgba(44, 36, 22, 0.35);
+    padding: 40px 44px; text-align: center; max-width: 420px;
+    transform: scale(.7); transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .zoom-overlay.show { opacity: 1; }
+  .zoom-overlay.show .zoom-card { transform: scale(1); }
+  .zoom-card .icon { font-size: 130px; line-height: 1; }
+  .zoom-card .label { font-size: 24px; font-weight: bold; color: var(--ink); margin-top: 14px; }
+  .zoom-card .label-zh { font-size: 15px; color: var(--brown); margin-top: 6px; }
+  .zoom-card .case-num { font-size: 13px; color: var(--brown); margin-top: 8px; letter-spacing: 1px; }
+  .zoom-card .features {
+    list-style: none; text-align: left; margin: 16px auto 0; max-width: 320px;
+    padding: 14px 16px; background: var(--paper-dark);
+    border: 2px solid var(--brown); border-radius: 8px;
+  }
+  .zoom-card .features li {
+    font-size: 13px; color: var(--ink); line-height: 1.5;
+    padding: 3px 0; border-bottom: 1px dashed rgba(107, 78, 61, 0.3);
+  }
+  .zoom-card .features li:last-child { border-bottom: none; }
+  .zoom-card .close-tip { font-size: 12px; color: var(--brown); margin-top: 20px; }
+</style>
+</head>
+<body>
+  <div class="board">
+    <header>
+      <h1>🏆 Felix's Reward Wall</h1>
+      <div class="subtitle">侦探奖励墙 · 每破一案，集齐一件装备</div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">0 / 28</div>
+      </div>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="finale" id="finale">
+      <div class="finale-icon">🔱</div>
+      <div class="quote" id="finaleQuote">
+        "I, Fantastic Felix, have closed every case. My Guardian Multi-Tool is ready for the next mystery!"
+      </div>
+      <ul class="finale-features" id="finaleFeatures"></ul>
+    </div>
+
+    <div class="actions">
+      <a class="btn" id="continueBtn" href="#">▶ 继续破案</a>
+      <button class="btn ghost" id="resetBtn">重置进度</button>
+    </div>
+  </div>
+
+  <script src="rewards.js"></script>
+  <script>
+    var R = window.DetectiveRewards;
+
+    // 放大查看某个奖励（点击格子触发）
+    var zoomOverlay = null;
+    function closeZoom() {
+      if (!zoomOverlay) return;
+      var ov = zoomOverlay; zoomOverlay = null;
+      ov.classList.remove('show');
+      setTimeout(function () { ov.remove(); }, 300);
+    }
+    function openZoom(rw) {
+      closeZoom();
+      var ov = document.createElement('div');
+      ov.className = 'zoom-overlay';
+      var featuresHtml = (rw.features && rw.features.length)
+        ? '<ul class="features">' + rw.features.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>'
+        : '';
+      ov.innerHTML =
+        '<div class="zoom-card">' +
+          '<div class="icon">' + rw.icon + '</div>' +
+          '<div class="label">' + rw.name + '</div>' +
+          '<div class="label-zh">' + rw.zh.replace('（', '<br>（') + '</div>' +
+          featuresHtml +
+          '<div class="case-num">CASE #' + String(rw.id).padStart(2, '0') + '</div>' +
+          '<div class="close-tip">点任意处 / 按 ESC 关闭 · 🔊 朗读中</div>' +
+        '</div>';
+      document.body.appendChild(ov);
+      zoomOverlay = ov;
+      requestAnimationFrame(function () { ov.classList.add('show'); });
+      ov.addEventListener('click', closeZoom);
+      // 朗读英文名
+      if ('speechSynthesis' in window) {
+        var u = new SpeechSynthesisUtterance(rw.name);
+        u.lang = 'en-US'; u.rate = 0.9;
+        window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+      }
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeZoom(); });
+
+    function render() {
+      var grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      R.REWARDS.forEach(function (rw) {
+        var solved = R.isSolved(rw.id);
+        var isFinal = rw.id === R.TOTAL;
+        var slot = document.createElement('div');
+        slot.className = 'slot ' + (solved ? 'unlocked' : 'locked') + (isFinal ? ' final' : '');
+        slot.innerHTML =
+          '<span class="num">' + String(rw.id).padStart(2, '0') + '</span>' +
+          '<span class="icon">' + (solved ? rw.icon : '❔') + '</span>' +
+          '<span class="label">' + (solved ? rw.name : '未解锁') + '</span>' +
+          (solved ? '<span class="label-zh">' + rw.zh.replace('（', '<br>（') + '</span>' : '');
+        if (solved) {
+          slot.title = rw.name + ' · ' + rw.zh + '（点击放大）';
+          slot.addEventListener('click', function () { openZoom(rw); });
+        }
+        grid.appendChild(slot);
+      });
+
+      var done = R.totalSolved();
+      document.getElementById('progressText').textContent = done + ' / ' + R.TOTAL;
+      document.getElementById('progressFill').style.width = (done / R.TOTAL * 100) + '%';
+
+      // 继续破案：跳到下一个未破的案件
+      var next = 1;
+      for (var i = 1; i <= R.TOTAL; i++) { if (!R.isSolved(i)) { next = i; break; } if (i === R.TOTAL) next = R.TOTAL; }
+      document.getElementById('continueBtn').setAttribute('href', R.caseFile(next));
+
+      if (R.allComplete()) {
+        document.getElementById('finale').classList.add('show');
+        document.getElementById('continueBtn').textContent = '✓ 全部破案完成';
+        var feats = R.REWARDS[R.TOTAL - 1].features || [];
+        document.getElementById('finaleFeatures').innerHTML =
+          feats.map(function (f) { return '<li>' + f + '</li>'; }).join('');
+      }
+    }
+
+    document.getElementById('resetBtn').addEventListener('click', function () {
+      if (confirm('确定清空所有破案进度和奖励吗？')) {
+        try { localStorage.removeItem(R.STORE_KEY); } catch (e) {}
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
