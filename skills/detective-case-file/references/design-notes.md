@@ -243,9 +243,11 @@ keep these intact unless you mean to change the whole series.
   `playPinSound()` = short triangle blip on every correct drop; `playStampSound()` = sine
   thud + noise burst for the cover/CASE-CLOSED stamp. Calls are safe before unlock (they just
   no-op while suspended). No mute button by design.
-- **Magnifier cursor.** A data-URI SVG magnifier is set as `cursor` on inspect surfaces
-  (`.card, .clue, .evidence, .suspect-card, .cork-board, .clues-pool, .timeline-cards,
-  .suspect-lineup`), fallback `grab`. Buttons keep the normal pointer.
+- **Magnifier cursor.** A data-URI SVG magnifier is the base `cursor` on the whole
+  case file (`#app`, fallback `default`), so it shows on **every** page — not just the
+  one page with a board. Draggable inspect surfaces (`.card, .clue, .evidence,
+  .suspect-card, .cork-board, .clues-pool, .timeline-cards, .suspect-lineup`) repeat it
+  with a `grab` fallback. Buttons keep the normal pointer.
 - **Evidence polaroids + pushpins + red string.** Placed tiles are white cards
   (`.evidence-placed`, `position:relative`) with a red pushpin `::before` and an alternating
   tilt baked into `popPinL/R` keyframes (`both` fill so the tilt persists). The

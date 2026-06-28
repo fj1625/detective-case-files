@@ -1242,6 +1242,12 @@
     }
 
     /* ===== Phase 3: magnifier cursor · red string · mute toggle ===== */
+    /* Magnifier "inspect" cursor across the WHOLE case file, so it shows on
+       every page — not just the one page that happens to have a big board.
+       Draggable items add a `grab` fallback; buttons keep their own pointer. */
+    #app {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, default;
+    }
     .card, .clue, .evidence, .suspect-card,
     .cork-board, .clues-pool, .timeline-cards, .suspect-lineup {
       cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, grab;

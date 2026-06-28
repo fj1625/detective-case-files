@@ -208,7 +208,7 @@ story text stays `Georgia` serif. The typewriter-vs-stencil contrast over a seri
 the "case file" feel. Warm paper-and-ink palette (creams, browns, a detective red, accent
 yellow/orange), with a faint **paper grain + vignette** on `#app` (via `::before`/`::after`).
 Signature touches: dashed drop zones, double-rule dividers, drop-shadow "stamped" buttons,
-shake on a wrong drop, a **magnifier cursor** over inspect surfaces, evidence shown as
+shake on a wrong drop, a **magnifier cursor** across the whole case file (every page), evidence shown as
 **cork-board polaroids with pushpins and a red connecting string**, soft synth "pin" clicks,
 and the payoff — confetti + a rotated `CASE CLOSED` stamp that **presses down with a thunk**.
 The exact CSS variables and values are in `references/design-notes.md` — reuse them so every
