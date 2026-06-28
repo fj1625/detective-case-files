@@ -625,6 +625,33 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
+    .monster-zone.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .board-hint {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-size: 26px;
+      padding: 12px 26px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 20;
+    }
+
+    .board-hint.show {
+      opacity: 0.97;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .placed-row {
       display: flex;
       justify-content: center;
@@ -1314,6 +1341,7 @@
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
+          <div class="board-hint" id="boardHint">Pancakes aren't a clue!</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
@@ -1634,17 +1662,25 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { yellow: false, brush: false, monster: false, pancake: false };
+    let evidenceState = { yellow: false, brush: false, monster: false };
+    let hintTimer = null;
+
+    function showBoardHint() {
+      const hint = document.getElementById('boardHint');
+      if (!hint) return;
+      hint.classList.add('show');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(() => hint.classList.remove('show'), 1800);
+    }
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
       if (type === 'pancake') {
-        // Pancake is a fun, unrelated prop — accept it as a throwaway gag.
-        placeEvidenceOnBoard(dragEl, 'distractor');
-        evidenceState.pancake = true;
-        dragEl.classList.add('hidden');
-        checkEvidenceComplete();
-        return true;
+        // Distractor — even a silly prop is a dead end. Reject it.
+        zone.classList.add('shake');
+        setTimeout(() => zone.classList.remove('shake'), 400);
+        showBoardHint();
+        return false;
       }
       if (type === 'yellow' || type === 'brush' || type === 'monster') {
         placeEvidenceOnBoard(dragEl, 'clue');
