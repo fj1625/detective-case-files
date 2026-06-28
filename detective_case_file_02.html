@@ -24,6 +24,23 @@
       --shadow: rgba(44, 36, 22, 0.25);
     }
 
+    /* Self-hosted display fonts (works served on GitHub Pages and offline). */
+    @font-face {
+      font-family: 'Special Elite';
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/special-elite.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Stardos Stencil';
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/stardos-stencil-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Stardos Stencil';
+      font-style: normal; font-weight: 700; font-display: swap;
+      src: url('fonts/stardos-stencil-700.woff2') format('woff2');
+    }
+
     body {
       font-family: 'Georgia', 'Times New Roman', serif;
       background:
@@ -116,7 +133,7 @@
     }
 
     h1, h2, h3 {
-      font-family: 'Courier New', monospace;
+      font-family: 'Special Elite', 'Courier New', monospace;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
@@ -139,7 +156,8 @@
       background: var(--brown-dark);
       color: var(--paper);
       padding: 10px 20px;
-      font-family: 'Courier New', monospace;
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-weight: 700;
       font-size: 18px;
       letter-spacing: 1px;
       border-radius: 4px;
@@ -176,12 +194,24 @@
 
     /* Cover */
     .cover {
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       text-align: center;
+      gap: 46px;
+    }
+
+    .title-wrap {
+      position: relative;
+      width: fit-content;
+      margin: 0 auto;
     }
 
     .cover-stamp {
+      position: absolute;
+      left: 100%;
+      top: 72%;
+      margin-left: -50px;
+      margin-top: -110px;
       width: 220px;
       height: 220px;
       border: 8px solid var(--red);
@@ -190,20 +220,21 @@
       align-items: center;
       justify-content: center;
       color: var(--red);
-      font-family: 'Courier New', monospace;
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
       font-weight: bold;
-      font-size: 34px;
+      font-size: 42px;
       text-align: center;
       line-height: 1.3;
       transform: rotate(-12deg);
-      margin-bottom: 0;
       opacity: 0.85;
+      z-index: 2;
     }
 
     .cover h1 {
       font-size: 80px;
       color: var(--brown-dark);
-      margin-bottom: 0;
+      line-height: 1.04;
+      margin: 0;
     }
 
     .cover .subtitle {
@@ -595,7 +626,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: 26px;
+      gap: 40px;
       padding: 16px 24px;
       position: relative;
       transition: all 0.3s;
@@ -617,7 +648,7 @@
       transform: translateX(-50%) translateY(-8px);
       background: var(--red);
       color: var(--paper);
-      font-family: 'Courier New', monospace;
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
       font-size: 26px;
       padding: 12px 26px;
       border-radius: 6px;
@@ -639,6 +670,8 @@
       align-items: stretch;
       gap: 24px;
       flex-wrap: nowrap;
+      position: relative;
+      z-index: 1;
     }
 
     .monster-drawing {
@@ -718,23 +751,55 @@
     }
 
     .evidence-placed {
-      position: static;
-      width: 340px;
+      position: relative;
+      width: 255px;
       height: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      animation: popIn 0.4s ease;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 3px;
+      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.28);
       transform-origin: center center;
     }
 
+    .evidence-placed:nth-child(odd)  { animation: popPinL 0.42s ease both; }
+    .evidence-placed:nth-child(even) { animation: popPinR 0.42s ease both; }
+
+    /* pushpin holding the photo to the cork */
+    .evidence-placed::before {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      margin-left: -12px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ff9c8d, var(--red) 58%, var(--red-dark));
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+      z-index: 4;
+    }
+
+    @keyframes popPinL {
+      0%   { opacity: 0; transform: translateY(-34px) scale(.6) rotate(-3deg); }
+      70%  { opacity: 1; transform: translateY(0) scale(1.06) rotate(-3deg); }
+      100% { opacity: 1; transform: scale(1) rotate(-2.5deg); }
+    }
+    @keyframes popPinR {
+      0%   { opacity: 0; transform: translateY(-34px) scale(.6) rotate(3deg); }
+      70%  { opacity: 1; transform: translateY(0) scale(1.06) rotate(3deg); }
+      100% { opacity: 1; transform: scale(1) rotate(2.5deg); }
+    }
+
     .evidence-placed .evidence-icon {
-      font-size: 128px;
+      font-size: 124px;
     }
 
     .evidence-placed .evidence-label {
-      font-size: 30px;
+      font-size: 28px;
       margin-top: 10px;
       line-height: 1.12;
     }
@@ -746,7 +811,8 @@
     }
 
     .reasoning {
-      position: static;
+      position: relative;
+      z-index: 1;
       width: 95%;
       max-width: 1040px;
       margin: 0 auto;
@@ -913,14 +979,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(245, 240, 225, 0.96);
+      background: var(--paper);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.8s;
+      transition: opacity 0.3s;
       z-index: 100;
     }
 
@@ -938,20 +1004,26 @@
       align-items: center;
       justify-content: center;
       color: var(--red);
-      font-family: 'Courier New', monospace;
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
       font-weight: bold;
       font-size: 40px;
       text-align: center;
       line-height: 1.2;
       transform: rotate(-12deg) scale(2);
       opacity: 0;
-      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       flex-shrink: 0;
+      position: relative;
     }
 
     .stamp.show {
-      transform: rotate(-12deg) scale(1);
-      opacity: 0.9;
+      animation: stampPress 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+    }
+
+    @keyframes stampPress {
+      0%   { opacity: 0;    transform: rotate(-12deg) scale(2.1); }
+      50%  { opacity: 1;    transform: rotate(-12deg) scale(0.86); }
+      72%  { opacity: 1;    transform: rotate(-13.5deg) scale(1.08); }
+      100% { opacity: 0.9;  transform: rotate(-12deg) scale(1); }
     }
 
         .final-text {
@@ -991,23 +1063,23 @@
     /* Read-aloud (text-to-speech) buttons */
     .speak-btn {
       position: absolute;
-      top: -9px;
-      right: -9px;
-      width: 22px;
-      height: 22px;
+      top: -12px;
+      right: -12px;
+      width: 30px;
+      height: 30px;
       padding: 0;
       border: none;
       border-radius: 50%;
       background: var(--brown-dark);
       color: var(--paper);
-      font-size: 12px;
+      font-size: 15px;
       line-height: 1;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 1px 1px 0 var(--shadow);
-      opacity: 0.8;
+      opacity: 0.85;
       z-index: 6;
       transition: transform 0.1s, opacity 0.1s;
     }
@@ -1032,15 +1104,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 26px;
-      height: 26px;
+      width: 34px;
+      height: 34px;
       padding: 0;
-      margin-left: 8px;
+      margin-left: 10px;
       border: none;
       border-radius: 50%;
       background: var(--brown-dark);
       color: var(--paper);
-      font-size: 13px;
+      font-size: 16px;
       cursor: pointer;
       vertical-align: middle;
       box-shadow: 1px 1px 0 var(--shadow);
@@ -1053,30 +1125,189 @@
     /* Case Closed 后的导航按钮 */
     .case-nav { margin: 0; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .case-nav .btn { text-decoration: none; }
+
+    /* ===== Phase 2: cover intro · progress stepper · per-page props ===== */
+    @keyframes stampDrop {
+      0%   { opacity: 0;    transform: translateY(-64px) rotate(-34deg) scale(1.5); }
+      62%  { opacity: 0.85; transform: translateY(0) rotate(-9deg) scale(0.9); }
+      82%  { transform: rotate(-13.5deg) scale(1.05); }
+      100% { opacity: 0.85; transform: rotate(-12deg) scale(1); }
+    }
+    @keyframes titleType {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popBtn {
+      0%   { opacity: 0; transform: scale(0.7); }
+      70%  { opacity: 1; transform: scale(1.06); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* The cover stays "sealed" until the user clicks Open the Case File,
+       so the reveal (and its stamp sound) always fires after a user gesture. */
+    .cover-reveal { display: none; }
+    .cover.opened .cover-open-btn { display: none; }
+    .cover.opened .cover-reveal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 46px;
+    }
+
+    .cover.opened h1             { animation: riseIn 0.55s ease 0.1s both; }
+    .cover.opened .cover-stamp   { animation: stampDrop 0.55s cubic-bezier(.2,.7,.3,1) 0.72s both; }
+    .cover.opened .subtitle      { animation: riseIn 0.5s ease 1.05s both; }
+    .cover.opened .cover-info    { animation: riseIn 0.55s ease 1.25s both; }
+    .cover.opened .cover-start-btn { animation: popBtn 0.45s cubic-bezier(.34,1.56,.64,1) 1.65s both; }
+
+    /* Progress stepper — floats in the top band, shown on pages 1–4 */
+    .progress-stepper {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      align-items: center;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .progress-stepper.show { display: flex; }
+    .step-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--brown);
+      background: var(--paper-dark);
+      position: relative;
+      transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+    }
+    .step-dot + .step-dot { margin-left: 48px; }
+    .step-dot:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 48px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: var(--brown);
+      opacity: 0.35;
+    }
+    .step-dot.done {
+      background: var(--brown);
+      border-color: var(--brown);
+    }
+    .step-dot.done::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .step-dot.active {
+      background: var(--red);
+      border-color: var(--red-dark);
+      box-shadow: 0 0 0 5px rgba(184, 58, 42, 0.18);
+      transform: scale(1.3);
+    }
+
+    /* Per-page motif — faint watermark behind the content */
+    .page-prop {
+      position: absolute;
+      bottom: 70px;
+      right: 48px;
+      font-size: 168px;
+      line-height: 1;
+      opacity: 0.24;
+      transform: rotate(-12deg);
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cover.opened .cover-stamp,
+      .cover.opened h1,
+      .cover.opened .subtitle,
+      .cover.opened .cover-info,
+      .cover.opened .cover-start-btn { animation: none; }
+    }
+
+    /* ===== Phase 3: magnifier cursor · red string · mute toggle ===== */
+    /* Magnifier "inspect" cursor across the WHOLE case file, so it shows on
+       every page — not just the one page that happens to have a big board.
+       Draggable items add a `grab` fallback; buttons keep their own pointer. */
+    #app {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, default;
+    }
+    .card, .clue, .evidence, .suspect-card,
+    .cork-board, .clues-pool, .timeline-cards, .suspect-lineup {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, grab;
+    }
+
+    /* red string layer inside the dashed board, behind the cards/reasoning */
+    .string-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+    .string-layer .string {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 4;
+      stroke-linecap: round;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+    }
   </style>
   <script src="rewards.js"></script>
 </head>
 <body>
   <div id="scaler">
   <div id="app">
+    <!-- Progress stepper (Cover → Timeline → Suspects → Evidence → Solve) -->
+    <div class="progress-stepper" id="progressStepper">
+      <div class="step-dot" data-step="0" title="Cover"></div>
+      <div class="step-dot" data-step="1" title="Timeline"></div>
+      <div class="step-dot" data-step="2" title="Suspects"></div>
+      <div class="step-dot" data-step="3" title="Evidence"></div>
+      <div class="step-dot" data-step="4" title="Solve"></div>
+    </div>
     <!-- Page 0: Cover -->
     <section class="page cover active" data-page="0">
-      <div class="cover-stamp">TOP<br>SECRET</div>
-      <h1>Felix's Case File</h1>
-      <div class="subtitle">#02 — The Garbage Snatcher</div>
-      <div class="cover-info">
-        <div><strong>Client:</strong> Oliver</div>
-        <div><strong>Missing:</strong> Garbage, snatched every night</div>
-        <div><strong>Location:</strong> Oliver's garbage can</div>
-        <div><strong>Status:</strong> OPEN
-          <button class="speak-inline" data-speak="Client, Oliver. Missing, garbage, snatched every night. Location, Oliver's garbage can. Status, open." title="Read aloud">🔊</button>
+      <button class="btn cover-open-btn" id="coverOpenBtn">📂 Open the Case File</button>
+      <div class="cover-reveal">
+        <div class="title-wrap">
+          <h1>Felix's<br>Case File</h1>
+          <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
+        <div class="subtitle">#02 — The Garbage Snatcher</div>
+        <div class="cover-info">
+          <div><strong>Client:</strong> Oliver</div>
+          <div><strong>Missing:</strong> Garbage, snatched every night</div>
+          <div><strong>Location:</strong> Oliver's garbage can</div>
+          <div><strong>Status:</strong> OPEN
+            <button class="speak-inline" data-speak="Client, Oliver. Missing, garbage, snatched every night. Location, Oliver's garbage can. Status, open." title="Read aloud">🔊</button>
+          </div>
+        </div>
+        <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
       </div>
-      <button class="btn" onclick="goToPage(1)">Open File</button>
     </section>
 
     <!-- Page 1: Timeline -->
     <section class="page" data-page="1">
+      <div class="page-prop">🕰️</div>
       <div class="page-header">
         <h2 class="page-title">The Case Timeline</h2>
         <div class="case-badge">CASE #02</div>
@@ -1109,6 +1340,7 @@
 
     <!-- Page 2: Suspect Files -->
     <section class="page" data-page="2">
+      <div class="page-prop">🗂️</div>
       <div class="page-header">
         <h2 class="page-title">Suspect Files</h2>
         <div class="case-badge">CASE #02</div>
@@ -1132,7 +1364,7 @@
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Sludge" id="harryFolder">
+          <div class="folder" data-suspect="Sludge">
             <h3>Sludge</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
@@ -1156,6 +1388,7 @@
 
     <!-- Page 3: Evidence Board -->
     <section class="page" data-page="3">
+      <div class="page-prop">📌</div>
       <div class="page-header">
         <h2 class="page-title">Evidence Board</h2>
         <div class="case-badge">CASE #02</div>
@@ -1166,6 +1399,7 @@
         <div class="cork-board" id="corkBoard">
           <div class="board-hint" id="boardHint">Not the skunk! Felix ruled it out.</div>
           <div class="monster-zone" id="monsterZone">
+            <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
@@ -1209,6 +1443,7 @@
 
     <!-- Page 4: Case Closed -->
     <section class="page" data-page="4">
+      <div class="page-prop">🔍</div>
       <div class="page-header">
         <h2 class="page-title">Solve the Case</h2>
         <div class="case-badge">CASE #02</div>
@@ -1289,6 +1524,19 @@
         }
       });
       currentPage = n;
+      updateStepper(n);
+    }
+
+    // Case-progress dots: done (passed), active (current); hidden on the cover.
+    function updateStepper(n) {
+      const stepper = document.getElementById('progressStepper');
+      if (!stepper) return;
+      stepper.classList.toggle('show', n >= 1);
+      stepper.querySelectorAll('.step-dot').forEach(dot => {
+        const i = parseInt(dot.dataset.step);
+        dot.classList.toggle('done', i < n);
+        dot.classList.toggle('active', i === n);
+      });
     }
 
     // ===== Drag & Drop System =====
@@ -1414,6 +1662,7 @@
         dragEl.classList.add('placed');
         slot.appendChild(dragEl);
         slot.classList.add('filled', 'correct');
+        playPinSound();
         checkTimelineComplete();
         return true;
       }
@@ -1440,6 +1689,7 @@
       if (dragEl.dataset.suspect === suspect) {
         dragEl.classList.add('placed');
         zone.appendChild(dragEl);
+        playPinSound();
         folderCounts[suspect]++;
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
@@ -1473,6 +1723,7 @@
 
     function showBoardHint() {
       const hint = document.getElementById('boardHint');
+      if (!hint) return;
       hint.classList.add('show');
       clearTimeout(hintTimer);
       hintTimer = setTimeout(() => hint.classList.remove('show'), 1800);
@@ -1488,7 +1739,7 @@
         return false;
       }
       if (type === 'noperson' || type === 'night' || type === 'sniff') {
-        placeEvidenceOnBoard(dragEl);
+        placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
         if (evidenceState.noperson && evidenceState.night && evidenceState.sniff) {
@@ -1500,22 +1751,60 @@
       return false;
     }
 
-    // Placed clues drop into a centered row inside the board, so 3 or 4
-    // cards always stay centered as a group.
-    function placeEvidenceOnBoard(source) {
+    // Placed clues drop into a centered row inside the board, so any number
+    // of cards (2, 3, 4…) always stay centered as a group. role is 'clue' for
+    // real evidence (gets a red string) or 'distractor' for the fun prop.
+    function placeEvidenceOnBoard(source, role) {
       const row = document.getElementById('placedRow');
       const placed = document.createElement('div');
       placed.className = 'evidence evidence-placed';
+      placed.dataset.type = source.dataset.type;
+      placed.dataset.role = role || 'clue';
       const clone = source.cloneNode(true);
       clone.querySelectorAll('.speak-btn').forEach(b => b.remove());
       placed.innerHTML = clone.innerHTML;
       row.appendChild(placed);
+      playPinSound();
     }
 
     function revealMonster() {
       const zone = document.getElementById('monsterZone');
       zone.classList.add('revealed');
       document.getElementById('reasoning').classList.add('show');
+      setTimeout(drawStrings, 380);
+    }
+
+    // Draw a red "case string" from every real clue down to the conclusion box.
+    // Generic over the clue count — it connects whatever [data-role="clue"]
+    // cards are on the board, so 2, 3 or 4 clues all work.
+    function drawStrings() {
+      const mz = document.getElementById('monsterZone');
+      const svg = document.getElementById('stringLayer');
+      const reasoning = document.getElementById('reasoning');
+      if (!mz || !svg || !reasoning) return;
+      const s = currentScale || 1;
+      const mzRect = mz.getBoundingClientRect();
+      const rRect = reasoning.getBoundingClientRect();
+      const tx = (rRect.left + rRect.width / 2 - mzRect.left) / s;
+      const ty = (rRect.top - mzRect.top) / s;
+      svg.innerHTML = '';
+      document.querySelectorAll('#placedRow .evidence-placed[data-role="clue"]').forEach(card => {
+        const cRect = card.getBoundingClientRect();
+        const cx = (cRect.left + cRect.width / 2 - mzRect.left) / s;
+        const cy = (cRect.bottom - mzRect.top) / s;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midx = (cx + tx) / 2;
+        const midy = (cy + ty) / 2 + 10; // gentle sag within the gap
+        path.setAttribute('d', `M ${cx} ${cy} Q ${midx} ${midy} ${tx} ${ty}`);
+        path.setAttribute('class', 'string');
+        svg.appendChild(path);
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.getBoundingClientRect(); // reflow
+        path.style.transition = 'stroke-dashoffset 0.6s ease';
+        path.style.strokeDashoffset = '0';
+      });
     }
 
     function checkEvidenceComplete() {
@@ -1551,7 +1840,7 @@
       const msg = document.getElementById('finalMessage');
       const stamp = document.getElementById('finalStamp');
       msg.classList.add('show');
-      setTimeout(() => stamp.classList.add('show'), 300);
+      setTimeout(() => { stamp.classList.add('show'); playStampSound(); }, 420);
       createConfetti();
       // Read a congratulatory line aloud as the case closes.
       const congratsBtn = document.getElementById('finalSpeakBtn');
@@ -1651,6 +1940,82 @@
       });
     }
 
+    // ===== Sound effects (Web Audio — synthesized, no asset, works offline) =====
+    let audioCtx = null;
+    function getCtx() {
+      if (!audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        audioCtx = new AC();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    // soft "tick" — a clue pinned to the board / placed correctly
+    function playPinSound() {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime;
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(880, t);
+      o.frequency.exponentialRampToValueAtTime(420, t + 0.05);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.22, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0008, t + 0.09);
+      o.connect(g).connect(ctx.destination);
+      o.start(t); o.stop(t + 0.1);
+    }
+
+    // "cha-chunk" — the CASE CLOSED rubber stamp landing
+    function playStampSound() {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime;
+      // low thud
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(190, t);
+      o.frequency.exponentialRampToValueAtTime(58, t + 0.13);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.5, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      o.connect(g).connect(ctx.destination);
+      o.start(t); o.stop(t + 0.22);
+      // ink "slap" noise burst
+      const dur = 0.06;
+      const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 2.2);
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buf;
+      const ng = ctx.createGain();
+      ng.gain.setValueAtTime(0.32, t);
+      noise.connect(ng).connect(ctx.destination);
+      noise.start(t);
+    }
+
+    function initSound() {
+      // The cover is sealed until the user clicks "Open the Case File". That
+      // click is a user gesture, so the audio context unlocks and the reveal's
+      // TOP SECRET stamp sound is guaranteed to play.
+      const openBtn = document.getElementById('coverOpenBtn');
+      const cover = document.querySelector('.cover');
+      if (openBtn && cover) {
+        openBtn.addEventListener('click', () => {
+          getCtx();                       // unlock audio under the gesture
+          cover.classList.add('opened');  // start the reveal animations
+          // stamp impact ≈ 0.72s delay + ~0.34s into its 0.55s drop
+          setTimeout(playStampSound, 1060);
+        }, { once: true });
+      }
+    }
+
     // ===== Initialize =====
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.card').forEach(makeDraggable);
@@ -1658,6 +2023,7 @@
       document.querySelectorAll('.evidence').forEach(makeDraggable);
       document.querySelectorAll('.suspect-card').forEach(makeDraggable);
       initReadAloud();
+      initSound();
     });
   </script>
 </body>
