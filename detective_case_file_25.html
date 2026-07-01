@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felix's Case File #25 - The Hungry Book Club</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --paper: #f5f0e1;
+      --paper-dark: #e8e0c8;
+      --ink: #2c2416;
+      --brown: #6b4e3d;
+      --brown-dark: #4a3528;
+      --red: #b83a2a;
+      --red-dark: #8f2a1d;
+      --yellow: #e6b84a;
+      --orange: #e07b39;
+      --shadow: rgba(44, 36, 22, 0.25);
+    }
+
+    /* Self-hosted display fonts (works served on GitHub Pages and offline). */
+    @font-face {
+      font-family: 'Special Elite';
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/special-elite.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Stardos Stencil';
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/stardos-stencil-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Stardos Stencil';
+      font-style: normal; font-weight: 700; font-display: swap;
+      src: url('fonts/stardos-stencil-700.woff2') format('woff2');
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(107, 78, 61, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(74, 53, 40, 0.2) 0%, transparent 40%),
+        #3d2e24;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+      padding: 0;
+      color: var(--ink);
+    }
+
+    #scaler {
+      transform-origin: center center;
+    }
+
+    #app {
+      width: 1400px;
+      height: 1300px;
+      background-color: #efe1bd;
+      /* Kraft paper: a warm tonal wash + a sepia-tinted fibrous mottle that
+         covers the whole sheet (no tiling → no seams), multiplied over a
+         yellow kraft base. Sits behind the (transparent) pages. */
+      background-image:
+        radial-gradient(130% 120% at 50% 26%, rgba(255,250,228,0.45) 0%, rgba(150,112,68,0) 52%, rgba(108,76,40,0.18) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1300'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.14' intercept='0.83'/%3E%3CfeFuncG type='linear' slope='0.14' intercept='0.77'/%3E%3CfeFuncB type='linear' slope='0.14' intercept='0.68'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+      background-size: 100% 100%, 100% 100%;
+      background-repeat: no-repeat, no-repeat;
+      background-blend-mode: multiply, multiply;
+      border-radius: 8px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 80px rgba(107, 78, 61, 0.1);
+      position: relative;
+      overflow: hidden;
+      border: 12px solid var(--brown-dark);
+    }
+
+    /* Paper grain — a fine, warm fibrous speck over the whole sheet (single
+       cover image, no tiling → no seams). */
+    #app::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.10;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.7' intercept='0.3'/%3E%3CfeFuncG type='linear' slope='0.7' intercept='0.24'/%3E%3CfeFuncB type='linear' slope='0.7' intercept='0.14'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    /* Aged paper — soft vignette only. */
+    #app::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      box-shadow: inset 0 0 130px 24px rgba(74, 53, 40, 0.16);
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 40px 40px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(30px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+
+    .page.prev {
+      transform: translateX(-30px);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 3px double var(--brown);
+    }
+
+    .page-title {
+      font-size: 42px;
+      color: var(--brown-dark);
+    }
+
+    .case-badge {
+      background: var(--brown-dark);
+      color: var(--paper);
+      padding: 10px 20px;
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      box-shadow: 2px 2px 0 var(--shadow);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--brown-dark);
+      color: var(--paper);
+      border: none;
+      padding: 22px 56px;
+      font-family: 'Courier New', monospace;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 4px 0 var(--brown), 0 6px 10px var(--shadow);
+      transition: transform 0.1s, box-shadow 0.1s;
+      margin-top: auto;
+      align-self: center;
+    }
+
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 var(--brown), 0 3px 6px var(--shadow);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Cover */
+    .cover {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 46px;
+    }
+
+    .title-wrap {
+      position: relative;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .cover-stamp {
+      position: absolute;
+      left: 100%;
+      top: 72%;
+      margin-left: -50px;
+      margin-top: -110px;
+      width: 220px;
+      height: 220px;
+      border: 8px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 42px;
+      text-align: center;
+      line-height: 1.3;
+      transform: rotate(-12deg);
+      opacity: 0.85;
+      z-index: 2;
+    }
+
+    .cover h1 {
+      font-size: 80px;
+      color: var(--brown-dark);
+      line-height: 1.04;
+      margin: 0;
+    }
+
+    .cover .subtitle {
+      font-size: 40px;
+      color: var(--brown);
+      margin-bottom: 0;
+      font-style: italic;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .cover-info {
+      background: var(--paper-dark);
+      padding: 60px 120px;
+      border-radius: 8px;
+      border: 3px solid var(--brown);
+      margin-bottom: 0;
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      font-size: 36px;
+      line-height: 2.2;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cover .btn {
+      margin-top: 0;
+    }
+
+    .cover-info strong {
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    /* Timeline */
+    .timeline-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      min-height: 0;
+    }
+
+    .timeline-track {
+      position: relative;
+      height: 200px;
+      margin: 24px 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      right: 40px;
+      height: 5px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--brown) 0,
+        var(--brown) 10px,
+        transparent 10px,
+        transparent 16px
+      );
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .timeline-line.complete {
+      background: var(--orange);
+      background-image: none;
+      transition: background 0.5s;
+    }
+
+    .timeline-slot {
+      width: 240px;
+      height: 190px;
+      border: 3px dashed var(--brown);
+      border-radius: 8px;
+      background: rgba(232, 224, 200, 0.5);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      font-size: 22px;
+      color: var(--brown);
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .timeline-slot.filled {
+      border-style: solid;
+      border-color: var(--brown-dark);
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--shadow);
+    }
+
+    .timeline-slot.correct {
+      border-color: var(--orange);
+      background: #fff8e8;
+    }
+
+    .timeline-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      min-height: 340px;
+      padding: 30px;
+      background: var(--paper-dark);
+      border-radius: 8px;
+      border: 3px solid var(--brown);
+      align-items: center;
+    }
+
+    .card {
+      width: 300px;
+      padding: 20px;
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      cursor: grab;
+      font-size: 30px;
+      line-height: 1.4;
+      text-align: center;
+      overflow-wrap: break-word;
+      position: relative;
+      transition: transform 0.1s, box-shadow 0.1s;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 4px 0 var(--shadow);
+    }
+
+    .card.dragging {
+      cursor: grabbing;
+      position: fixed;
+      z-index: 1000;
+      transform: rotate(3deg) scale(0.72);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    .card.placed {
+      width: 100%;
+      height: 100%;
+      box-shadow: none;
+      cursor: default;
+      transform: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .card-number {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      width: 28px;
+      height: 28px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .timeline-slot.correct .card-number {
+      opacity: 1;
+    }
+
+    .success-message {
+      text-align: center;
+      font-style: italic;
+      color: var(--brown);
+      margin-top: 24px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      font-size: 28px;
+    }
+
+    .success-message.show {
+      opacity: 1;
+    }
+
+    /* Suspect Files */
+    .suspects-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+      min-height: 0;
+    }
+
+    .suspects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 0;
+    }
+
+    .folder {
+      background: var(--paper-dark);
+      border: 3px solid var(--brown);
+      border-radius: 4px 16px 4px 4px;
+      min-height: 270px;
+      padding: 20px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .folder::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -3px;
+      width: 100px;
+      height: 16px;
+      background: var(--brown);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .folder h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: var(--brown-dark);
+      text-align: center;
+    }
+
+    .folder-zone {
+      min-height: 170px;
+      border: 2px dashed var(--brown);
+      border-radius: 4px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .folder.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .folder.highlight {
+      border-color: var(--red);
+      box-shadow: 0 0 20px rgba(184, 58, 42, 0.3);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px) rotate(-1deg); }
+      75% { transform: translateX(5px) rotate(1deg); }
+    }
+
+    .clues-pool {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: min-content;
+      align-items: start;
+      gap: 20px;
+      padding: 30px;
+      background: rgba(107, 78, 61, 0.08);
+      border-radius: 8px;
+      min-height: 360px;
+      margin-bottom: 0;
+      border: 3px solid var(--brown);
+    }
+
+    .clue {
+      padding: 20px;
+      background: #fff;
+      border: 2px solid var(--brown);
+      border-radius: 3px;
+      box-shadow: 1px 1px 0 var(--shadow);
+      cursor: grab;
+      font-size: 30px;
+      line-height: 1.4;
+      width: 100%;
+      text-align: center;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      transition: transform 0.1s;
+      user-select: none;
+      position: relative;
+    }
+
+    .clue:hover {
+      transform: translateY(-2px);
+    }
+
+    .clue.dragging {
+      position: fixed;
+      z-index: 1000;
+      cursor: grabbing;
+      transform: rotate(2deg) scale(0.72);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      pointer-events: none;
+      height: auto !important;
+    }
+
+    .clue.placed {
+      cursor: default;
+      transform: none;
+      width: 100%;
+      max-width: none;
+      height: auto !important;
+      padding: 12px;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .folder-status {
+      text-align: center;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 32px;
+      color: var(--brown);
+      min-height: 40px;
+    }
+
+    .folder.solved .folder-status {
+      color: var(--red);
+      font-weight: bold;
+    }
+
+    .folder.culprit {
+      border-color: var(--red);
+      background: #fff0ed;
+    }
+
+    .folder.culprit::before {
+      background: var(--red);
+    }
+
+    /* Evidence Board */
+    .board-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .cork-board {
+      width: 1300px;
+      height: 760px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(139, 90, 43, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 70% 70%, rgba(139, 90, 43, 0.2) 0%, transparent 35%),
+        #c9a66b;
+      border: 8px solid var(--brown-dark);
+      border-radius: 4px;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.15);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .monster-zone {
+      width: 1180px;
+      height: 560px;
+      border: 3px dashed var(--brown-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 40px;
+      padding: 16px 24px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .monster-zone.revealed {
+      border-color: var(--orange);
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .monster-zone.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .board-hint {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-size: 26px;
+      padding: 12px 26px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 20;
+    }
+
+    .board-hint.show {
+      opacity: 0.97;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .placed-row {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 24px;
+      flex-wrap: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .monster-drawing {
+      font-size: 150px;
+      opacity: 0.3;
+      transition: all 0.5s;
+    }
+
+    .monster-zone.revealed .monster-drawing {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .monster-label {
+      font-family: 'Courier New', monospace;
+      font-size: 34px;
+      color: var(--brown-dark);
+      text-align: center;
+      opacity: 0.5;
+    }
+
+    .monster-zone.revealed .monster-label {
+      opacity: 1;
+      color: var(--red-dark);
+    }
+
+    .evidence-tray {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .evidence {
+      width: 150px;
+      height: 150px;
+      background: #fff;
+      border: 2px solid var(--brown);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      box-shadow: 2px 2px 0 var(--shadow);
+      transition: transform 0.1s;
+      user-select: none;
+      position: relative;
+    }
+
+    .evidence:hover {
+      transform: translateY(-3px);
+    }
+
+    .evidence.dragging {
+      position: fixed;
+      z-index: 1000;
+      cursor: grabbing;
+      transform: rotate(4deg) scale(0.72);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    .evidence-icon {
+      font-size: 64px;
+      line-height: 1;
+    }
+
+    .evidence-label {
+      font-size: 22px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      line-height: 1.15;
+    }
+
+    .evidence-placed {
+      position: relative;
+      width: 255px;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 3px;
+      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.28);
+      transform-origin: center center;
+    }
+
+    .evidence-placed:nth-child(odd)  { animation: popPinL 0.42s ease both; }
+    .evidence-placed:nth-child(even) { animation: popPinR 0.42s ease both; }
+
+    /* pushpin holding the photo to the cork */
+    .evidence-placed::before {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      margin-left: -12px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ff9c8d, var(--red) 58%, var(--red-dark));
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+      z-index: 4;
+    }
+
+    @keyframes popPinL {
+      0%   { opacity: 0; transform: translateY(-34px) scale(.6) rotate(-3deg); }
+      70%  { opacity: 1; transform: translateY(0) scale(1.06) rotate(-3deg); }
+      100% { opacity: 1; transform: scale(1) rotate(-2.5deg); }
+    }
+    @keyframes popPinR {
+      0%   { opacity: 0; transform: translateY(-34px) scale(.6) rotate(3deg); }
+      70%  { opacity: 1; transform: translateY(0) scale(1.06) rotate(3deg); }
+      100% { opacity: 1; transform: scale(1) rotate(2.5deg); }
+    }
+
+    .evidence-placed .evidence-icon {
+      font-size: 124px;
+    }
+
+    .evidence-placed .evidence-label {
+      font-size: 28px;
+      margin-top: 10px;
+      line-height: 1.12;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .reasoning {
+      position: relative;
+      z-index: 1;
+      width: 95%;
+      max-width: 1040px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 24px;
+      border-radius: 4px;
+      border: 2px solid var(--brown);
+      font-family: 'Courier New', monospace;
+      font-size: 25px;
+      line-height: 1.4;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+
+    .reasoning.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .color-mix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .color-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+      display: inline-block;
+    }
+
+    /* Case Closed */
+    .culprit-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .suspect-lineup {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .suspect-card {
+      width: 250px;
+      padding: 32px;
+      background: var(--paper-dark);
+      border: 3px solid var(--brown);
+      border-radius: 6px;
+      text-align: center;
+      cursor: grab;
+      box-shadow: 2px 2px 0 var(--shadow);
+      transition: transform 0.1s;
+      user-select: none;
+      position: relative;
+    }
+
+    .suspect-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .suspect-card.dragging {
+      position: fixed;
+      z-index: 1000;
+      cursor: grabbing;
+      transform: rotate(3deg) scale(0.72);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    .suspect-avatar {
+      font-size: 110px;
+      margin-bottom: 14px;
+    }
+
+    .suspect-name {
+      font-family: 'Courier New', monospace;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .culprit-zone {
+      width: 680px;
+      height: 320px;
+      border: 4px dashed var(--red);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(184, 58, 42, 0.05);
+      transition: all 0.3s;
+    }
+
+    .culprit-zone.highlight {
+      background: rgba(184, 58, 42, 0.15);
+      transform: scale(1.02);
+    }
+
+    .culprit-zone h3 {
+      color: var(--red);
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .culprit-zone p {
+      font-size: 28px;
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    .culprit-caught {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: culpritLand 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .culprit-caught-avatar {
+      font-size: 120px;
+      line-height: 1;
+      filter: drop-shadow(2px 4px 4px var(--shadow));
+    }
+    .culprit-caught-name {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-size: 38px;
+      color: var(--ink);
+      letter-spacing: 1px;
+    }
+    .culprit-caught-tag {
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--paper);
+      background: var(--red);
+      border: 2px solid var(--red-dark);
+      border-radius: 4px;
+      padding: 3px 14px;
+      transform: rotate(-3deg);
+      box-shadow: 2px 2px 0 var(--shadow);
+    }
+    @keyframes culpritLand {
+      0%   { transform: scale(0.4) translateY(-40px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .culprit-caught { animation: none; }
+    }
+
+    .final-message {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 100;
+    }
+
+    .final-message.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .stamp {
+      width: 280px;
+      height: 280px;
+      border: 8px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 40px;
+      text-align: center;
+      line-height: 1.2;
+      transform: rotate(-12deg) scale(2);
+      opacity: 0;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .stamp.show {
+      animation: stampPress 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+    }
+
+    @keyframes stampPress {
+      0%   { opacity: 0;    transform: rotate(-12deg) scale(2.1); }
+      50%  { opacity: 1;    transform: rotate(-12deg) scale(0.86); }
+      72%  { opacity: 1;    transform: rotate(-13.5deg) scale(1.08); }
+      100% { opacity: 0.9;  transform: rotate(-12deg) scale(1); }
+    }
+
+        .final-text {
+      margin-top: 0;
+      text-align: center;
+      font-family: Georgia, serif;
+      font-size: 42px;
+      line-height: 1.9;
+      color: var(--brown-dark);
+      max-width: 1240px;
+    }
+
+    .final-text .felix-quote {
+      font-style: italic;
+      margin-top: 36px;
+      font-size: 38px;
+      line-height: 1.7;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--orange);
+      animation: fall 2s ease-out forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0); opacity: 1; }
+      100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Read-aloud (text-to-speech) buttons */
+    .speak-btn {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--brown-dark);
+      color: var(--paper);
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 1px 1px 0 var(--shadow);
+      opacity: 0.85;
+      z-index: 6;
+      transition: transform 0.1s, opacity 0.1s;
+    }
+
+    .speak-btn:hover {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+
+    .speak-btn.speaking {
+      background: var(--red);
+      animation: pulse 0.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    /* inline speaker for text blocks (cover info, reasoning, etc.) */
+    .speak-inline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      margin-left: 10px;
+      border: none;
+      border-radius: 50%;
+      background: var(--brown-dark);
+      color: var(--paper);
+      font-size: 16px;
+      cursor: pointer;
+      vertical-align: middle;
+      box-shadow: 1px 1px 0 var(--shadow);
+      opacity: 0.85;
+    }
+
+    .speak-inline:hover { opacity: 1; }
+    .speak-inline.speaking { background: var(--red); }
+
+    /* Case Closed 后的导航按钮 */
+    .case-nav { margin: 0; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .case-nav .btn { text-decoration: none; }
+
+    /* ===== Phase 2: cover intro · progress stepper · per-page props ===== */
+    @keyframes stampDrop {
+      0%   { opacity: 0;    transform: translateY(-64px) rotate(-34deg) scale(1.5); }
+      62%  { opacity: 0.85; transform: translateY(0) rotate(-9deg) scale(0.9); }
+      82%  { transform: rotate(-13.5deg) scale(1.05); }
+      100% { opacity: 0.85; transform: rotate(-12deg) scale(1); }
+    }
+    @keyframes titleType {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popBtn {
+      0%   { opacity: 0; transform: scale(0.7); }
+      70%  { opacity: 1; transform: scale(1.06); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* The cover stays "sealed" until the user clicks Open the Case File,
+       so the reveal (and its stamp sound) always fires after a user gesture. */
+    .cover-reveal { display: none; }
+    .cover.opened .cover-open-btn { display: none; }
+    .cover.opened .cover-reveal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 46px;
+    }
+
+    .cover.opened h1             { animation: riseIn 0.55s ease 0.1s both; }
+    .cover.opened .cover-stamp   { animation: stampDrop 0.55s cubic-bezier(.2,.7,.3,1) 0.72s both; }
+    .cover.opened .subtitle      { animation: riseIn 0.5s ease 1.05s both; }
+    .cover.opened .cover-info    { animation: riseIn 0.55s ease 1.25s both; }
+    .cover.opened .cover-start-btn { animation: popBtn 0.45s cubic-bezier(.34,1.56,.64,1) 1.65s both; }
+
+    /* Progress stepper — floats in the top band, shown on pages 1–4 */
+    .progress-stepper {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      align-items: center;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .progress-stepper.show { display: flex; }
+    .step-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--brown);
+      background: var(--paper-dark);
+      position: relative;
+      transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+    }
+    .step-dot + .step-dot { margin-left: 48px; }
+    .step-dot:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 48px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: var(--brown);
+      opacity: 0.35;
+    }
+    .step-dot.done {
+      background: var(--brown);
+      border-color: var(--brown);
+    }
+    .step-dot.done::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .step-dot.active {
+      background: var(--red);
+      border-color: var(--red-dark);
+      box-shadow: 0 0 0 5px rgba(184, 58, 42, 0.18);
+      transform: scale(1.3);
+    }
+
+    /* Per-page motif — faint watermark behind the content */
+    .page-prop {
+      position: absolute;
+      bottom: 70px;
+      right: 48px;
+      font-size: 168px;
+      line-height: 1;
+      opacity: 0.24;
+      transform: rotate(-12deg);
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cover.opened .cover-stamp,
+      .cover.opened h1,
+      .cover.opened .subtitle,
+      .cover.opened .cover-info,
+      .cover.opened .cover-start-btn { animation: none; }
+    }
+
+    /* ===== Phase 3: magnifier cursor · red string · mute toggle ===== */
+    /* Magnifier "inspect" cursor across the WHOLE case file, so it shows on
+       every page — not just the one page that happens to have a big board.
+       Draggable items add a `grab` fallback; buttons keep their own pointer. */
+    #app {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, default;
+    }
+    .card, .clue, .evidence, .suspect-card,
+    .cork-board, .clues-pool, .timeline-cards, .suspect-lineup {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38'%3E%3Ccircle cx='15' cy='15' r='10' fill='rgba(255,255,255,0.18)' stroke='%234a3528' stroke-width='3'/%3E%3Cline x1='22.5' y1='22.5' x2='33' y2='33' stroke='%234a3528' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 15 15, grab;
+    }
+
+    /* red string layer inside the dashed board, behind the cards/reasoning */
+    .string-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+    .string-layer .string {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 4;
+      stroke-linecap: round;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+    }
+  </style>
+  <script src="rewards.js"></script>
+</head>
+<body>
+  <div id="scaler">
+  <div id="app">
+    <!-- Progress stepper (Cover → Timeline → Suspects → Evidence → Solve) -->
+    <div class="progress-stepper" id="progressStepper">
+      <div class="step-dot" data-step="0" title="Cover"></div>
+      <div class="step-dot" data-step="1" title="Timeline"></div>
+      <div class="step-dot" data-step="2" title="Suspects"></div>
+      <div class="step-dot" data-step="3" title="Evidence"></div>
+      <div class="step-dot" data-step="4" title="Solve"></div>
+    </div>
+    <!-- Page 0: Cover -->
+    <section class="page cover active" data-page="0">
+      <button class="btn cover-open-btn" id="coverOpenBtn">📂 Open the Case File</button>
+      <div class="cover-reveal">
+        <div class="title-wrap">
+          <h1>Felix's<br>Case File</h1>
+          <div class="cover-stamp">TOP<br>SECRET</div>
+        </div>
+        <div class="subtitle">#25 — The Hungry Book Club</div>
+        <div class="cover-info">
+          <div><strong>Client:</strong> Rosamond (president of the Ready Readers)</div>
+          <div><strong>Mystery:</strong> An "Evil Page Monster" tore a cookbook page — torn, ripped, ruined!</div>
+          <div><strong>Location:</strong> Rosamond's book club — the kitchen table</div>
+          <div><strong>Status:</strong> OPEN
+            <button class="speak-inline" data-speak="Client, Rosamond, president of the Ready Readers. Mystery, an evil page monster tore a cookbook page, torn, ripped, ruined. Location, Rosamond's book club, the kitchen table. Status, open." title="Read aloud">🔊</button>
+          </div>
+        </div>
+        <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
+      </div>
+    </section>
+
+    <!-- Page 1: Timeline -->
+    <section class="page" data-page="1">
+      <div class="page-prop">🕰️</div>
+      <div class="page-header">
+        <h2 class="page-title">The Case Timeline</h2>
+        <div class="case-badge">CASE #25</div>
+      </div>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Put the case cards in order. Drag each card to the right spot on the timeline.</p>
+
+      <div class="timeline-content">
+        <div class="timeline-track">
+          <div class="timeline-line" id="timelineLine"></div>
+          <div class="timeline-slot" data-order="1"></div>
+          <div class="timeline-slot" data-order="2"></div>
+          <div class="timeline-slot" data-order="3"></div>
+          <div class="timeline-slot" data-order="4"></div>
+          <div class="timeline-slot" data-order="5"></div>
+        </div>
+
+        <div class="timeline-cards" id="timelineCards">
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Felix saw the table was too high — Fang could not reach the cookbook.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond started a book club, but a cookbook page was torn, ripped, ruined!</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Rosamond blamed Fang and called him the Evil Page Monster.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix proved a small, leaping cat ripped the page for the tuna bits.</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix and Sludge went undercover as new book-club members.</div>
+        </div>
+
+        <div class="success-message" id="timelineSuccess">Timeline complete. But if Fang can't reach the table, who ripped the page?</div>
+      </div>
+
+      <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
+    </section>
+
+    <!-- Page 2: Suspect Files -->
+    <section class="page" data-page="2">
+      <div class="page-prop">🗂️</div>
+      <div class="page-header">
+        <h2 class="page-title">Suspect Files</h2>
+        <div class="case-badge">CASE #25</div>
+      </div>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right person's folder.</p>
+
+      <div class="suspects-content">
+        <div class="suspects-grid">
+          <div class="folder" data-suspect="Fang">
+            <h3>Fang</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="LittleHex">
+            <h3>Little Hex</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="Oliver">
+            <h3>Oliver</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="Esmeralda">
+            <h3>Esmeralda</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+        </div>
+
+        <div class="clues-pool" id="cluesPool">
+          <div class="clue" data-suspect="LittleHex">Rosamond's smallest cat, and cats love tuna fish</div>
+          <div class="clue" data-suspect="Fang">Annie's big dog — Rosamond blamed him first</div>
+          <div class="clue" data-suspect="Oliver">follows everyone everywhere in the book club</div>
+          <div class="clue" data-suspect="Esmeralda">was reading aloud when she found a page missing</div>
+          <div class="clue" data-suspect="Fang">too short for the high table, and hates tuna pie</div>
+          <div class="clue" data-suspect="LittleHex">can leap high and hide in tiny spaces unseen</div>
+          <div class="clue" data-suspect="Esmeralda">first thought Harvard just needed a watch</div>
+          <div class="clue" data-suspect="Oliver">said Harvard Hedgehog is a very boring book</div>
+        </div>
+      </div>
+
+      <button class="btn hidden" id="suspectsNext" onclick="goToPage(3)">Next: Evidence Board</button>
+    </section>
+
+    <!-- Page 3: Evidence Board -->
+    <section class="page" data-page="3">
+      <div class="page-prop">📌</div>
+      <div class="page-header">
+        <h2 class="page-title">Evidence Board</h2>
+        <div class="case-badge">CASE #25</div>
+      </div>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the right evidence to the board to show how Felix solved the case.</p>
+
+      <div class="board-area">
+        <div class="cork-board" id="corkBoard">
+          <div class="board-hint" id="boardHint">Not Fang! The table is too high, and he hates tuna pie.</div>
+          <div class="monster-zone" id="monsterZone">
+            <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
+            <div class="placed-row" id="placedRow"></div>
+            <div class="reasoning" id="reasoning">
+              <strong>Felix's Reasoning:</strong>
+              <button class="speak-inline" data-speak="Felix's reasoning. Rosamond blamed Fang. But the kitchen table is too high. Fang jumped and stretched but could not reach the cookbook, and he does not even like tuna fish pie. The torn page had a tuna recipe, and all the tuna bits were scratched away. Only a small cat that can leap high, hide in tiny spaces, and sneak in unseen fits. Little Hex tore the page to get every last bite of tuna!" title="Read aloud">🔊</button>
+              <br>
+              High table + tuna bits scratched away + a small leaping cat = Little Hex ripped the page!<br>
+              <div class="color-mix">
+                <span>📏 Table too high for Fang</span>
+                <span>+</span>
+                <span>🐟 Tuna bits scratched away</span>
+                <span>+</span>
+                <span>🐱 Leaps high & hides</span>
+                <span>=</span>
+                <span>🐱 Little Hex did it!</span>
+              </div>
+              Fang couldn't reach and hates tuna — only tiny Little Hex fits!
+            </div>
+          </div>
+        </div>
+
+        <div class="evidence-tray" id="evidenceTray">
+          <div class="evidence" data-type="table" data-used="false">
+            <div class="evidence-icon">📏</div>
+            <div class="evidence-label">Table Too High</div>
+          </div>
+          <div class="evidence" data-type="tuna" data-used="false">
+            <div class="evidence-icon">🐟</div>
+            <div class="evidence-label">Tuna Bits Gone</div>
+          </div>
+          <div class="evidence" data-type="cat" data-used="false">
+            <div class="evidence-icon">🐱</div>
+            <div class="evidence-label">Small Leaping Cat</div>
+          </div>
+          <div class="evidence" data-type="fang" data-used="false">
+            <div class="evidence-icon">🐶</div>
+            <div class="evidence-label">Fang the Monster?</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn hidden" id="evidenceNext" onclick="goToPage(4)">Next: Solve the Case</button>
+    </section>
+
+    <!-- Page 4: Case Closed -->
+    <section class="page" data-page="4">
+      <div class="page-prop">🔍</div>
+      <div class="page-header">
+        <h2 class="page-title">Solve the Case</h2>
+        <div class="case-badge">CASE #25</div>
+      </div>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Who is the real Page Monster? Drag the culprit into the spotlight.</p>
+
+      <div class="culprit-area">
+        <div class="suspect-lineup" id="suspectLineup">
+          <div class="suspect-card" data-suspect="Fang">
+            <div class="suspect-avatar">🐶</div>
+            <div class="suspect-name">Fang</div>
+          </div>
+          <div class="suspect-card" data-suspect="LittleHex">
+            <div class="suspect-avatar">🐱</div>
+            <div class="suspect-name">Little Hex</div>
+          </div>
+          <div class="suspect-card" data-suspect="Oliver">
+            <div class="suspect-avatar">👦</div>
+            <div class="suspect-name">Oliver</div>
+          </div>
+          <div class="suspect-card" data-suspect="Esmeralda">
+            <div class="suspect-avatar">👧</div>
+            <div class="suspect-name">Esmeralda</div>
+          </div>
+        </div>
+
+        <div class="culprit-zone" id="culpritZone">
+          <h3>The Answer Is…</h3>
+          <p>Drag it here</p>
+        </div>
+      </div>
+
+      <div class="final-message" id="finalMessage">
+        <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
+        <div class="final-text">
+          <strong>Case #25 — The Hungry Book Club</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You caught the Page Monster! It was Little Hex, Rosamond's smallest cat. The table was too high for Fang, and he hates tuna. But Little Hex could leap high and squeeze into tiny spaces. He tore the page to lick up every last bit of tuna fish pie. Great work!" title="Read aloud">🔊</button>
+          <br>
+          The Page Monster is LITTLE HEX! Rosamond blamed Fang, but the table was too high for him — and he hates tuna. Little Hex is small enough to leap up, sneak in, and hide. He scratched and tore the page to get every last bite of tuna fish pie.
+          <div class="felix-quote">"I, Fantastic Felix, say clean clues are better than a messy kitchen. Case closed — now let's read the book just for fun."</div>
+        </div>
+        <div class="case-nav">
+          <a class="btn" id="nextCaseBtn" href="detective_case_file_26.html">➡️ 下一案 Case #26</a>
+          <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <script>
+    // ===== Fit the fixed-size file to the window =====
+    let currentScale = 1;
+    function fitToWindow() {
+      const scaler = document.getElementById('scaler');
+      const margin = 0; // fit as tightly as possible while keeping the whole file visible
+      const scaleX = (window.innerWidth - margin) / 1400;
+      const scaleY = (window.innerHeight - margin) / 1300;
+      // Keep the entire file visible; scale to fit inside the viewport.
+      currentScale = Math.min(scaleX, scaleY);
+      scaler.style.transform = 'scale(' + currentScale + ')';
+    }
+    window.addEventListener('resize', fitToWindow);
+    window.addEventListener('DOMContentLoaded', fitToWindow);
+    fitToWindow();
+
+    // ===== State =====
+    let currentPage = 0;
+    const completed = { timeline: false, suspects: false, evidence: false };
+
+    // ===== Page Navigation =====
+    function goToPage(n) {
+      document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active', 'prev');
+        if (parseInt(p.dataset.page) === currentPage) p.classList.add('prev');
+        if (parseInt(p.dataset.page) === n) {
+          setTimeout(() => p.classList.add('active'), 50);
+        }
+      });
+      currentPage = n;
+      updateStepper(n);
+    }
+
+    // Case-progress dots: done (passed), active (current); hidden on the cover.
+    function updateStepper(n) {
+      const stepper = document.getElementById('progressStepper');
+      if (!stepper) return;
+      stepper.classList.toggle('show', n >= 1);
+      stepper.querySelectorAll('.step-dot').forEach(dot => {
+        const i = parseInt(dot.dataset.step);
+        dot.classList.toggle('done', i < n);
+        dot.classList.toggle('active', i === n);
+      });
+    }
+
+    // ===== Drag & Drop System =====
+    let dragEl = null;
+    let dragOffset = { x: 0, y: 0 };
+    let dragSource = null;
+    let placeholder = null;
+
+    function makeDraggable(el) {
+      el.addEventListener('mousedown', startDrag);
+      el.addEventListener('touchstart', startDrag, { passive: false });
+    }
+
+    function startDrag(e) {
+      if (e.target.closest('.placed')) return;
+      if (e.target.closest('.speak-btn')) return;
+      e.preventDefault();
+      dragEl = e.currentTarget;
+      dragSource = dragEl.parentElement;
+      const rect = dragEl.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      // getBoundingClientRect returns scaled sizes (the file may be shrunk to
+      // fit the window). The drag clone is moved to <body>, outside the scaler,
+      // where it renders unscaled — so convert everything to natural pixels.
+      const s = currentScale || 1;
+      const natW = rect.width / s;
+      const natH = rect.height / s;
+      dragOffset.x = (clientX - rect.left) / s;
+      dragOffset.y = (clientY - rect.top) / s;
+
+      placeholder = document.createElement('div');
+      placeholder.style.width = rect.width + 'px';
+      placeholder.style.height = rect.height + 'px';
+      placeholder.style.flexShrink = '0';
+      placeholder.style.visibility = 'hidden';
+      dragEl.parentNode.insertBefore(placeholder, dragEl);
+
+      dragEl.style.width = natW + 'px';
+      dragEl.style.height = natH + 'px';
+      dragEl.classList.add('dragging');
+      document.body.appendChild(dragEl);
+      moveDrag(clientX, clientY);
+
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+      document.addEventListener('touchmove', onDragMove, { passive: false });
+      document.addEventListener('touchend', onDragEnd);
+    }
+
+    function onDragMove(e) {
+      e.preventDefault();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      moveDrag(clientX, clientY);
+      highlightDropZones(clientX, clientY);
+    }
+
+    function moveDrag(x, y) {
+      dragEl.style.left = (x - dragOffset.x) + 'px';
+      dragEl.style.top = (y - dragOffset.y) + 'px';
+    }
+
+    function highlightDropZones(x, y) {
+      document.querySelectorAll('.timeline-slot, .folder-zone, .monster-zone, .culprit-zone').forEach(zone => {
+        zone.classList.remove('highlight');
+      });
+      const el = document.elementFromPoint(x, y);
+      if (!el) return;
+      const zone = el.closest('.timeline-slot, .folder-zone, .monster-zone, .culprit-zone');
+      if (zone) zone.classList.add('highlight');
+    }
+
+    function onDragEnd(e) {
+      const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+      const el = document.elementFromPoint(clientX, clientY);
+      const zone = el ? el.closest('.timeline-slot, .folder-zone, .monster-zone, .culprit-zone') : null;
+
+      let accepted = false;
+      if (zone && dragEl.dataset.order && zone.classList.contains('timeline-slot')) {
+        accepted = handleTimelineDrop(zone);
+      } else if (zone && dragEl.dataset.suspect && zone.classList.contains('folder-zone')) {
+        accepted = handleSuspectDrop(zone);
+      } else if (zone && dragEl.dataset.type && zone.classList.contains('monster-zone')) {
+        accepted = handleEvidenceDrop(zone);
+      } else if (zone && dragEl.dataset.suspect && zone.classList.contains('culprit-zone')) {
+        accepted = handleCulpritDrop(zone);
+      }
+
+      dragEl.classList.remove('dragging');
+      dragEl.style.position = '';
+      dragEl.style.left = '';
+      dragEl.style.top = '';
+      dragEl.style.width = '';
+      dragEl.style.height = '';
+
+      if (placeholder && placeholder.parentNode) {
+        if (!accepted) {
+          placeholder.parentNode.replaceChild(dragEl, placeholder);
+        } else {
+          placeholder.remove();
+        }
+      }
+      placeholder = null;
+
+      document.removeEventListener('mousemove', onDragMove);
+      document.removeEventListener('mouseup', onDragEnd);
+      document.removeEventListener('touchmove', onDragMove);
+      document.removeEventListener('touchend', onDragEnd);
+      dragEl = null;
+
+      document.querySelectorAll('.timeline-slot, .folder-zone, .monster-zone, .culprit-zone').forEach(zone => {
+        zone.classList.remove('highlight');
+      });
+    }
+
+    // ===== Timeline Logic =====
+    function handleTimelineDrop(slot) {
+      const order = dragEl.dataset.order;
+      if (slot.dataset.order === order && !slot.querySelector('.card')) {
+        slot.innerHTML = '';
+        dragEl.classList.add('placed');
+        slot.appendChild(dragEl);
+        slot.classList.add('filled', 'correct');
+        playPinSound();
+        checkTimelineComplete();
+        return true;
+      }
+      return false;
+    }
+
+    function checkTimelineComplete() {
+      const slots = document.querySelectorAll('.timeline-slot');
+      const filled = document.querySelectorAll('.timeline-slot.correct');
+      if (filled.length === slots.length) {
+        document.getElementById('timelineLine').classList.add('complete');
+        document.getElementById('timelineSuccess').classList.add('show');
+        document.getElementById('timelineNext').classList.remove('hidden');
+        completed.timeline = true;
+      }
+    }
+
+    // ===== Suspect Files Logic =====
+    const folderCounts = { Fang: 0, LittleHex: 0, Oliver: 0, Esmeralda: 0 };
+    const folderTargets = { Fang: 2, LittleHex: 2, Oliver: 2, Esmeralda: 2 };
+
+    function handleSuspectDrop(zone) {
+      const suspect = zone.parentElement.dataset.suspect;
+      if (dragEl.dataset.suspect === suspect) {
+        dragEl.classList.add('placed');
+        zone.appendChild(dragEl);
+        playPinSound();
+        folderCounts[suspect]++;
+        if (folderCounts[suspect] === folderTargets[suspect]) {
+          zone.parentElement.classList.add('solved');
+          zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
+          if (suspect === 'LittleHex') {
+            zone.parentElement.classList.remove('solved');
+            zone.parentElement.classList.add('culprit');
+            zone.parentElement.querySelector('.folder-status').textContent = 'THE PAGE MONSTER! 🐱';
+          }
+        }
+        checkSuspectsComplete();
+        return true;
+      } else {
+        zone.parentElement.classList.add('shake');
+        setTimeout(() => zone.parentElement.classList.remove('shake'), 400);
+        return false;
+      }
+    }
+
+    function checkSuspectsComplete() {
+      const total = Object.values(folderCounts).reduce((a, b) => a + b, 0);
+      if (total === 8) {
+        document.getElementById('suspectsNext').classList.remove('hidden');
+        completed.suspects = true;
+      }
+    }
+
+    // ===== Evidence Board Logic =====
+    let evidenceState = { table: false, tuna: false, cat: false };
+    let hintTimer = null;
+
+    function showBoardHint() {
+      const hint = document.getElementById('boardHint');
+      if (!hint) return;
+      hint.classList.add('show');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(() => hint.classList.remove('show'), 1800);
+    }
+
+    function handleEvidenceDrop(zone) {
+      const type = dragEl.dataset.type;
+      if (type === 'fang') {
+        // Rosamond blamed Fang, but he can't reach the table and hates tuna — ruled out.
+        zone.classList.add('shake');
+        setTimeout(() => zone.classList.remove('shake'), 400);
+        showBoardHint();
+        return false;
+      }
+      if (type === 'table' || type === 'tuna' || type === 'cat') {
+        placeEvidenceOnBoard(dragEl, 'clue');
+        evidenceState[type] = true;
+        dragEl.classList.add('hidden');
+        if (evidenceState.table && evidenceState.tuna && evidenceState.cat) {
+          revealMonster();
+        }
+        checkEvidenceComplete();
+        return true;
+      }
+      return false;
+    }
+
+    // Placed clues drop into a centered row inside the board, so any number
+    // of cards (2, 3, 4…) always stay centered as a group. role is 'clue' for
+    // real evidence (gets a red string) or 'distractor' for the fun prop.
+    function placeEvidenceOnBoard(source, role) {
+      const row = document.getElementById('placedRow');
+      const placed = document.createElement('div');
+      placed.className = 'evidence evidence-placed';
+      placed.dataset.type = source.dataset.type;
+      placed.dataset.role = role || 'clue';
+      const clone = source.cloneNode(true);
+      clone.querySelectorAll('.speak-btn').forEach(b => b.remove());
+      placed.innerHTML = clone.innerHTML;
+      row.appendChild(placed);
+      playPinSound();
+    }
+
+    function revealMonster() {
+      const zone = document.getElementById('monsterZone');
+      zone.classList.add('revealed');
+      document.getElementById('reasoning').classList.add('show');
+      setTimeout(drawStrings, 380);
+    }
+
+    // Draw a red "case string" from every real clue down to the conclusion box.
+    // Generic over the clue count — it connects whatever [data-role="clue"]
+    // cards are on the board, so 2, 3 or 4 clues all work.
+    function drawStrings() {
+      const mz = document.getElementById('monsterZone');
+      const svg = document.getElementById('stringLayer');
+      const reasoning = document.getElementById('reasoning');
+      if (!mz || !svg || !reasoning) return;
+      const s = currentScale || 1;
+      const mzRect = mz.getBoundingClientRect();
+      const rRect = reasoning.getBoundingClientRect();
+      const tx = (rRect.left + rRect.width / 2 - mzRect.left) / s;
+      const ty = (rRect.top - mzRect.top) / s;
+      svg.innerHTML = '';
+      document.querySelectorAll('#placedRow .evidence-placed[data-role="clue"]').forEach(card => {
+        const cRect = card.getBoundingClientRect();
+        const cx = (cRect.left + cRect.width / 2 - mzRect.left) / s;
+        const cy = (cRect.bottom - mzRect.top) / s;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const midx = (cx + tx) / 2;
+        const midy = (cy + ty) / 2 + 10; // gentle sag within the gap
+        path.setAttribute('d', `M ${cx} ${cy} Q ${midx} ${midy} ${tx} ${ty}`);
+        path.setAttribute('class', 'string');
+        svg.appendChild(path);
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.getBoundingClientRect(); // reflow
+        path.style.transition = 'stroke-dashoffset 0.6s ease';
+        path.style.strokeDashoffset = '0';
+      });
+    }
+
+    function checkEvidenceComplete() {
+      if (evidenceState.table && evidenceState.tuna && evidenceState.cat) {
+        document.getElementById('evidenceNext').classList.remove('hidden');
+        completed.evidence = true;
+      }
+    }
+
+    // ===== Case Closed Logic =====
+    function handleCulpritDrop(zone) {
+      if (dragEl.dataset.suspect === 'LittleHex') {
+        const avatar = dragEl.querySelector('.suspect-avatar');
+        const icon = avatar ? avatar.textContent : '🐱';
+        dragEl.classList.add('hidden');
+        zone.innerHTML =
+          '<div class="culprit-caught">' +
+            '<div class="culprit-caught-avatar">' + icon + '</div>' +
+            '<div class="culprit-caught-name">Little Hex!</div>' +
+            '<div class="culprit-caught-tag">CULPRIT!</div>' +
+          '</div>';
+        zone.classList.add('highlight');
+        setTimeout(showFinalMessage, 1300);
+        return true;
+      } else {
+        zone.classList.add('shake');
+        setTimeout(() => zone.classList.remove('shake'), 400);
+        return false;
+      }
+    }
+
+    function showFinalMessage() {
+      const msg = document.getElementById('finalMessage');
+      const stamp = document.getElementById('finalStamp');
+      msg.classList.add('show');
+      setTimeout(() => { stamp.classList.add('show'); playStampSound(); }, 420);
+      createConfetti();
+      // Read a congratulatory line aloud as the case closes.
+      const congratsBtn = document.getElementById('finalSpeakBtn');
+      setTimeout(() => speak(congratsBtn.dataset.speak, congratsBtn), 900);
+      // 解锁本案奖励并弹窗（共享 rewards.js）。CASE_NUMBER 每个案件改这一处。
+      const CASE_NUMBER = 25;
+      if (window.DetectiveRewards) {
+        const reward = DetectiveRewards.unlockReward(CASE_NUMBER);
+        setTimeout(() => DetectiveRewards.showRewardToast(reward), 1400);
+      }
+    }
+
+    function createConfetti() {
+      const colors = ['var(--yellow)', 'var(--orange)', 'var(--red)', 'var(--brown)'];
+      for (let i = 0; i < 40; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + '%';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.animationDelay = Math.random() * 1 + 's';
+        c.style.animationDuration = (1.5 + Math.random()) + 's';
+        document.getElementById('finalMessage').appendChild(c);
+      }
+    }
+
+    // ===== Read Aloud (Text-to-Speech) =====
+    let currentSpeakBtn = null;
+
+    function speak(text, btn) {
+      if (!('speechSynthesis' in window)) {
+        alert('Sorry, your browser does not support read-aloud.');
+        return;
+      }
+      // If the same button is tapped while speaking, stop.
+      const wasSpeaking = window.speechSynthesis.speaking;
+      window.speechSynthesis.cancel();
+      if (currentSpeakBtn) currentSpeakBtn.classList.remove('speaking');
+      if (wasSpeaking && currentSpeakBtn === btn) {
+        currentSpeakBtn = null;
+        return;
+      }
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.85;
+      u.pitch = 1;
+      if (btn) {
+        btn.classList.add('speaking');
+        currentSpeakBtn = btn;
+        u.onend = () => btn.classList.remove('speaking');
+        u.onerror = () => btn.classList.remove('speaking');
+      }
+      window.speechSynthesis.speak(u);
+    }
+
+    // Read only the visible text of an element (skips badges, buttons & emoji icons)
+    const SKIP_SPEAK = ['card-number', 'speak-btn', 'evidence-icon', 'suspect-avatar', 'monster-drawing'];
+    function visibleText(el) {
+      let t = '';
+      el.childNodes.forEach(n => {
+        if (n.nodeType === 3) {
+          t += n.textContent + ' ';
+        } else if (n.nodeType === 1 &&
+                   !SKIP_SPEAK.some(c => n.classList.contains(c))) {
+          t += n.textContent + ' ';
+        }
+      });
+      return t.replace(/\s+/g, ' ').trim();
+    }
+
+    // Attach a small corner speaker button to a draggable text item
+    function addSpeakButton(el) {
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.type = 'button';
+      btn.textContent = '🔊';
+      btn.title = 'Read aloud';
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        speak(visibleText(el), btn);
+      });
+      // Block drag from starting on touch devices
+      btn.addEventListener('mousedown', e => e.stopPropagation());
+      btn.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+      el.appendChild(btn);
+    }
+
+    function initReadAloud() {
+      // Per-item speakers on the things kids read
+      document.querySelectorAll('.card, .clue, .evidence, .suspect-card').forEach(addSpeakButton);
+
+      // Inline speakers declared in the HTML (cover info, reasoning, ...)
+      document.querySelectorAll('.speak-inline').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          speak(btn.dataset.speak, btn);
+        });
+      });
+    }
+
+    // ===== Sound effects (Web Audio — synthesized, no asset, works offline) =====
+    let audioCtx = null;
+    function getCtx() {
+      if (!audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        audioCtx = new AC();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    // soft "tick" — a clue pinned to the board / placed correctly
+    function playPinSound() {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime;
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(880, t);
+      o.frequency.exponentialRampToValueAtTime(420, t + 0.05);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.22, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0008, t + 0.09);
+      o.connect(g).connect(ctx.destination);
+      o.start(t); o.stop(t + 0.1);
+    }
+
+    // "cha-chunk" — the CASE CLOSED rubber stamp landing
+    function playStampSound() {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const t = ctx.currentTime;
+      // low thud
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(190, t);
+      o.frequency.exponentialRampToValueAtTime(58, t + 0.13);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.5, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      o.connect(g).connect(ctx.destination);
+      o.start(t); o.stop(t + 0.22);
+      // ink "slap" noise burst
+      const dur = 0.06;
+      const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 2.2);
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buf;
+      const ng = ctx.createGain();
+      ng.gain.setValueAtTime(0.32, t);
+      noise.connect(ng).connect(ctx.destination);
+      noise.start(t);
+    }
+
+    function initSound() {
+      // The cover is sealed until the user clicks "Open the Case File". That
+      // click is a user gesture, so the audio context unlocks and the reveal's
+      // TOP SECRET stamp sound is guaranteed to play.
+      const openBtn = document.getElementById('coverOpenBtn');
+      const cover = document.querySelector('.cover');
+      if (openBtn && cover) {
+        openBtn.addEventListener('click', () => {
+          getCtx();                       // unlock audio under the gesture
+          cover.classList.add('opened');  // start the reveal animations
+          // stamp impact ≈ 0.72s delay + ~0.34s into its 0.55s drop
+          setTimeout(playStampSound, 1060);
+        }, { once: true });
+      }
+    }
+
+    // ===== Initialize =====
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card').forEach(makeDraggable);
+      document.querySelectorAll('.clue').forEach(makeDraggable);
+      document.querySelectorAll('.evidence').forEach(makeDraggable);
+      document.querySelectorAll('.suspect-card').forEach(makeDraggable);
+      initReadAloud();
+      initSound();
+    });
+  </script>
+</body>
+</html>

@@ -670,6 +670,33 @@ CASES = [
         "deduction": "Everyone thought ONE turkey was missing. But look for what doesn't fit — the feathers! Claude's feather was WHITE, but the famous turkey on TV had DARK GREEN and RED feathers. Two different feathers = TWO turkeys. Sludge followed the white feather's smell and tracked that turkey home to 58 Kenwood Street; Olivia caught the famous colorful turkey with turkey food.",
         "culprit": "Two Turkeys (the twist — there were two different turkeys all along; Claude's was white, the famous one colorful). Page 2 flags Sludge as THE TRACKER; Page 4 asks 'how many turkeys were missing?'",
     },
+    {
+        "num": "25",
+        "title": "The Hungry Book Club",
+        "title_cn": "饥饿读书会",
+        "cover": {
+            "Client": "Rosamond (president of the Ready Readers)",
+            "Mystery": "An 'Evil Page Monster' tore a cookbook page — torn, ripped, ruined!",
+            "Location": "Rosamond's book club — the kitchen table",
+        },
+        "timeline": [
+            "Rosamond started a book club, but a cookbook page was torn, ripped, ruined!",
+            "Felix and Sludge went undercover as new book-club members.",
+            "Rosamond blamed Fang and called him the Evil Page Monster.",
+            "Felix saw the table was too high — Fang could not reach the cookbook.",
+            "Felix proved a small, leaping cat ripped the page for the tuna bits.",
+        ],
+        "suspects": {
+            "Fang": ["Annie's big dog — Rosamond blamed him first", "too short for the high table, and hates tuna pie"],
+            "LittleHex": ["Rosamond's smallest cat, and cats love tuna fish", "can leap high and hide in tiny spaces unseen"],
+            "Oliver": ["follows everyone everywhere in the book club", "said Harvard Hedgehog is a very boring book"],
+            "Esmeralda": ["was reading aloud when she found a page missing", "first thought Harvard just needed a watch"],
+        },
+        "evidence_real": ["📏 Table Too High", "🐟 Tuna Bits Gone", "🐱 Small Leaping Cat"],
+        "evidence_distractor": "🐶 Fang the Monster? (ruled-out lead — the table's too high for him and he hates tuna pie)",
+        "deduction": "Rosamond blamed Fang, but the kitchen table is too HIGH — Fang jumped and stretched but couldn't reach the cookbook, and he doesn't even like tuna fish pie. The torn page had a tuna recipe, and all the tuna bits were scratched away. Only a small cat that can LEAP high, HIDE in tiny spaces, and sneak in unseen fits — Little Hex tore the page to get every last bite of tuna.",
+        "culprit": "Little Hex (Rosamond's smallest cat; he leaped onto the high table and tore the page for the tuna bits — Fang was wrongly blamed). Page 2 flags Little Hex as THE PAGE MONSTER; Page 4 is a culprit-drag (Little Hex).",
+    },
 ]
 
 BROWN = RGBColor(0x4A, 0x35, 0x28)
