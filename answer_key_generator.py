@@ -724,6 +724,33 @@ CASES = [
         "deduction": "No turnip can really walk. But Rosamond KNEW all about the Disguises for Detectives store, and Claude said he wanted to find something really SPECIAL. So Rosamond bought a tall turnip COSTUME and walked in front of Claude, giving her friend the special thing he wished to find — Rosamond was the walking turnip all along, and it was a kind trick.",
         "culprit": "Rosamond (she disguised herself as the 'walking turnip' so Claude could find something special). Page 2 flags Rosamond as THE WALKING TURNIP; Page 4 is a culprit-drag (Rosamond).",
     },
+    {
+        "num": "27",
+        "title": "The Missing Birthday Snake",
+        "title_cn": "失踪的生日蛇",
+        "cover": {
+            "Client": "Lizzy (Rosamond's cousin, who loves her pet snakes)",
+            "Mystery": "UGG Chomp, a giant ball python, vanished during the party!",
+            "Location": "Rosamond's backyard party — then all around the rainy house",
+        },
+        "timeline": [
+            "Rosamond invited Felix to a snake birthday party for her cousin Lizzy.",
+            "Rain came, so everyone rushed the party and snakes indoors.",
+            "Lizzy noticed her giant snake UGG Chomp was gone.",
+            "Crazy Craig's tip: snakes always look for warm places to hide.",
+            "Felix followed the warm dryer vent and found UGG Chomp behind the bush.",
+        ],
+        "suspects": {
+            "The Stream": ["Claude saw two shining eyes in the water here", "but the eyes had fur and ears — it was a beaver"],
+            "The Basement": ["has a warm furnace and a water heater", "but a giant snake is too big to hide down there"],
+            "The Dryer": ["warm and cozy — busy drying Fang's wet T-shirt", "but a snake can't open the door and climb in"],
+            "Behind the Bush": ["the dryer vent blows warm air out right here", "no sugar by the door, so the snake stayed outside"],
+        },
+        "evidence_real": ["🔥 Snakes Love Warmth", "🌬️ Hot Dryer Vent", "🚪 No Sugar at Door"],
+        "evidence_distractor": "🦫 Beaver in Stream? (ruled-out lead — the two eyes in the water had fur and ears, so it's a beaver, not the snake)",
+        "deduction": "Crazy Craig said snakes always seek WARM places. The dryer was drying Fang's wet T-shirt, and its VENT blew hot air outside, right behind a bush by the house. There was NO sugar by the back door, so UGG Chomp never got inside. So the warm-loving snake curled up behind the bush next to the warm dryer vent.",
+        "culprit": "Behind the Bush (UGG Chomp curled up by the warm dryer-vent air — not a person; this case is a where-is-it hunt). Page 2 folders are hiding places and flag 'Behind the Bush' as UGG CHOMP IS HERE; Page 4 is an answer-drag (Behind the Bush).",
+    },
 ]
 
 BROWN = RGBColor(0x4A, 0x35, 0x28)
