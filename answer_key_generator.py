@@ -455,6 +455,33 @@ CASES = [
         "culprit": "Harry (Annie's Brother Harry = ABH). The two cases — Annie's missing valentine and Sludge's mystery valentine — are the same case. Page 2 flags Harry as ABH; Page 4 is a culprit-drag (Harry).",
     },
     {
+        "num": "16a",
+        "title": "The Sweet Heart Card (kindness-card variant of #16)",
+        "title_cn": "心意卡（第16案·心意卡版）",
+        "cover": {
+            "Client": "Sludge (Felix's dog) — a mystery card appeared on his doghouse",
+            "Mystery": "A \"kindness card\" signed \"ABH\" appeared on Sludge's doghouse — and Annie's card went missing!",
+            "Location": "Felix's yard, Annie's house, Rosamond's four cats",
+        },
+        "timeline": [
+            "Annie made a red-heart kindness card for Harry and signed just \"A\".",
+            "Fang looked hungry, so Annie left to feed him — the card sat alone.",
+            "Harry didn't want the card, so he changed it into a card for Sludge.",
+            "Harry added \"ABH\" and taped the card to Sludge's doghouse.",
+            "Felix saw the cards matched — Sludge's case and Annie's case were one.",
+        ],
+        "suspects": {
+            "Harry": ["did not want the card Annie made for him", "disappeared the moment the card went missing"],
+            "Rosamond": ["made a look-alike \"valentwin\" card too", "made hers for a secret person — not Sludge"],
+            "Annie": ["made a card for Harry and signed only \"A\"", "her card vanished from her desk while she fed Fang"],
+            "A Big Hex (cat)": ["\"ABH\" could stand for \"A Big Hex\"", "but a cat can't cut, print, and tape a card"],
+        },
+        "evidence_real": ["💌 Cards Look Identical", "✏️ \"A\" Became \"ABH\"", "🍖 Too Good to Throw Away"],
+        "evidence_distractor": "🐱 A Big Hex the cat (ruled-out lead — Felix first guessed ABH = 'A Big Hex' but a cat can't make and tape a card)",
+        "deduction": "Sludge's mystery card looks exactly like the card Annie made. Annie signed only \"A\" before Fang interrupted her. Harry didn't want the card, so — like Rosamond's leftover liver, \"too good to throw away\" — he changed it into a card for Sludge, adding \"MORE THAN FUDGE\" and turning the \"A\" into ABH = Annie's Brother Harry. Both cases were the same card.",
+        "culprit": "Harry (Annie's Brother Harry = ABH). Same solution as #16, retold with \"kindness card\" vocabulary. Page 2 flags Harry as THE CARD-CHANGER; Page 4 is a culprit-drag (Harry). Note: this variant shares Case 16's reward slot (CASE_NUMBER = 16).",
+    },
+    {
         "num": "17",
         "title": "The Tardy Tortoise",
         "title_cn": "迟到的乌龟",
