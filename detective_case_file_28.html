@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #25 - Talks Turkey</title>
+  <title>Felix's Case File #28 - The Missing Birthday Snake</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#25 — Talks Turkey</div>
+        <div class="subtitle">#28 — The Missing Birthday Snake</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Claude (and Sludge took the case!)</div>
-          <div><strong>Missing:</strong> A big white turkey — found in the woods, then lost again!</div>
-          <div><strong>Location:</strong> Deering Woods → 58 Kenwood Street</div>
+          <div><strong>Client:</strong> Lizzy (Rosamond's cousin, who loves her pet snakes)</div>
+          <div><strong>Mystery:</strong> UGG Chomp, a giant ball python, vanished during the party!</div>
+          <div><strong>Location:</strong> Rosamond's backyard party — then all around the rainy house</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Claude, and Sludge took the case. Missing, a big white turkey, found in the woods then lost again. Location, Deering Woods and Kenwood Street. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Lizzy, Rosamond's cousin, who loves her pet snakes. Mystery, UGG Chomp, a giant ball python, vanished during the party. Location, Rosamond's backyard party, then all around the rainy house. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1310,7 +1310,7 @@
       <div class="page-prop">🕰️</div>
       <div class="page-header">
         <h2 class="page-title">The Case Timeline</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #28</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Put the case cards in order. Drag each card to the right spot on the timeline.</p>
 
@@ -1325,14 +1325,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>On TV, the famous turkey had dark green and red feathers — two turkeys!</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Felix heard on the radio that a giant turkey caused panic in a parking lot.</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Sludge sniffed Claude's white feather and took the case.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Sludge tracked the white turkey home to 58 Kenwood Street.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Claude found a big white turkey in the woods, then lost it.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Crazy Craig's tip: snakes always look for warm places to hide.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond invited Felix to a snake birthday party for her cousin Lizzy.</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Lizzy noticed her giant snake UGG Chomp was gone.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix followed the warm dryer vent and found UGG Chomp behind the bush.</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Rain came, so everyone rushed the party and snakes indoors.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. But wait — how many turkeys are really missing?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. A giant snake likes warm spots — so where did UGG Chomp go?</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1342,44 +1342,44 @@
     <section class="page" data-page="2">
       <div class="page-prop">🗂️</div>
       <div class="page-header">
-        <h2 class="page-title">Suspect Files</h2>
-        <div class="case-badge">CASE #25</div>
+        <h2 class="page-title">Hiding Places</h2>
+        <div class="case-badge">CASE #28</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right person's folder.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where could the snake be? Drag each clue into the right hiding place.</p>
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Claude">
-            <h3>Claude</h3>
+          <div class="folder" data-suspect="Stream">
+            <h3>The Stream</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Olivia">
-            <h3>Olivia Sharp</h3>
+          <div class="folder" data-suspect="Basement">
+            <h3>The Basement</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Rosamond">
-            <h3>Rosamond</h3>
+          <div class="folder" data-suspect="Dryer">
+            <h3>The Dryer</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Sludge">
-            <h3>Sludge</h3>
+          <div class="folder" data-suspect="BehindBush">
+            <h3>Behind the Bush</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Sludge">sniffed the white feather Claude found</div>
-          <div class="clue" data-suspect="Claude">found a big white turkey in Deering Woods</div>
-          <div class="clue" data-suspect="Olivia">Felix's cousin, a bird-loving detective from San Francisco</div>
-          <div class="clue" data-suspect="Rosamond">runs a Rent-A-Pet stand for a nickel an hour</div>
-          <div class="clue" data-suspect="Claude">dropped popcorn, so the turkey followed him</div>
-          <div class="clue" data-suspect="Sludge">waited by the tracks so he would not mess them up</div>
-          <div class="clue" data-suspect="Rosamond">had a big white turkey from Kenwood Street on her list</div>
-          <div class="clue" data-suspect="Olivia">came to catch the famous parking-lot turkey</div>
+          <div class="clue" data-suspect="Dryer">warm and cozy — busy drying Fang's wet T-shirt</div>
+          <div class="clue" data-suspect="Stream">Claude saw two shining eyes in the water here</div>
+          <div class="clue" data-suspect="BehindBush">the dryer vent blows warm air out right here</div>
+          <div class="clue" data-suspect="Basement">has a warm furnace and a water heater</div>
+          <div class="clue" data-suspect="Dryer">but a snake can't open the door and climb in</div>
+          <div class="clue" data-suspect="Stream">but the eyes had fur and ears — it was a beaver</div>
+          <div class="clue" data-suspect="BehindBush">no sugar by the door, so the snake stayed outside</div>
+          <div class="clue" data-suspect="Basement">but a giant snake is too big to hide down there</div>
         </div>
       </div>
 
@@ -1391,51 +1391,51 @@
       <div class="page-prop">📌</div>
       <div class="page-header">
         <h2 class="page-title">Evidence Board</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #28</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the right evidence to the board to show how Felix solved the case.</p>
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">It's summer! Thanksgiving is months away.</div>
+          <div class="board-hint" id="boardHint">Not the snake! That's a beaver — it has fur and ears.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Everyone thought one turkey was missing. But look for what does not fit, the feathers! Claude's feather was white, but the famous turkey on TV had dark green and red feathers. Two different feathers means two turkeys! Sludge followed the white feather's smell and tracked that turkey home." title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Crazy Craig said snakes always look for warm places. The dryer was drying Fang's wet T-shirt, and its vent blew hot air outside, right behind a bush by the house. And there was no sugar by the back door, so UGG Chomp never got inside. So the warm-loving snake curled up behind the bush, next to the warm dryer vent. Found him!" title="Read aloud">🔊</button>
               <br>
-              White feather + colorful TV turkey + Sludge's nose = TWO turkeys!<br>
+              Snakes seek warmth + the dryer vent blows hot air out back + no sugar at the door = UGG Chomp behind the warm bush!<br>
               <div class="color-mix">
-                <span>🪶 White feather</span>
+                <span>🔥 Snakes love warmth</span>
                 <span>+</span>
-                <span>📺 Colorful TV turkey</span>
+                <span>🌬️ Hot dryer vent blows outside</span>
                 <span>+</span>
-                <span>👃 Sludge's nose</span>
+                <span>🚪 No sugar at the door</span>
                 <span>=</span>
-                <span>🦃🦃 Two turkeys!</span>
+                <span>🐍 Snake behind the bush!</span>
               </div>
-              Claude's turkey was white — the famous turkey wasn't. Two birds!
+              He never went inside — the warm vent air drew him to the bush!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="feather" data-used="false">
-            <div class="evidence-icon">🪶</div>
-            <div class="evidence-label">White Feather</div>
+          <div class="evidence" data-type="warmth" data-used="false">
+            <div class="evidence-icon">🔥</div>
+            <div class="evidence-label">Snakes Love Warmth</div>
           </div>
-          <div class="evidence" data-type="tv" data-used="false">
-            <div class="evidence-icon">📺</div>
-            <div class="evidence-label">Colorful TV Turkey</div>
+          <div class="evidence" data-type="vent" data-used="false">
+            <div class="evidence-icon">🌬️</div>
+            <div class="evidence-label">Hot Dryer Vent</div>
           </div>
-          <div class="evidence" data-type="nose" data-used="false">
-            <div class="evidence-icon">👃</div>
-            <div class="evidence-label">Sludge's Nose</div>
+          <div class="evidence" data-type="door" data-used="false">
+            <div class="evidence-icon">🚪</div>
+            <div class="evidence-label">No Sugar at Door</div>
           </div>
-          <div class="evidence" data-type="thanksgiving" data-used="false">
-            <div class="evidence-icon">🍗</div>
-            <div class="evidence-label">Thanksgiving Dinner?</div>
+          <div class="evidence" data-type="beaver" data-used="false">
+            <div class="evidence-icon">🦫</div>
+            <div class="evidence-label">Beaver in Stream?</div>
           </div>
         </div>
       </div>
@@ -1448,27 +1448,27 @@
       <div class="page-prop">🔍</div>
       <div class="page-header">
         <h2 class="page-title">Solve the Case</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #28</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">How many turkeys were really missing? Drag the answer into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where is UGG Chomp hiding? Drag the answer into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="OneTurkey">
-            <div class="suspect-avatar">🦃</div>
-            <div class="suspect-name">One Famous Turkey</div>
+          <div class="suspect-card" data-suspect="Stream">
+            <div class="suspect-avatar">🏞️</div>
+            <div class="suspect-name">The Stream</div>
           </div>
-          <div class="suspect-card" data-suspect="TwoTurkeys">
-            <div class="suspect-avatar">🦃🦃</div>
-            <div class="suspect-name">Two Different Turkeys</div>
+          <div class="suspect-card" data-suspect="Basement">
+            <div class="suspect-avatar">🪜</div>
+            <div class="suspect-name">The Basement</div>
           </div>
-          <div class="suspect-card" data-suspect="Ghost">
-            <div class="suspect-avatar">👻</div>
-            <div class="suspect-name">A Turkey Ghost</div>
+          <div class="suspect-card" data-suspect="Dryer">
+            <div class="suspect-avatar">🌀</div>
+            <div class="suspect-name">The Dryer</div>
           </div>
-          <div class="suspect-card" data-suspect="Feast">
-            <div class="suspect-avatar">🍗</div>
-            <div class="suspect-name">A Thanksgiving Feast</div>
+          <div class="suspect-card" data-suspect="BehindBush">
+            <div class="suspect-avatar">🌳</div>
+            <div class="suspect-name">Behind the Bush</div>
           </div>
         </div>
 
@@ -1481,14 +1481,14 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #25 — Talks Turkey</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You solved it! There were two turkeys all along. Claude found a white turkey in the woods, and Sludge tracked it home to Kenwood Street. The famous parking-lot turkey had dark green and red feathers, a different bird! Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #28 — The Missing Birthday Snake</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found UGG Chomp! Snakes love warm places, and the hot dryer vent blew warm air outside, right behind a bush. There was no sugar by the door, so the snake never went inside. He curled up behind the warm bush the whole time. Great detective work!" title="Read aloud">🔊</button>
           <br>
-          The answer is TWO TURKEYS! Claude's turkey was WHITE, but the famous turkey on TV had dark green and red feathers. They were two different birds! Sludge sniffed the white feather and tracked that turkey all the way home to 58 Kenwood Street.
-          <div class="felix-quote">"I, Fantastic Felix, always look for what doesn't fit. Two turkeys, one white feather — case closed. Now, who wants pancakes?"</div>
+          UGG Chomp was BEHIND THE BUSH! Snakes love warmth, and the dryer's hot vent blew warm air outside — right where the bush is. No sugar sat by the back door, so the snake never slithered inside. He was curled up by the cozy warm vent all along.
+          <div class="felix-quote">"I, Fantastic Felix, say a good detective knows his limits — I found the snake, but moving him is Lizzy's job. Case closed."</div>
         </div>
         <div class="case-nav">
-          <a class="btn" id="nextCaseBtn" href="detective_case_file_26.html">➡️ 下一案 Case #26</a>
+          <a class="btn" id="nextCaseBtn" href="detective_case_file_29.html">➡️ 下一案 Case #29</a>
           <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
         </div>
       </div>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Claude: 0, Olivia: 0, Rosamond: 0, Sludge: 0 };
-    const folderTargets = { Claude: 2, Olivia: 2, Rosamond: 2, Sludge: 2 };
+    const folderCounts = { Stream: 0, Basement: 0, Dryer: 0, BehindBush: 0 };
+    const folderTargets = { Stream: 2, Basement: 2, Dryer: 2, BehindBush: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1695,11 +1695,11 @@
         folderCounts[suspect]++;
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
-          zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Sludge') {
+          zone.parentElement.querySelector('.folder-status').textContent = 'RULED OUT';
+          if (suspect === 'BehindBush') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'THE TRACKER! 🐾';
+            zone.parentElement.querySelector('.folder-status').textContent = 'UGG CHOMP IS HERE! 🐍';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { feather: false, tv: false, nose: false };
+    let evidenceState = { warmth: false, vent: false, door: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'thanksgiving') {
-        // It's summer — Thanksgiving dinner is not a clue. Ruled out.
+      if (type === 'beaver') {
+        // The two eyes in the stream were a beaver (fur + ears), not the snake — ruled out.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'feather' || type === 'tv' || type === 'nose') {
+      if (type === 'warmth' || type === 'vent' || type === 'door') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+        if (evidenceState.warmth && evidenceState.vent && evidenceState.door) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+      if (evidenceState.warmth && evidenceState.vent && evidenceState.door) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,15 +1818,15 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'TwoTurkeys') {
+      if (dragEl.dataset.suspect === 'BehindBush') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '🦃🦃';
+        const icon = avatar ? avatar.textContent : '🌳';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Two Turkeys!</div>' +
-            '<div class="culprit-caught-tag">SOLVED!</div>' +
+            '<div class="culprit-caught-name">Behind the Bush!</div>' +
+            '<div class="culprit-caught-tag">FOUND HIM!</div>' +
           '</div>';
         zone.classList.add('highlight');
         setTimeout(showFinalMessage, 1300);
@@ -1848,7 +1848,7 @@
       const congratsBtn = document.getElementById('finalSpeakBtn');
       setTimeout(() => speak(congratsBtn.dataset.speak, congratsBtn), 900);
       // 解锁本案奖励并弹窗（共享 rewards.js）。CASE_NUMBER 每个案件改这一处。
-      const CASE_NUMBER = 25;
+      const CASE_NUMBER = 28;
       if (window.DetectiveRewards) {
         const reward = DetectiveRewards.unlockReward(CASE_NUMBER);
         setTimeout(() => DetectiveRewards.showRewardToast(reward), 1400);

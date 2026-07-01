@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #26 - The Walking Turnip</title>
+  <title>Felix's Case File #26 - The Hungry Book Club</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#26 — The Walking Turnip</div>
+        <div class="subtitle">#26 — The Hungry Book Club</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Rosamond (she loves her cats and strange ideas)</div>
-          <div><strong>Mystery:</strong> A walking turnip ran away — and Rosamond wants it found!</div>
-          <div><strong>Location:</strong> The neighborhood, the disguise store, and the woods</div>
+          <div><strong>Client:</strong> Rosamond (president of the Ready Readers)</div>
+          <div><strong>Mystery:</strong> An "Evil Page Monster" tore a cookbook page — torn, ripped, ruined!</div>
+          <div><strong>Location:</strong> Rosamond's book club — the kitchen table</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Rosamond, she loves her cats and strange ideas. Mystery, a walking turnip ran away, and Rosamond wants it found. Location, the neighborhood, the disguise store, and the woods. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Rosamond, president of the Ready Readers. Mystery, an evil page monster tore a cookbook page, torn, ripped, ruined. Location, Rosamond's book club, the kitchen table. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1325,14 +1325,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Claude said he only wanted to find something really, really special.</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond asked Felix to find her walking turnip that "ran away."</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Everyone shouted "Felix, where are you?" until Sludge sniffed a way back.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix proved Rosamond herself dressed up as the walking turnip.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix and Sludge hid in the woods to escape too many cases.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Felix saw the table was too high — Fang could not reach the cookbook.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond started a book club, but a cookbook page was torn, ripped, ruined!</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Rosamond blamed Fang and called him the Evil Page Monster.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix proved a small, leaping cat ripped the page for the tuna bits.</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix and Sludge went undercover as new book-club members.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. But if turnips can't walk, who was the walking turnip?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. But if Fang can't reach the table, who ripped the page?</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1349,37 +1349,37 @@
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Rosamond">
-            <h3>Rosamond</h3>
+          <div class="folder" data-suspect="Fang">
+            <h3>Fang</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Claude">
-            <h3>Claude</h3>
+          <div class="folder" data-suspect="LittleHex">
+            <h3>Little Hex</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Annie">
-            <h3>Annie</h3>
+          <div class="folder" data-suspect="Oliver">
+            <h3>Oliver</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Harry">
-            <h3>Harry</h3>
+          <div class="folder" data-suspect="Esmeralda">
+            <h3>Esmeralda</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Rosamond">reported a turnip that "ran away" and wants it found</div>
-          <div class="clue" data-suspect="Annie">asked Felix to find Fang's shiny dog toothpaste</div>
-          <div class="clue" data-suspect="Harry">was scared of a four-tailed creature wearing a scarf</div>
-          <div class="clue" data-suspect="Claude">always loses things and finds them again</div>
-          <div class="clue" data-suspect="Rosamond">knew all about the Disguises for Detectives store</div>
-          <div class="clue" data-suspect="Claude">wanted to find something really, really special today</div>
-          <div class="clue" data-suspect="Harry">looked in the library and school for an answer</div>
-          <div class="clue" data-suspect="Annie">has a big dog named Fang with big teeth</div>
+          <div class="clue" data-suspect="LittleHex">Rosamond's smallest cat, and cats love tuna fish</div>
+          <div class="clue" data-suspect="Fang">Annie's big dog — Rosamond blamed him first</div>
+          <div class="clue" data-suspect="Oliver">follows everyone everywhere in the book club</div>
+          <div class="clue" data-suspect="Esmeralda">was reading aloud when she found a page missing</div>
+          <div class="clue" data-suspect="Fang">too short for the high table, and hates tuna pie</div>
+          <div class="clue" data-suspect="LittleHex">can leap high and hide in tiny spaces unseen</div>
+          <div class="clue" data-suspect="Esmeralda">first thought Harvard just needed a watch</div>
+          <div class="clue" data-suspect="Oliver">said Harvard Hedgehog is a very boring book</div>
         </div>
       </div>
 
@@ -1397,45 +1397,45 @@
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">Not a monster! That was just Sludge wearing a scarf.</div>
+          <div class="board-hint" id="boardHint">Not Fang! The table is too high, and he hates tuna pie.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Turnips cannot walk by themselves. But Rosamond knew all about the Disguises for Detectives store. And Claude said he wanted to find something really, really special. So Rosamond bought a tall turnip costume and walked in front of Claude, so he could find his special thing. Rosamond was the walking turnip all along, and it was a kind trick for a friend!" title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Rosamond blamed Fang. But the kitchen table is too high. Fang jumped and stretched but could not reach the cookbook, and he does not even like tuna fish pie. The torn page had a tuna recipe, and all the tuna bits were scratched away. Only a small cat that can leap high, hide in tiny spaces, and sneak in unseen fits. Little Hex tore the page to get every last bite of tuna!" title="Read aloud">🔊</button>
               <br>
-              Turnip costume + she knew the disguise store + Claude wanted a special find = Rosamond was the walking turnip!<br>
+              High table + tuna bits scratched away + a small leaping cat = Little Hex ripped the page!<br>
               <div class="color-mix">
-                <span>🥬 A tall turnip costume</span>
+                <span>📏 Table too high for Fang</span>
                 <span>+</span>
-                <span>🏬 She knew the disguise store</span>
+                <span>🐟 Tuna bits scratched away</span>
                 <span>+</span>
-                <span>😄 Claude wanted a special find</span>
+                <span>🐱 Leaps high & hides</span>
                 <span>=</span>
-                <span>🥬 Rosamond in disguise!</span>
+                <span>🐱 Little Hex did it!</span>
               </div>
-              No turnip can walk — it was kind Rosamond dressed up for Claude!
+              Fang couldn't reach and hates tuna — only tiny Little Hex fits!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="costume" data-used="false">
-            <div class="evidence-icon">🥬</div>
-            <div class="evidence-label">Turnip Costume</div>
+          <div class="evidence" data-type="table" data-used="false">
+            <div class="evidence-icon">📏</div>
+            <div class="evidence-label">Table Too High</div>
           </div>
-          <div class="evidence" data-type="store" data-used="false">
-            <div class="evidence-icon">🏬</div>
-            <div class="evidence-label">Disguise Store</div>
+          <div class="evidence" data-type="tuna" data-used="false">
+            <div class="evidence-icon">🐟</div>
+            <div class="evidence-label">Tuna Bits Gone</div>
           </div>
-          <div class="evidence" data-type="wish" data-used="false">
-            <div class="evidence-icon">😄</div>
-            <div class="evidence-label">Claude's Special Wish</div>
+          <div class="evidence" data-type="cat" data-used="false">
+            <div class="evidence-icon">🐱</div>
+            <div class="evidence-label">Small Leaping Cat</div>
           </div>
-          <div class="evidence" data-type="monster" data-used="false">
-            <div class="evidence-icon">👹</div>
-            <div class="evidence-label">Four-Tailed Monster?</div>
+          <div class="evidence" data-type="fang" data-used="false">
+            <div class="evidence-icon">🐶</div>
+            <div class="evidence-label">Fang the Monster?</div>
           </div>
         </div>
       </div>
@@ -1450,25 +1450,25 @@
         <h2 class="page-title">Solve the Case</h2>
         <div class="case-badge">CASE #26</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Who was the walking turnip? Drag the culprit into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Who is the real Page Monster? Drag the culprit into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="Rosamond">
-            <div class="suspect-avatar">👧</div>
-            <div class="suspect-name">Rosamond</div>
+          <div class="suspect-card" data-suspect="Fang">
+            <div class="suspect-avatar">🐶</div>
+            <div class="suspect-name">Fang</div>
           </div>
-          <div class="suspect-card" data-suspect="Claude">
+          <div class="suspect-card" data-suspect="LittleHex">
+            <div class="suspect-avatar">🐱</div>
+            <div class="suspect-name">Little Hex</div>
+          </div>
+          <div class="suspect-card" data-suspect="Oliver">
             <div class="suspect-avatar">👦</div>
-            <div class="suspect-name">Claude</div>
+            <div class="suspect-name">Oliver</div>
           </div>
-          <div class="suspect-card" data-suspect="Annie">
-            <div class="suspect-avatar">👩</div>
-            <div class="suspect-name">Annie</div>
-          </div>
-          <div class="suspect-card" data-suspect="Harry">
-            <div class="suspect-avatar">🧒</div>
-            <div class="suspect-name">Harry</div>
+          <div class="suspect-card" data-suspect="Esmeralda">
+            <div class="suspect-avatar">👧</div>
+            <div class="suspect-name">Esmeralda</div>
           </div>
         </div>
 
@@ -1481,11 +1481,11 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #26 — The Walking Turnip</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found the walking turnip! It was Rosamond all along. She knew about the disguise store, and Claude wished to find something really special. So she put on a tall turnip costume and walked past him, just to make her friend happy. Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #26 — The Hungry Book Club</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You caught the Page Monster! It was Little Hex, Rosamond's smallest cat. The table was too high for Fang, and he hates tuna. But Little Hex could leap high and squeeze into tiny spaces. He tore the page to lick up every last bit of tuna fish pie. Great work!" title="Read aloud">🔊</button>
           <br>
-          The walking turnip was ROSAMOND! No turnip can really walk. But Rosamond knew the disguise store, and Claude wanted to find something special. So she dressed as a tall turnip and walked past him — a kind trick to make her friend happy.
-          <div class="felix-quote">"I, Fantastic Felix, say the strangest clue is often a friend being kind. Case closed — now I need more pancakes."</div>
+          The Page Monster is LITTLE HEX! Rosamond blamed Fang, but the table was too high for him — and he hates tuna. Little Hex is small enough to leap up, sneak in, and hide. He scratched and tore the page to get every last bite of tuna fish pie.
+          <div class="felix-quote">"I, Fantastic Felix, say clean clues are better than a messy kitchen. Case closed — now let's read the book just for fun."</div>
         </div>
         <div class="case-nav">
           <a class="btn" id="nextCaseBtn" href="detective_case_file_27.html">➡️ 下一案 Case #27</a>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Rosamond: 0, Claude: 0, Annie: 0, Harry: 0 };
-    const folderTargets = { Rosamond: 2, Claude: 2, Annie: 2, Harry: 2 };
+    const folderCounts = { Fang: 0, LittleHex: 0, Oliver: 0, Esmeralda: 0 };
+    const folderTargets = { Fang: 2, LittleHex: 2, Oliver: 2, Esmeralda: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1696,10 +1696,10 @@
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
           zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Rosamond') {
+          if (suspect === 'LittleHex') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'THE WALKING TURNIP! 🥬';
+            zone.parentElement.querySelector('.folder-status').textContent = 'THE PAGE MONSTER! 🐱';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { costume: false, store: false, wish: false };
+    let evidenceState = { table: false, tuna: false, cat: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'monster') {
-        // The scary four-tailed monster was only Sludge in a scarf — ruled out.
+      if (type === 'fang') {
+        // Rosamond blamed Fang, but he can't reach the table and hates tuna — ruled out.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'costume' || type === 'store' || type === 'wish') {
+      if (type === 'table' || type === 'tuna' || type === 'cat') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.costume && evidenceState.store && evidenceState.wish) {
+        if (evidenceState.table && evidenceState.tuna && evidenceState.cat) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.costume && evidenceState.store && evidenceState.wish) {
+      if (evidenceState.table && evidenceState.tuna && evidenceState.cat) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,15 +1818,15 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'Rosamond') {
+      if (dragEl.dataset.suspect === 'LittleHex') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '👧';
+        const icon = avatar ? avatar.textContent : '🐱';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Rosamond!</div>' +
-            '<div class="culprit-caught-tag">THE TURNIP!</div>' +
+            '<div class="culprit-caught-name">Little Hex!</div>' +
+            '<div class="culprit-caught-tag">CULPRIT!</div>' +
           '</div>';
         zone.classList.add('highlight');
         setTimeout(showFinalMessage, 1300);

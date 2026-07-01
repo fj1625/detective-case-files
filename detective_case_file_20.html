@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #25 - Talks Turkey</title>
+  <title>Felix's Case File #20 - The Fleeing Fang</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#25 — Talks Turkey</div>
+        <div class="subtitle">#20 — The Fleeing Fang</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Claude (and Sludge took the case!)</div>
-          <div><strong>Missing:</strong> A big white turkey — found in the woods, then lost again!</div>
-          <div><strong>Location:</strong> Deering Woods → 58 Kenwood Street</div>
+          <div><strong>Client:</strong> Annie & Harry (Fang's worried owners)</div>
+          <div><strong>Mystery:</strong> Fang, the big scary dog, ran off and vanished on Detective Day!</div>
+          <div><strong>Location:</strong> Felix's Detective Day party — and the streets all around it</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Claude, and Sludge took the case. Missing, a big white turkey, found in the woods then lost again. Location, Deering Woods and Kenwood Street. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Annie and Harry, Fang's worried owners. Mystery, Fang, the big scary dog, ran off and vanished on Detective Day. Location, Felix's Detective Day party, and the streets all around it. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1310,7 +1310,7 @@
       <div class="page-prop">🕰️</div>
       <div class="page-header">
         <h2 class="page-title">The Case Timeline</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #20</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Put the case cards in order. Drag each card to the right spot on the timeline.</p>
 
@@ -1325,61 +1325,61 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>On TV, the famous turkey had dark green and red feathers — two turkeys!</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Felix heard on the radio that a giant turkey caused panic in a parking lot.</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Sludge sniffed Claude's white feather and took the case.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Sludge tracked the white turkey home to 58 Kenwood Street.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Claude found a big white turkey in the woods, then lost it.</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Fang heard "bark" — his secret word for "park" — and ran off.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix and Sludge found Fang asleep in the park.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Annie and Harry walked Fang toward the Detective Day party.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Annie reached the party sad — Fang was missing!</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>At the corner, two poodles barked, so Annie barked "Bark! Bark! Bark!"</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. But wait — how many turkeys are really missing?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. Fang isn't scared of poodles — so why did he run, and where?</div>
       </div>
 
-      <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
+      <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Search Places</button>
     </section>
 
     <!-- Page 2: Suspect Files -->
     <section class="page" data-page="2">
       <div class="page-prop">🗂️</div>
       <div class="page-header">
-        <h2 class="page-title">Suspect Files</h2>
-        <div class="case-badge">CASE #25</div>
+        <h2 class="page-title">Where Did Fang Go?</h2>
+        <div class="case-badge">CASE #20</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right person's folder.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Fang could be anywhere. Drag each clue into the right place.</p>
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Claude">
-            <h3>Claude</h3>
+          <div class="folder" data-suspect="Park">
+            <h3>The Park</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Olivia">
-            <h3>Olivia Sharp</h3>
+          <div class="folder" data-suspect="Home">
+            <h3>Home</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Rosamond">
-            <h3>Rosamond</h3>
+          <div class="folder" data-suspect="Corner">
+            <h3>Dartmouth St.</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Sludge">
-            <h3>Sludge</h3>
+          <div class="folder" data-suspect="Store">
+            <h3>The Store</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Sludge">sniffed the white feather Claude found</div>
-          <div class="clue" data-suspect="Claude">found a big white turkey in Deering Woods</div>
-          <div class="clue" data-suspect="Olivia">Felix's cousin, a bird-loving detective from San Francisco</div>
-          <div class="clue" data-suspect="Rosamond">runs a Rent-A-Pet stand for a nickel an hour</div>
-          <div class="clue" data-suspect="Claude">dropped popcorn, so the turkey followed him</div>
-          <div class="clue" data-suspect="Sludge">waited by the tracks so he would not mess them up</div>
-          <div class="clue" data-suspect="Rosamond">had a big white turkey from Kenwood Street on her list</div>
-          <div class="clue" data-suspect="Olivia">came to catch the famous parking-lot turkey</div>
+          <div class="clue" data-suspect="Store">the lady in the green hat shops from store to store</div>
+          <div class="clue" data-suspect="Park">"bark" rhymes with "park" — Fang's mixed-up command</div>
+          <div class="clue" data-suspect="Corner">Fang was last seen at Dartmouth and Oakdale</div>
+          <div class="clue" data-suspect="Home">Annie checked their house — no Fang inside</div>
+          <div class="clue" data-suspect="Store">but Oliver never found where that lady lives</div>
+          <div class="clue" data-suspect="Corner">two tiny poodles barked at Fang right here</div>
+          <div class="clue" data-suspect="Park">a big dog was found here, fast asleep</div>
+          <div class="clue" data-suspect="Home">but nobody had let Fang back in the door</div>
         </div>
       </div>
 
@@ -1391,51 +1391,51 @@
       <div class="page-prop">📌</div>
       <div class="page-header">
         <h2 class="page-title">Evidence Board</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #20</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the right evidence to the board to show how Felix solved the case.</p>
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">It's summer! Thanksgiving is months away.</div>
+          <div class="board-hint" id="boardHint">Not the lady! Felix calls the green-hat lady a red herring — a false clue.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Everyone thought one turkey was missing. But look for what does not fit, the feathers! Claude's feather was white, but the famous turkey on TV had dark green and red feathers. Two different feathers means two turkeys! Sludge followed the white feather's smell and tracked that turkey home." title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Fang is a huge, toothy dog. He would never be scared of two tiny poodles, so he did not run away in fear. Annie's rhyme book makes Fang obey the line that rhymes. When the poodles barked, Annie shouted Bark, Bark, Bark. And bark rhymes with park. Fang heard a command and trotted off to the park. That is where Felix found him, fast asleep." title="Read aloud">🔊</button>
               <br>
-              White feather + colorful TV turkey + Sludge's nose = TWO turkeys!<br>
+              Fang fears no poodles + his rhyme book obeys the rhyming word + Annie yelled "Bark!" = Fang ran to the PARK!<br>
               <div class="color-mix">
-                <span>🪶 White feather</span>
+                <span>🦁 Fang fears nothing</span>
                 <span>+</span>
-                <span>📺 Colorful TV turkey</span>
+                <span>📖 Mixed-up rhyme book</span>
                 <span>+</span>
-                <span>👃 Sludge's nose</span>
+                <span>🗣️ Annie yelled "Bark!"</span>
                 <span>=</span>
-                <span>🦃🦃 Two turkeys!</span>
+                <span>🐶 Fang ran to the PARK!</span>
               </div>
-              Claude's turkey was white — the famous turkey wasn't. Two birds!
+              "Bark" rhymes with "park" — so Fang went where he thought he was told!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="feather" data-used="false">
-            <div class="evidence-icon">🪶</div>
-            <div class="evidence-label">White Feather</div>
+          <div class="evidence" data-type="fearless" data-used="false">
+            <div class="evidence-icon">🦁</div>
+            <div class="evidence-label">Fang Fears Nothing</div>
           </div>
-          <div class="evidence" data-type="tv" data-used="false">
-            <div class="evidence-icon">📺</div>
-            <div class="evidence-label">Colorful TV Turkey</div>
+          <div class="evidence" data-type="rhyme" data-used="false">
+            <div class="evidence-icon">📖</div>
+            <div class="evidence-label">Mixed-Up Rhyme Book</div>
           </div>
-          <div class="evidence" data-type="nose" data-used="false">
-            <div class="evidence-icon">👃</div>
-            <div class="evidence-label">Sludge's Nose</div>
+          <div class="evidence" data-type="bark" data-used="false">
+            <div class="evidence-icon">🗣️</div>
+            <div class="evidence-label">Annie Yelled "Bark!"</div>
           </div>
-          <div class="evidence" data-type="thanksgiving" data-used="false">
-            <div class="evidence-icon">🍗</div>
-            <div class="evidence-label">Thanksgiving Dinner?</div>
+          <div class="evidence" data-type="greenhat" data-used="false">
+            <div class="evidence-icon">🎩</div>
+            <div class="evidence-label">Lady in Green Hat?</div>
           </div>
         </div>
       </div>
@@ -1448,27 +1448,27 @@
       <div class="page-prop">🔍</div>
       <div class="page-header">
         <h2 class="page-title">Solve the Case</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #20</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">How many turkeys were really missing? Drag the answer into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where did Fang go? Drag the answer into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="OneTurkey">
-            <div class="suspect-avatar">🦃</div>
-            <div class="suspect-name">One Famous Turkey</div>
+          <div class="suspect-card" data-suspect="Park">
+            <div class="suspect-avatar">🌳</div>
+            <div class="suspect-name">The Park</div>
           </div>
-          <div class="suspect-card" data-suspect="TwoTurkeys">
-            <div class="suspect-avatar">🦃🦃</div>
-            <div class="suspect-name">Two Different Turkeys</div>
+          <div class="suspect-card" data-suspect="Home">
+            <div class="suspect-avatar">🏠</div>
+            <div class="suspect-name">Home</div>
           </div>
-          <div class="suspect-card" data-suspect="Ghost">
-            <div class="suspect-avatar">👻</div>
-            <div class="suspect-name">A Turkey Ghost</div>
+          <div class="suspect-card" data-suspect="Corner">
+            <div class="suspect-avatar">📍</div>
+            <div class="suspect-name">Dartmouth St.</div>
           </div>
-          <div class="suspect-card" data-suspect="Feast">
-            <div class="suspect-avatar">🍗</div>
-            <div class="suspect-name">A Thanksgiving Feast</div>
+          <div class="suspect-card" data-suspect="Store">
+            <div class="suspect-avatar">🛍️</div>
+            <div class="suspect-name">The Store</div>
           </div>
         </div>
 
@@ -1481,14 +1481,14 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #25 — Talks Turkey</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You solved it! There were two turkeys all along. Claude found a white turkey in the woods, and Sludge tracked it home to Kenwood Street. The famous parking-lot turkey had dark green and red feathers, a different bird! Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #20 — The Fleeing Fang</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found Fang! He was never scared of the tiny poodles. When Annie barked, Fang heard a command, and in his mixed-up rhyme book, bark rhymes with park. So he trotted off to the park for a nap. He was not missing at all. Great detective work!" title="Read aloud">🔊</button>
           <br>
-          The answer is TWO TURKEYS! Claude's turkey was WHITE, but the famous turkey on TV had dark green and red feathers. They were two different birds! Sludge sniffed the white feather and tracked that turkey all the way home to 58 Kenwood Street.
-          <div class="felix-quote">"I, Fantastic Felix, always look for what doesn't fit. Two turkeys, one white feather — case closed. Now, who wants pancakes?"</div>
+          Fang was at THE PARK! Fang was never scared of the two tiny poodles. When Annie barked "Bark! Bark! Bark!", Fang heard a command — and in his mixed-up rhyme book, "bark" rhymes with "park." So he trotted to the park and took a nap. He wasn't missing at all — he was waiting for Annie and Harry!
+          <div class="felix-quote">"I, Fantastic Felix, say this was really the Case of the Missing Annie and Harry — Fang knew just where he was going. Case closed."</div>
         </div>
         <div class="case-nav">
-          <a class="btn" id="nextCaseBtn" href="detective_case_file_26.html">➡️ 下一案 Case #26</a>
+          <a class="btn" id="nextCaseBtn" href="detective_case_file_21.html">➡️ 下一案 Case #21</a>
           <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
         </div>
       </div>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Claude: 0, Olivia: 0, Rosamond: 0, Sludge: 0 };
-    const folderTargets = { Claude: 2, Olivia: 2, Rosamond: 2, Sludge: 2 };
+    const folderCounts = { Park: 0, Home: 0, Corner: 0, Store: 0 };
+    const folderTargets = { Park: 2, Home: 2, Corner: 2, Store: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1695,11 +1695,11 @@
         folderCounts[suspect]++;
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
-          zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Sludge') {
+          zone.parentElement.querySelector('.folder-status').textContent = 'RULED OUT';
+          if (suspect === 'Park') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'THE TRACKER! 🐾';
+            zone.parentElement.querySelector('.folder-status').textContent = 'FANG IS HERE! 🐶';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { feather: false, tv: false, nose: false };
+    let evidenceState = { fearless: false, rhyme: false, bark: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'thanksgiving') {
-        // It's summer — Thanksgiving dinner is not a clue. Ruled out.
+      if (type === 'greenhat') {
+        // The lady in the green hat is the story's red herring — a false lead, ruled out.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'feather' || type === 'tv' || type === 'nose') {
+      if (type === 'fearless' || type === 'rhyme' || type === 'bark') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+        if (evidenceState.fearless && evidenceState.rhyme && evidenceState.bark) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+      if (evidenceState.fearless && evidenceState.rhyme && evidenceState.bark) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,15 +1818,15 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'TwoTurkeys') {
+      if (dragEl.dataset.suspect === 'Park') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '🦃🦃';
+        const icon = avatar ? avatar.textContent : '🌳';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Two Turkeys!</div>' +
-            '<div class="culprit-caught-tag">SOLVED!</div>' +
+            '<div class="culprit-caught-name">The Park!</div>' +
+            '<div class="culprit-caught-tag">FOUND FANG!</div>' +
           '</div>';
         zone.classList.add('highlight');
         setTimeout(showFinalMessage, 1300);
@@ -1848,7 +1848,7 @@
       const congratsBtn = document.getElementById('finalSpeakBtn');
       setTimeout(() => speak(congratsBtn.dataset.speak, congratsBtn), 900);
       // 解锁本案奖励并弹窗（共享 rewards.js）。CASE_NUMBER 每个案件改这一处。
-      const CASE_NUMBER = 25;
+      const CASE_NUMBER = 20;
       if (window.DetectiveRewards) {
         const reward = DetectiveRewards.unlockReward(CASE_NUMBER);
         setTimeout(() => DetectiveRewards.showRewardToast(reward), 1400);

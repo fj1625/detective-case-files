@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #24 - Talks Turkey</title>
+  <title>Felix's Case File #24 - The Owl Express</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#24 — Talks Turkey</div>
+        <div class="subtitle">#24 — The Owl Express</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Claude (and Sludge took the case!)</div>
-          <div><strong>Missing:</strong> A big white turkey — found in the woods, then lost again!</div>
-          <div><strong>Location:</strong> Deering Woods → 58 Kenwood Street</div>
+          <div><strong>Client:</strong> Olivia Sharp</div>
+          <div><strong>Missing:</strong> Hoot the owl — vanished from his cage on the train!</div>
+          <div><strong>Location:</strong> The Owl Express train to San Francisco</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Claude, and Sludge took the case. Missing, a big white turkey, found in the woods then lost again. Location, Deering Woods and Kenwood Street. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Olivia Sharp. Missing, Hoot the owl, vanished from his cage on the train. Location, the Owl Express train to San Francisco. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1325,14 +1325,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>On TV, the famous turkey had dark green and red feathers — two turkeys!</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Felix heard on the radio that a giant turkey caused panic in a parking lot.</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Sludge sniffed Claude's white feather and took the case.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Sludge tracked the white turkey home to 58 Kenwood Street.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Claude found a big white turkey in the woods, then lost it.</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Felix fell asleep, and when he woke up, Hoot had vanished from the cage.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Olivia Sharp hired Felix to guard her pet owl Hoot on the Owl Express train.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix found Hoot on the roof of the train — Hoot had flown out of his cage!</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>A threatening note said it would be a happy day when Hoot flies away.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Felix questioned the sneezing lady, waiter, musician, and owl man.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. But wait — how many turkeys are really missing?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. But where could an owl go on a train?</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1349,37 +1349,37 @@
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Claude">
-            <h3>Claude</h3>
-            <div class="folder-zone"></div>
-            <div class="folder-status"></div>
-          </div>
           <div class="folder" data-suspect="Olivia">
             <h3>Olivia Sharp</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Rosamond">
-            <h3>Rosamond</h3>
+          <div class="folder" data-suspect="Musician">
+            <h3>The Musician</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Sludge">
-            <h3>Sludge</h3>
+          <div class="folder" data-suspect="Waiter">
+            <h3>The Waiter</h3>
+            <div class="folder-zone"></div>
+            <div class="folder-status"></div>
+          </div>
+          <div class="folder" data-suspect="OwlMan">
+            <h3>The Owl Man</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Sludge">sniffed the white feather Claude found</div>
-          <div class="clue" data-suspect="Claude">found a big white turkey in Deering Woods</div>
-          <div class="clue" data-suspect="Olivia">Felix's cousin, a bird-loving detective from San Francisco</div>
-          <div class="clue" data-suspect="Rosamond">runs a Rent-A-Pet stand for a nickel an hour</div>
-          <div class="clue" data-suspect="Claude">dropped popcorn, so the turkey followed him</div>
-          <div class="clue" data-suspect="Sludge">waited by the tracks so he would not mess them up</div>
-          <div class="clue" data-suspect="Rosamond">had a big white turkey from Kenwood Street on her list</div>
-          <div class="clue" data-suspect="Olivia">came to catch the famous parking-lot turkey</div>
+          <div class="clue" data-suspect="Olivia">hired Felix to guard Hoot on the Owl Express</div>
+          <div class="clue" data-suspect="Musician">wrote a threatening note about Hoot flying away</div>
+          <div class="clue" data-suspect="Waiter">served food and drinks in the dining car</div>
+          <div class="clue" data-suspect="OwlMan">knows a lot about owls and their habits</div>
+          <div class="clue" data-suspect="Olivia">received the note and was worried about Hoot</div>
+          <div class="clue" data-suspect="Musician">played music that made Hoot's feathers flutter</div>
+          <div class="clue" data-suspect="Waiter">saw Hoot's cage while carrying a tray</div>
+          <div class="clue" data-suspect="OwlMan">was watching Hoot's cage very closely</div>
         </div>
       </div>
 
@@ -1397,45 +1397,45 @@
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">It's summer! Thanksgiving is months away.</div>
+          <div class="board-hint" id="boardHint">Not the musician! He wrote the note, but he didn't take Hoot.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Everyone thought one turkey was missing. But look for what does not fit, the feathers! Claude's feather was white, but the famous turkey on TV had dark green and red feathers. Two different feathers means two turkeys! Sludge followed the white feather's smell and tracked that turkey home." title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Hoot is an owl with wings, so he can fly. The train roof is open to the sky. The note said it would be a happy day when Hoot flies away. So Hoot did not need to be stolen. He flew out of his cage and landed on the roof of the train!" title="Read aloud">🔊</button>
               <br>
-              White feather + colorful TV turkey + Sludge's nose = TWO turkeys!<br>
+              Owl with wings + open train roof + note about flying = Hoot flew to the roof!<br>
               <div class="color-mix">
-                <span>🪶 White feather</span>
+                <span>🦉 Hoot has wings</span>
                 <span>+</span>
-                <span>📺 Colorful TV turkey</span>
+                <span>🚂 Open train roof</span>
                 <span>+</span>
-                <span>👃 Sludge's nose</span>
+                <span>📝 Note: fly away</span>
                 <span>=</span>
-                <span>🦃🦃 Two turkeys!</span>
+                <span>🦉 Hoot on the roof!</span>
               </div>
-              Claude's turkey was white — the famous turkey wasn't. Two birds!
+              Hoot was never stolen — he escaped and flew to the roof!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="feather" data-used="false">
-            <div class="evidence-icon">🪶</div>
-            <div class="evidence-label">White Feather</div>
+          <div class="evidence" data-type="wings" data-used="false">
+            <div class="evidence-icon">🦉</div>
+            <div class="evidence-label">Hoot Has Wings</div>
           </div>
-          <div class="evidence" data-type="tv" data-used="false">
-            <div class="evidence-icon">📺</div>
-            <div class="evidence-label">Colorful TV Turkey</div>
+          <div class="evidence" data-type="roof" data-used="false">
+            <div class="evidence-icon">🚂</div>
+            <div class="evidence-label">Open Train Roof</div>
           </div>
-          <div class="evidence" data-type="nose" data-used="false">
-            <div class="evidence-icon">👃</div>
-            <div class="evidence-label">Sludge's Nose</div>
+          <div class="evidence" data-type="note" data-used="false">
+            <div class="evidence-icon">📝</div>
+            <div class="evidence-label">Note: "Fly Away"</div>
           </div>
-          <div class="evidence" data-type="thanksgiving" data-used="false">
-            <div class="evidence-icon">🍗</div>
-            <div class="evidence-label">Thanksgiving Dinner?</div>
+          <div class="evidence" data-type="musician" data-used="false">
+            <div class="evidence-icon">🎵</div>
+            <div class="evidence-label">The Musician?</div>
           </div>
         </div>
       </div>
@@ -1450,25 +1450,25 @@
         <h2 class="page-title">Solve the Case</h2>
         <div class="case-badge">CASE #24</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">How many turkeys were really missing? Drag the answer into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where is Hoot? Drag the answer into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="OneTurkey">
-            <div class="suspect-avatar">🦃</div>
-            <div class="suspect-name">One Famous Turkey</div>
+          <div class="suspect-card" data-suspect="Limousine">
+            <div class="suspect-avatar">🚗</div>
+            <div class="suspect-name">Willie's Limousine</div>
           </div>
-          <div class="suspect-card" data-suspect="TwoTurkeys">
-            <div class="suspect-avatar">🦃🦃</div>
-            <div class="suspect-name">Two Different Turkeys</div>
+          <div class="suspect-card" data-suspect="Car">
+            <div class="suspect-avatar">🎵</div>
+            <div class="suspect-name">The Musician's Train Car</div>
           </div>
-          <div class="suspect-card" data-suspect="Ghost">
-            <div class="suspect-avatar">👻</div>
-            <div class="suspect-name">A Turkey Ghost</div>
+          <div class="suspect-card" data-suspect="Roof">
+            <div class="suspect-avatar">🚂</div>
+            <div class="suspect-name">The Train Roof</div>
           </div>
-          <div class="suspect-card" data-suspect="Feast">
-            <div class="suspect-avatar">🍗</div>
-            <div class="suspect-name">A Thanksgiving Feast</div>
+          <div class="suspect-card" data-suspect="Tree">
+            <div class="suspect-avatar">🌳</div>
+            <div class="suspect-name">A Tree by the Tracks</div>
           </div>
         </div>
 
@@ -1481,11 +1481,11 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #24 — Talks Turkey</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You solved it! There were two turkeys all along. Claude found a white turkey in the woods, and Sludge tracked it home to Kenwood Street. The famous parking-lot turkey had dark green and red feathers, a different bird! Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #24 — The Owl Express</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found Hoot! Hoot is an owl with wings, so he flew out of his cage and landed on the roof of the Owl Express train. No one stole him — he just wanted to stretch his wings. Great work!" title="Read aloud">🔊</button>
           <br>
-          The answer is TWO TURKEYS! Claude's turkey was WHITE, but the famous turkey on TV had dark green and red feathers. They were two different birds! Sludge sniffed the white feather and tracked that turkey all the way home to 58 Kenwood Street.
-          <div class="felix-quote">"I, Fantastic Felix, always look for what doesn't fit. Two turkeys, one white feather — case closed. Now, who wants pancakes?"</div>
+          The answer is THE TRAIN ROOF! Hoot is an owl with wings — he flew out of his cage and landed on the roof of the speeding train. No one stole him; he just wanted to stretch his wings!
+          <div class="felix-quote">"I, Fantastic Felix, solved a case in my sleep — almost. Next time, Hoot, please keep your wings inside the cage!"</div>
         </div>
         <div class="case-nav">
           <a class="btn" id="nextCaseBtn" href="detective_case_file_25.html">➡️ 下一案 Case #25</a>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Claude: 0, Olivia: 0, Rosamond: 0, Sludge: 0 };
-    const folderTargets = { Claude: 2, Olivia: 2, Rosamond: 2, Sludge: 2 };
+    const folderCounts = { Olivia: 0, Musician: 0, Waiter: 0, OwlMan: 0 };
+    const folderTargets = { Olivia: 2, Musician: 2, Waiter: 2, OwlMan: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1696,10 +1696,10 @@
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
           zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Sludge') {
+          if (suspect === 'OwlMan') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'THE TRACKER! 🐾';
+            zone.parentElement.querySelector('.folder-status').textContent = 'THE WATCHER! 🦉';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { feather: false, tv: false, nose: false };
+    let evidenceState = { wings: false, roof: false, note: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'thanksgiving') {
-        // It's summer — Thanksgiving dinner is not a clue. Ruled out.
+      if (type === 'musician') {
+        // The musician wrote the note but did not take Hoot — he is ruled out.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'feather' || type === 'tv' || type === 'nose') {
+      if (type === 'wings' || type === 'roof' || type === 'note') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+        if (evidenceState.wings && evidenceState.roof && evidenceState.note) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+      if (evidenceState.wings && evidenceState.roof && evidenceState.note) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,14 +1818,14 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'TwoTurkeys') {
+      if (dragEl.dataset.suspect === 'Roof') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '🦃🦃';
+        const icon = avatar ? avatar.textContent : '🚂';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Two Turkeys!</div>' +
+            '<div class="culprit-caught-name">The Train Roof!</div>' +
             '<div class="culprit-caught-tag">SOLVED!</div>' +
           '</div>';
         zone.classList.add('highlight');

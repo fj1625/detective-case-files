@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #27 - The Missing Birthday Snake</title>
+  <title>Felix's Case File #27 - The Walking Turnip</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#27 — The Missing Birthday Snake</div>
+        <div class="subtitle">#27 — The Walking Turnip</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Lizzy (Rosamond's cousin, who loves her pet snakes)</div>
-          <div><strong>Mystery:</strong> UGG Chomp, a giant ball python, vanished during the party!</div>
-          <div><strong>Location:</strong> Rosamond's backyard party — then all around the rainy house</div>
+          <div><strong>Client:</strong> Rosamond (she loves her cats and strange ideas)</div>
+          <div><strong>Mystery:</strong> A walking turnip ran away — and Rosamond wants it found!</div>
+          <div><strong>Location:</strong> The neighborhood, the disguise store, and the woods</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Lizzy, Rosamond's cousin, who loves her pet snakes. Mystery, UGG Chomp, a giant ball python, vanished during the party. Location, Rosamond's backyard party, then all around the rainy house. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Rosamond, she loves her cats and strange ideas. Mystery, a walking turnip ran away, and Rosamond wants it found. Location, the neighborhood, the disguise store, and the woods. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1325,14 +1325,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Crazy Craig's tip: snakes always look for warm places to hide.</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond invited Felix to a snake birthday party for her cousin Lizzy.</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Lizzy noticed her giant snake UGG Chomp was gone.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix followed the warm dryer vent and found UGG Chomp behind the bush.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Rain came, so everyone rushed the party and snakes indoors.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>Claude said he only wanted to find something really, really special.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Rosamond asked Felix to find her walking turnip that "ran away."</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Everyone shouted "Felix, where are you?" until Sludge sniffed a way back.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix proved Rosamond herself dressed up as the walking turnip.</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Felix and Sludge hid in the woods to escape too many cases.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. A giant snake likes warm spots — so where did UGG Chomp go?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. But if turnips can't walk, who was the walking turnip?</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1342,44 +1342,44 @@
     <section class="page" data-page="2">
       <div class="page-prop">🗂️</div>
       <div class="page-header">
-        <h2 class="page-title">Hiding Places</h2>
+        <h2 class="page-title">Suspect Files</h2>
         <div class="case-badge">CASE #27</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where could the snake be? Drag each clue into the right hiding place.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right person's folder.</p>
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Stream">
-            <h3>The Stream</h3>
+          <div class="folder" data-suspect="Rosamond">
+            <h3>Rosamond</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Basement">
-            <h3>The Basement</h3>
+          <div class="folder" data-suspect="Claude">
+            <h3>Claude</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Dryer">
-            <h3>The Dryer</h3>
+          <div class="folder" data-suspect="Annie">
+            <h3>Annie</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="BehindBush">
-            <h3>Behind the Bush</h3>
+          <div class="folder" data-suspect="Harry">
+            <h3>Harry</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Dryer">warm and cozy — busy drying Fang's wet T-shirt</div>
-          <div class="clue" data-suspect="Stream">Claude saw two shining eyes in the water here</div>
-          <div class="clue" data-suspect="BehindBush">the dryer vent blows warm air out right here</div>
-          <div class="clue" data-suspect="Basement">has a warm furnace and a water heater</div>
-          <div class="clue" data-suspect="Dryer">but a snake can't open the door and climb in</div>
-          <div class="clue" data-suspect="Stream">but the eyes had fur and ears — it was a beaver</div>
-          <div class="clue" data-suspect="BehindBush">no sugar by the door, so the snake stayed outside</div>
-          <div class="clue" data-suspect="Basement">but a giant snake is too big to hide down there</div>
+          <div class="clue" data-suspect="Rosamond">reported a turnip that "ran away" and wants it found</div>
+          <div class="clue" data-suspect="Annie">asked Felix to find Fang's shiny dog toothpaste</div>
+          <div class="clue" data-suspect="Harry">was scared of a four-tailed creature wearing a scarf</div>
+          <div class="clue" data-suspect="Claude">always loses things and finds them again</div>
+          <div class="clue" data-suspect="Rosamond">knew all about the Disguises for Detectives store</div>
+          <div class="clue" data-suspect="Claude">wanted to find something really, really special today</div>
+          <div class="clue" data-suspect="Harry">looked in the library and school for an answer</div>
+          <div class="clue" data-suspect="Annie">has a big dog named Fang with big teeth</div>
         </div>
       </div>
 
@@ -1397,45 +1397,45 @@
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">Not the snake! That's a beaver — it has fur and ears.</div>
+          <div class="board-hint" id="boardHint">Not a monster! That was just Sludge wearing a scarf.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Crazy Craig said snakes always look for warm places. The dryer was drying Fang's wet T-shirt, and its vent blew hot air outside, right behind a bush by the house. And there was no sugar by the back door, so UGG Chomp never got inside. So the warm-loving snake curled up behind the bush, next to the warm dryer vent. Found him!" title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Turnips cannot walk by themselves. But Rosamond knew all about the Disguises for Detectives store. And Claude said he wanted to find something really, really special. So Rosamond bought a tall turnip costume and walked in front of Claude, so he could find his special thing. Rosamond was the walking turnip all along, and it was a kind trick for a friend!" title="Read aloud">🔊</button>
               <br>
-              Snakes seek warmth + the dryer vent blows hot air out back + no sugar at the door = UGG Chomp behind the warm bush!<br>
+              Turnip costume + she knew the disguise store + Claude wanted a special find = Rosamond was the walking turnip!<br>
               <div class="color-mix">
-                <span>🔥 Snakes love warmth</span>
+                <span>🥬 A tall turnip costume</span>
                 <span>+</span>
-                <span>🌬️ Hot dryer vent blows outside</span>
+                <span>🏬 She knew the disguise store</span>
                 <span>+</span>
-                <span>🚪 No sugar at the door</span>
+                <span>😄 Claude wanted a special find</span>
                 <span>=</span>
-                <span>🐍 Snake behind the bush!</span>
+                <span>🥬 Rosamond in disguise!</span>
               </div>
-              He never went inside — the warm vent air drew him to the bush!
+              No turnip can walk — it was kind Rosamond dressed up for Claude!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="warmth" data-used="false">
-            <div class="evidence-icon">🔥</div>
-            <div class="evidence-label">Snakes Love Warmth</div>
+          <div class="evidence" data-type="costume" data-used="false">
+            <div class="evidence-icon">🥬</div>
+            <div class="evidence-label">Turnip Costume</div>
           </div>
-          <div class="evidence" data-type="vent" data-used="false">
-            <div class="evidence-icon">🌬️</div>
-            <div class="evidence-label">Hot Dryer Vent</div>
+          <div class="evidence" data-type="store" data-used="false">
+            <div class="evidence-icon">🏬</div>
+            <div class="evidence-label">Disguise Store</div>
           </div>
-          <div class="evidence" data-type="door" data-used="false">
-            <div class="evidence-icon">🚪</div>
-            <div class="evidence-label">No Sugar at Door</div>
+          <div class="evidence" data-type="wish" data-used="false">
+            <div class="evidence-icon">😄</div>
+            <div class="evidence-label">Claude's Special Wish</div>
           </div>
-          <div class="evidence" data-type="beaver" data-used="false">
-            <div class="evidence-icon">🦫</div>
-            <div class="evidence-label">Beaver in Stream?</div>
+          <div class="evidence" data-type="monster" data-used="false">
+            <div class="evidence-icon">👹</div>
+            <div class="evidence-label">Four-Tailed Monster?</div>
           </div>
         </div>
       </div>
@@ -1450,25 +1450,25 @@
         <h2 class="page-title">Solve the Case</h2>
         <div class="case-badge">CASE #27</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where is UGG Chomp hiding? Drag the answer into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Who was the walking turnip? Drag the culprit into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="Stream">
-            <div class="suspect-avatar">🏞️</div>
-            <div class="suspect-name">The Stream</div>
+          <div class="suspect-card" data-suspect="Rosamond">
+            <div class="suspect-avatar">👧</div>
+            <div class="suspect-name">Rosamond</div>
           </div>
-          <div class="suspect-card" data-suspect="Basement">
-            <div class="suspect-avatar">🪜</div>
-            <div class="suspect-name">The Basement</div>
+          <div class="suspect-card" data-suspect="Claude">
+            <div class="suspect-avatar">👦</div>
+            <div class="suspect-name">Claude</div>
           </div>
-          <div class="suspect-card" data-suspect="Dryer">
-            <div class="suspect-avatar">🌀</div>
-            <div class="suspect-name">The Dryer</div>
+          <div class="suspect-card" data-suspect="Annie">
+            <div class="suspect-avatar">👩</div>
+            <div class="suspect-name">Annie</div>
           </div>
-          <div class="suspect-card" data-suspect="BehindBush">
-            <div class="suspect-avatar">🌳</div>
-            <div class="suspect-name">Behind the Bush</div>
+          <div class="suspect-card" data-suspect="Harry">
+            <div class="suspect-avatar">🧒</div>
+            <div class="suspect-name">Harry</div>
           </div>
         </div>
 
@@ -1481,11 +1481,11 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #27 — The Missing Birthday Snake</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found UGG Chomp! Snakes love warm places, and the hot dryer vent blew warm air outside, right behind a bush. There was no sugar by the door, so the snake never went inside. He curled up behind the warm bush the whole time. Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #27 — The Walking Turnip</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found the walking turnip! It was Rosamond all along. She knew about the disguise store, and Claude wished to find something really special. So she put on a tall turnip costume and walked past him, just to make her friend happy. Great detective work!" title="Read aloud">🔊</button>
           <br>
-          UGG Chomp was BEHIND THE BUSH! Snakes love warmth, and the dryer's hot vent blew warm air outside — right where the bush is. No sugar sat by the back door, so the snake never slithered inside. He was curled up by the cozy warm vent all along.
-          <div class="felix-quote">"I, Fantastic Felix, say a good detective knows his limits — I found the snake, but moving him is Lizzy's job. Case closed."</div>
+          The walking turnip was ROSAMOND! No turnip can really walk. But Rosamond knew the disguise store, and Claude wanted to find something special. So she dressed as a tall turnip and walked past him — a kind trick to make her friend happy.
+          <div class="felix-quote">"I, Fantastic Felix, say the strangest clue is often a friend being kind. Case closed — now I need more pancakes."</div>
         </div>
         <div class="case-nav">
           <a class="btn" id="nextCaseBtn" href="detective_case_file_28.html">➡️ 下一案 Case #28</a>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Stream: 0, Basement: 0, Dryer: 0, BehindBush: 0 };
-    const folderTargets = { Stream: 2, Basement: 2, Dryer: 2, BehindBush: 2 };
+    const folderCounts = { Rosamond: 0, Claude: 0, Annie: 0, Harry: 0 };
+    const folderTargets = { Rosamond: 2, Claude: 2, Annie: 2, Harry: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1695,11 +1695,11 @@
         folderCounts[suspect]++;
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
-          zone.parentElement.querySelector('.folder-status').textContent = 'RULED OUT';
-          if (suspect === 'BehindBush') {
+          zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
+          if (suspect === 'Rosamond') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'UGG CHOMP IS HERE! 🐍';
+            zone.parentElement.querySelector('.folder-status').textContent = 'THE WALKING TURNIP! 🥬';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { warmth: false, vent: false, door: false };
+    let evidenceState = { costume: false, store: false, wish: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'beaver') {
-        // The two eyes in the stream were a beaver (fur + ears), not the snake — ruled out.
+      if (type === 'monster') {
+        // The scary four-tailed monster was only Sludge in a scarf — ruled out.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'warmth' || type === 'vent' || type === 'door') {
+      if (type === 'costume' || type === 'store' || type === 'wish') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.warmth && evidenceState.vent && evidenceState.door) {
+        if (evidenceState.costume && evidenceState.store && evidenceState.wish) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.warmth && evidenceState.vent && evidenceState.door) {
+      if (evidenceState.costume && evidenceState.store && evidenceState.wish) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,15 +1818,15 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'BehindBush') {
+      if (dragEl.dataset.suspect === 'Rosamond') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '🌳';
+        const icon = avatar ? avatar.textContent : '👧';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Behind the Bush!</div>' +
-            '<div class="culprit-caught-tag">FOUND HIM!</div>' +
+            '<div class="culprit-caught-name">Rosamond!</div>' +
+            '<div class="culprit-caught-tag">THE TURNIP!</div>' +
           '</div>';
         zone.classList.add('highlight');
         setTimeout(showFinalMessage, 1300);

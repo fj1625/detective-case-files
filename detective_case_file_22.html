@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Felix's Case File #25 - Talks Turkey</title>
+  <title>Felix's Case File #22 - San Francisco Detective</title>
   <style>
     * {
       box-sizing: border-box;
@@ -1292,13 +1292,13 @@
           <h1>Felix's<br>Case File</h1>
           <div class="cover-stamp">TOP<br>SECRET</div>
         </div>
-        <div class="subtitle">#25 — Talks Turkey</div>
+        <div class="subtitle">#22 — San Francisco Detective</div>
         <div class="cover-info">
-          <div><strong>Client:</strong> Claude (and Sludge took the case!)</div>
-          <div><strong>Missing:</strong> A big white turkey — found in the woods, then lost again!</div>
-          <div><strong>Location:</strong> Deering Woods → 58 Kenwood Street</div>
+          <div><strong>Client:</strong> Duncan (Olivia Sharp's chauffeur)</div>
+          <div><strong>Missing:</strong> Duncan's favorite joke book — "Joke Stew"</div>
+          <div><strong>Location:</strong> San Francisco — pancake house, Golden Gate Bridge, Lombard Street, and more!</div>
           <div><strong>Status:</strong> OPEN
-            <button class="speak-inline" data-speak="Client, Claude, and Sludge took the case. Missing, a big white turkey, found in the woods then lost again. Location, Deering Woods and Kenwood Street. Status, open." title="Read aloud">🔊</button>
+            <button class="speak-inline" data-speak="Client, Duncan, Olivia Sharp's chauffeur. Missing, Duncan's favorite joke book, Joke Stew. Location, San Francisco, pancake house, Golden Gate Bridge, Lombard Street, and more. Status, open." title="Read aloud">🔊</button>
           </div>
         </div>
         <button class="btn cover-start-btn" onclick="goToPage(1)">Start Investigation →</button>
@@ -1310,7 +1310,7 @@
       <div class="page-prop">🕰️</div>
       <div class="page-header">
         <h2 class="page-title">The Case Timeline</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #22</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Put the case cards in order. Drag each card to the right spot on the timeline.</p>
 
@@ -1325,14 +1325,14 @@
         </div>
 
         <div class="timeline-cards" id="timelineCards">
-          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>On TV, the famous turkey had dark green and red feathers — two turkeys!</div>
-          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Felix heard on the radio that a giant turkey caused panic in a parking lot.</div>
-          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Sludge sniffed Claude's white feather and took the case.</div>
-          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Sludge tracked the white turkey home to 58 Kenwood Street.</div>
-          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Claude found a big white turkey in the woods, then lost it.</div>
+          <div class="card" draggable="false" data-order="3"><span class="card-number">3</span>Felix and Sludge rode around San Francisco retracing Duncan's steps.</div>
+          <div class="card" draggable="false" data-order="1"><span class="card-number">1</span>Felix and Sludge arrived in San Francisco to visit cousin Olivia Sharp.</div>
+          <div class="card" draggable="false" data-order="5"><span class="card-number">5</span>Felix found "Joke Stew" in the cookbook section at Booksie's Bookstore!</div>
+          <div class="card" draggable="false" data-order="2"><span class="card-number">2</span>Olivia was too busy, so Duncan asked Felix to find his lost joke book.</div>
+          <div class="card" draggable="false" data-order="4"><span class="card-number">4</span>They visited a pancake house, the Golden Gate Bridge, and Lombard Street.</div>
         </div>
 
-        <div class="success-message" id="timelineSuccess">Timeline complete. But wait — how many turkeys are really missing?</div>
+        <div class="success-message" id="timelineSuccess">Timeline complete. Where in San Francisco is the joke book?</div>
       </div>
 
       <button class="btn hidden" id="timelineNext" onclick="goToPage(2)">Next: Suspect Files</button>
@@ -1343,14 +1343,14 @@
       <div class="page-prop">🗂️</div>
       <div class="page-header">
         <h2 class="page-title">Suspect Files</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #22</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag each clue into the right person's folder.</p>
 
       <div class="suspects-content">
         <div class="suspects-grid">
-          <div class="folder" data-suspect="Claude">
-            <h3>Claude</h3>
+          <div class="folder" data-suspect="Duncan">
+            <h3>Duncan</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
@@ -1359,8 +1359,8 @@
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
-          <div class="folder" data-suspect="Rosamond">
-            <h3>Rosamond</h3>
+          <div class="folder" data-suspect="Booksie">
+            <h3>Booksie</h3>
             <div class="folder-zone"></div>
             <div class="folder-status"></div>
           </div>
@@ -1372,14 +1372,14 @@
         </div>
 
         <div class="clues-pool" id="cluesPool">
-          <div class="clue" data-suspect="Sludge">sniffed the white feather Claude found</div>
-          <div class="clue" data-suspect="Claude">found a big white turkey in Deering Woods</div>
-          <div class="clue" data-suspect="Olivia">Felix's cousin, a bird-loving detective from San Francisco</div>
-          <div class="clue" data-suspect="Rosamond">runs a Rent-A-Pet stand for a nickel an hour</div>
-          <div class="clue" data-suspect="Claude">dropped popcorn, so the turkey followed him</div>
-          <div class="clue" data-suspect="Sludge">waited by the tracks so he would not mess them up</div>
-          <div class="clue" data-suspect="Rosamond">had a big white turkey from Kenwood Street on her list</div>
-          <div class="clue" data-suspect="Olivia">came to catch the famous parking-lot turkey</div>
+          <div class="clue" data-suspect="Duncan">Olivia Sharp's chauffeur and client</div>
+          <div class="clue" data-suspect="Olivia">Felix's cousin and a busy detective</div>
+          <div class="clue" data-suspect="Booksie">owns Booksie's Bookstore in San Francisco</div>
+          <div class="clue" data-suspect="Sludge">Felix's loyal dog and detective partner</div>
+          <div class="clue" data-suspect="Duncan">lost his favorite joke book "Joke Stew"</div>
+          <div class="clue" data-suspect="Olivia">sent her limousine to greet Felix at the airport</div>
+          <div class="clue" data-suspect="Booksie">the store has a cookbook section</div>
+          <div class="clue" data-suspect="Sludge">sniffed clues all over San Francisco</div>
         </div>
       </div>
 
@@ -1391,51 +1391,51 @@
       <div class="page-prop">📌</div>
       <div class="page-header">
         <h2 class="page-title">Evidence Board</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #22</div>
       </div>
       <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Drag the right evidence to the board to show how Felix solved the case.</p>
 
       <div class="board-area">
         <div class="cork-board" id="corkBoard">
-          <div class="board-hint" id="boardHint">It's summer! Thanksgiving is months away.</div>
+          <div class="board-hint" id="boardHint">Not the pancake house! They only ate pancakes there.</div>
           <div class="monster-zone" id="monsterZone">
             <svg class="string-layer" id="stringLayer" viewBox="0 0 1180 560" preserveAspectRatio="none"></svg>
             <div class="placed-row" id="placedRow"></div>
             <div class="reasoning" id="reasoning">
               <strong>Felix's Reasoning:</strong>
-              <button class="speak-inline" data-speak="Felix's reasoning. Everyone thought one turkey was missing. But look for what does not fit, the feathers! Claude's feather was white, but the famous turkey on TV had dark green and red feathers. Two different feathers means two turkeys! Sludge followed the white feather's smell and tracked that turkey home." title="Read aloud">🔊</button>
+              <button class="speak-inline" data-speak="Felix's reasoning. Felix retraced Duncan's steps across San Francisco in the limousine. The last clues led to Booksie's Bookstore. A joke book seems out of place there, but the clue said a place that seems wrong could be right. The cookbook section is exactly where a joke book would be misplaced!" title="Read aloud">🔊</button>
               <br>
-              White feather + colorful TV turkey + Sludge's nose = TWO turkeys!<br>
+              Retracing steps + Booksie's Bookstore + a place that seems wrong = cookbook section!<br>
               <div class="color-mix">
-                <span>🪶 White feather</span>
+                <span>🚗 Retraced steps</span>
                 <span>+</span>
-                <span>📺 Colorful TV turkey</span>
+                <span>📚 Booksie's Bookstore</span>
                 <span>+</span>
-                <span>👃 Sludge's nose</span>
+                <span>🙃 Seems wrong but right</span>
                 <span>=</span>
-                <span>🦃🦃 Two turkeys!</span>
+                <span>🍳 Cookbook section!</span>
               </div>
-              Claude's turkey was white — the famous turkey wasn't. Two birds!
+              "Joke Stew" was hiding among the cookbooks — a joke book in a cookbook section!
             </div>
           </div>
         </div>
 
         <div class="evidence-tray" id="evidenceTray">
-          <div class="evidence" data-type="feather" data-used="false">
-            <div class="evidence-icon">🪶</div>
-            <div class="evidence-label">White Feather</div>
+          <div class="evidence" data-type="steps" data-used="false">
+            <div class="evidence-icon">🚗</div>
+            <div class="evidence-label">Retracing Duncan's Steps</div>
           </div>
-          <div class="evidence" data-type="tv" data-used="false">
-            <div class="evidence-icon">📺</div>
-            <div class="evidence-label">Colorful TV Turkey</div>
+          <div class="evidence" data-type="bookstore" data-used="false">
+            <div class="evidence-icon">📚</div>
+            <div class="evidence-label">Booksie's Bookstore</div>
           </div>
-          <div class="evidence" data-type="nose" data-used="false">
-            <div class="evidence-icon">👃</div>
-            <div class="evidence-label">Sludge's Nose</div>
+          <div class="evidence" data-type="wrong" data-used="false">
+            <div class="evidence-icon">🙃</div>
+            <div class="evidence-label">Seems Wrong but Right</div>
           </div>
-          <div class="evidence" data-type="thanksgiving" data-used="false">
-            <div class="evidence-icon">🍗</div>
-            <div class="evidence-label">Thanksgiving Dinner?</div>
+          <div class="evidence" data-type="pancakes" data-used="false">
+            <div class="evidence-icon">🥞</div>
+            <div class="evidence-label">Pancake House?</div>
           </div>
         </div>
       </div>
@@ -1448,27 +1448,27 @@
       <div class="page-prop">🔍</div>
       <div class="page-header">
         <h2 class="page-title">Solve the Case</h2>
-        <div class="case-badge">CASE #25</div>
+        <div class="case-badge">CASE #22</div>
       </div>
-      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">How many turkeys were really missing? Drag the answer into the spotlight.</p>
+      <p style="font-style: italic; color: var(--brown); margin-bottom: 20px; font-size: 32px;">Where is Duncan's joke book? Drag the answer into the spotlight.</p>
 
       <div class="culprit-area">
         <div class="suspect-lineup" id="suspectLineup">
-          <div class="suspect-card" data-suspect="OneTurkey">
-            <div class="suspect-avatar">🦃</div>
-            <div class="suspect-name">One Famous Turkey</div>
+          <div class="suspect-card" data-suspect="Bridge">
+            <div class="suspect-avatar">🌉</div>
+            <div class="suspect-name">The Golden Gate Bridge</div>
           </div>
-          <div class="suspect-card" data-suspect="TwoTurkeys">
-            <div class="suspect-avatar">🦃🦃</div>
-            <div class="suspect-name">Two Different Turkeys</div>
+          <div class="suspect-card" data-suspect="Pancakes">
+            <div class="suspect-avatar">🥞</div>
+            <div class="suspect-name">The Pancake House</div>
           </div>
-          <div class="suspect-card" data-suspect="Ghost">
-            <div class="suspect-avatar">👻</div>
-            <div class="suspect-name">A Turkey Ghost</div>
+          <div class="suspect-card" data-suspect="Cookbook">
+            <div class="suspect-avatar">🍳</div>
+            <div class="suspect-name">Booksie's Cookbook Section</div>
           </div>
-          <div class="suspect-card" data-suspect="Feast">
-            <div class="suspect-avatar">🍗</div>
-            <div class="suspect-name">A Thanksgiving Feast</div>
+          <div class="suspect-card" data-suspect="Lombard">
+            <div class="suspect-avatar">🛣️</div>
+            <div class="suspect-name">Lombard Street</div>
           </div>
         </div>
 
@@ -1481,14 +1481,14 @@
       <div class="final-message" id="finalMessage">
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
-          <strong>Case #25 — Talks Turkey</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You solved it! There were two turkeys all along. Claude found a white turkey in the woods, and Sludge tracked it home to Kenwood Street. The famous parking-lot turkey had dark green and red feathers, a different bird! Great detective work!" title="Read aloud">🔊</button>
+          <strong>Case #22 — San Francisco Detective</strong>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found Duncan's joke book! Felix retraced Duncan's steps across San Francisco and found Joke Stew in the cookbook section at Booksie's Bookstore. A place that seems wrong can be just right. Great work!" title="Read aloud">🔊</button>
           <br>
-          The answer is TWO TURKEYS! Claude's turkey was WHITE, but the famous turkey on TV had dark green and red feathers. They were two different birds! Sludge sniffed the white feather and tracked that turkey all the way home to 58 Kenwood Street.
-          <div class="felix-quote">"I, Fantastic Felix, always look for what doesn't fit. Two turkeys, one white feather — case closed. Now, who wants pancakes?"</div>
+          The answer is BOOKSIE'S COOKBOOK SECTION! Duncan's joke book "Joke Stew" was misplaced among the cookbooks — a place that seems wrong but was just right!
+          <div class="felix-quote">"I, Fantastic Felix, solved my first out-of-town case. San Francisco is a great place for pancakes AND punchlines!"</div>
         </div>
         <div class="case-nav">
-          <a class="btn" id="nextCaseBtn" href="detective_case_file_26.html">➡️ 下一案 Case #26</a>
+          <a class="btn" id="nextCaseBtn" href="detective_case_file_23.html">➡️ 下一案 Case #23</a>
           <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
         </div>
       </div>
@@ -1683,8 +1683,8 @@
     }
 
     // ===== Suspect Files Logic =====
-    const folderCounts = { Claude: 0, Olivia: 0, Rosamond: 0, Sludge: 0 };
-    const folderTargets = { Claude: 2, Olivia: 2, Rosamond: 2, Sludge: 2 };
+    const folderCounts = { Duncan: 0, Olivia: 0, Booksie: 0, Sludge: 0 };
+    const folderTargets = { Duncan: 2, Olivia: 2, Booksie: 2, Sludge: 2 };
 
     function handleSuspectDrop(zone) {
       const suspect = zone.parentElement.dataset.suspect;
@@ -1696,10 +1696,10 @@
         if (folderCounts[suspect] === folderTargets[suspect]) {
           zone.parentElement.classList.add('solved');
           zone.parentElement.querySelector('.folder-status').textContent = 'CLEARED';
-          if (suspect === 'Sludge') {
+          if (suspect === 'Booksie') {
             zone.parentElement.classList.remove('solved');
             zone.parentElement.classList.add('culprit');
-            zone.parentElement.querySelector('.folder-status').textContent = 'THE TRACKER! 🐾';
+            zone.parentElement.querySelector('.folder-status').textContent = 'THE BOOKSPOT! 📚';
           }
         }
         checkSuspectsComplete();
@@ -1720,7 +1720,7 @@
     }
 
     // ===== Evidence Board Logic =====
-    let evidenceState = { feather: false, tv: false, nose: false };
+    let evidenceState = { steps: false, bookstore: false, wrong: false };
     let hintTimer = null;
 
     function showBoardHint() {
@@ -1733,18 +1733,18 @@
 
     function handleEvidenceDrop(zone) {
       const type = dragEl.dataset.type;
-      if (type === 'thanksgiving') {
-        // It's summer — Thanksgiving dinner is not a clue. Ruled out.
+      if (type === 'pancakes') {
+        // The pancake house was just for breakfast — no book there.
         zone.classList.add('shake');
         setTimeout(() => zone.classList.remove('shake'), 400);
         showBoardHint();
         return false;
       }
-      if (type === 'feather' || type === 'tv' || type === 'nose') {
+      if (type === 'steps' || type === 'bookstore' || type === 'wrong') {
         placeEvidenceOnBoard(dragEl, 'clue');
         evidenceState[type] = true;
         dragEl.classList.add('hidden');
-        if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+        if (evidenceState.steps && evidenceState.bookstore && evidenceState.wrong) {
           revealMonster();
         }
         checkEvidenceComplete();
@@ -1810,7 +1810,7 @@
     }
 
     function checkEvidenceComplete() {
-      if (evidenceState.feather && evidenceState.tv && evidenceState.nose) {
+      if (evidenceState.steps && evidenceState.bookstore && evidenceState.wrong) {
         document.getElementById('evidenceNext').classList.remove('hidden');
         completed.evidence = true;
       }
@@ -1818,14 +1818,14 @@
 
     // ===== Case Closed Logic =====
     function handleCulpritDrop(zone) {
-      if (dragEl.dataset.suspect === 'TwoTurkeys') {
+      if (dragEl.dataset.suspect === 'Cookbook') {
         const avatar = dragEl.querySelector('.suspect-avatar');
-        const icon = avatar ? avatar.textContent : '🦃🦃';
+        const icon = avatar ? avatar.textContent : '🍳';
         dragEl.classList.add('hidden');
         zone.innerHTML =
           '<div class="culprit-caught">' +
             '<div class="culprit-caught-avatar">' + icon + '</div>' +
-            '<div class="culprit-caught-name">Two Turkeys!</div>' +
+            '<div class="culprit-caught-name">Booksie's Cookbook Section!</div>' +
             '<div class="culprit-caught-tag">SOLVED!</div>' +
           '</div>';
         zone.classList.add('highlight');
@@ -1848,7 +1848,7 @@
       const congratsBtn = document.getElementById('finalSpeakBtn');
       setTimeout(() => speak(congratsBtn.dataset.speak, congratsBtn), 900);
       // 解锁本案奖励并弹窗（共享 rewards.js）。CASE_NUMBER 每个案件改这一处。
-      const CASE_NUMBER = 25;
+      const CASE_NUMBER = 22;
       if (window.DetectiveRewards) {
         const reward = DetectiveRewards.unlockReward(CASE_NUMBER);
         setTimeout(() => DetectiveRewards.showRewardToast(reward), 1400);

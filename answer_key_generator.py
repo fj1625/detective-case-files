@@ -537,6 +537,33 @@ CASES = [
     },
     {
         "num": "20",
+        "title": "The Fleeing Fang",
+        "title_cn": "逃跑的大狗方",
+        "cover": {
+            "Client": "Annie & Harry (Fang's worried owners)",
+            "Missing": "Fang, the big scary dog, ran off and vanished on Detective Day",
+            "Location": "Felix's Detective Day party — and the streets all around it",
+        },
+        "timeline": [
+            "Annie and Harry walked Fang toward the Detective Day party.",
+            "At the corner, two poodles barked, so Annie barked 'Bark! Bark! Bark!'",
+            "Fang heard 'bark' — his secret word for 'park' — and ran off.",
+            "Annie reached the party sad — Fang was missing!",
+            "Felix and Sludge found Fang asleep in the park.",
+        ],
+        "suspects": {
+            "The Park": ["'bark' rhymes with 'park' — Fang's mixed-up command", "a big dog was found here, fast asleep"],
+            "Home": ["Annie checked their house — no Fang inside", "but nobody had let Fang back in the door"],
+            "Dartmouth St. (Corner)": ["Fang was last seen at Dartmouth and Oakdale", "two tiny poodles barked at Fang right here"],
+            "The Store": ["the lady in the green hat shops from store to store", "but Oliver never found where that lady lives"],
+        },
+        "evidence_real": ["🦁 Fang Fears Nothing", "📖 Mixed-Up Rhyme Book", "🗣️ Annie Yelled \"Bark!\""],
+        "evidence_distractor": "🎩 Lady in the Green Hat (red herring — Felix's own word; a false lead)",
+        "deduction": "Fang is a huge, toothy dog, so he would never be scared of two tiny poodles — he didn't run in fear. Annie's rhyme book makes Fang obey the line that rhymes. When the poodles barked, Annie shouted 'Bark! Bark! Bark!' — and 'bark' rhymes with 'park.' Fang heard a command and trotted off to the park, where Felix found him fast asleep.",
+        "culprit": "The Park (Fang went there because 'bark' rhymes with 'park' in his mixed-up command book). Page 2 flags The Park as FANG IS HERE; Page 4 is a location-drag (The Park).",
+    },
+    {
+        "num": "21",
         "title": "The Monster Mess",
         "title_cn": "怪物饼干之乱",
         "cover": {
@@ -563,7 +590,7 @@ CASES = [
         "culprit": "The Back of Another Recipe (Mom had scribbled the Monster Cookie recipe there and forgotten). Page 2 flags Mother as THE FORGETFUL WRITER; Page 4 is a location-drag (the back of a recipe card).",
     },
     {
-        "num": "21",
+        "num": "22",
         "title": "San Francisco Detective",
         "title_cn": "旧金山侦探",
         "cover": {
@@ -590,7 +617,7 @@ CASES = [
         "culprit": "Booksie's Cookbook Section (Duncan's 'Joke Stew' was misplaced among the cookbooks). Page 2 flags Booksie as THE BOOKSPOT; Page 4 is a location-drag (the cookbook section).",
     },
     {
-        "num": "22",
+        "num": "23",
         "title": "The Big Sniff",
         "title_cn": "大鼻子嗅探",
         "cover": {
@@ -617,7 +644,7 @@ CASES = [
         "culprit": "The Underwear Department (Sludge slipped inside and hid there). Page 2 flags Sludge as THE SNIFFER; Page 4 is a location-drag (the underwear department).",
     },
     {
-        "num": "23",
+        "num": "24",
         "title": "The Owl Express",
         "title_cn": "猫头鹰快车",
         "cover": {
@@ -644,7 +671,7 @@ CASES = [
         "culprit": "The Train Roof (Hoot flew out of his cage and landed there). Page 2 flags OwlMan as THE WATCHER; Page 4 is a location-drag (the train roof).",
     },
     {
-        "num": "24",
+        "num": "25",
         "title": "Talks Turkey",
         "title_cn": "火鸡追踪",
         "cover": {
@@ -671,7 +698,7 @@ CASES = [
         "culprit": "Two Turkeys (the twist — there were two different turkeys all along; Claude's was white, the famous one colorful). Page 2 flags Sludge as THE TRACKER; Page 4 asks 'how many turkeys were missing?'",
     },
     {
-        "num": "25",
+        "num": "26",
         "title": "The Hungry Book Club",
         "title_cn": "饥饿读书会",
         "cover": {
@@ -698,7 +725,7 @@ CASES = [
         "culprit": "Little Hex (Rosamond's smallest cat; he leaped onto the high table and tore the page for the tuna bits — Fang was wrongly blamed). Page 2 flags Little Hex as THE PAGE MONSTER; Page 4 is a culprit-drag (Little Hex).",
     },
     {
-        "num": "26",
+        "num": "27",
         "title": "The Walking Turnip",
         "title_cn": "会走路的萝卜",
         "cover": {
@@ -725,7 +752,7 @@ CASES = [
         "culprit": "Rosamond (she disguised herself as the 'walking turnip' so Claude could find something special). Page 2 flags Rosamond as THE WALKING TURNIP; Page 4 is a culprit-drag (Rosamond).",
     },
     {
-        "num": "27",
+        "num": "28",
         "title": "The Missing Birthday Snake",
         "title_cn": "失踪的生日蛇",
         "cover": {
