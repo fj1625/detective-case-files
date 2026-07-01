@@ -697,6 +697,33 @@ CASES = [
         "deduction": "Rosamond blamed Fang, but the kitchen table is too HIGH — Fang jumped and stretched but couldn't reach the cookbook, and he doesn't even like tuna fish pie. The torn page had a tuna recipe, and all the tuna bits were scratched away. Only a small cat that can LEAP high, HIDE in tiny spaces, and sneak in unseen fits — Little Hex tore the page to get every last bite of tuna.",
         "culprit": "Little Hex (Rosamond's smallest cat; he leaped onto the high table and tore the page for the tuna bits — Fang was wrongly blamed). Page 2 flags Little Hex as THE PAGE MONSTER; Page 4 is a culprit-drag (Little Hex).",
     },
+    {
+        "num": "26",
+        "title": "The Walking Turnip",
+        "title_cn": "会走路的萝卜",
+        "cover": {
+            "Client": "Rosamond (she loves her cats and strange ideas)",
+            "Mystery": "A walking turnip ran away — and Rosamond wants it found!",
+            "Location": "The neighborhood, the disguise store, and the woods",
+        },
+        "timeline": [
+            "Rosamond asked Felix to find her walking turnip that 'ran away.'",
+            "Felix and Sludge hid in the woods to escape too many cases.",
+            "Everyone shouted 'Felix, where are you?' until Sludge sniffed a way back.",
+            "Claude said he only wanted to find something really, really special.",
+            "Felix proved Rosamond herself dressed up as the walking turnip.",
+        ],
+        "suspects": {
+            "Rosamond": ["reported a turnip that 'ran away' and wants it found", "knew all about the Disguises for Detectives store"],
+            "Claude": ["always loses things and finds them again", "wanted to find something really, really special today"],
+            "Annie": ["asked Felix to find Fang's shiny dog toothpaste", "has a big dog named Fang with big teeth"],
+            "Harry": ["was scared of a four-tailed creature wearing a scarf", "looked in the library and school for an answer"],
+        },
+        "evidence_real": ["🥬 Turnip Costume", "🏬 Disguise Store", "😄 Claude's Special Wish"],
+        "evidence_distractor": "👹 Four-Tailed Monster? (ruled-out lead — it was only Sludge wearing a three-tailed scarf from the disguise store)",
+        "deduction": "No turnip can really walk. But Rosamond KNEW all about the Disguises for Detectives store, and Claude said he wanted to find something really SPECIAL. So Rosamond bought a tall turnip COSTUME and walked in front of Claude, giving her friend the special thing he wished to find — Rosamond was the walking turnip all along, and it was a kind trick.",
+        "culprit": "Rosamond (she disguised herself as the 'walking turnip' so Claude could find something special). Page 2 flags Rosamond as THE WALKING TURNIP; Page 4 is a culprit-drag (Rosamond).",
+    },
 ]
 
 BROWN = RGBColor(0x4A, 0x35, 0x28)
