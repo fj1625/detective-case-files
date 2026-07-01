@@ -996,8 +996,8 @@
     }
 
     .stamp {
-      width: 280px;
-      height: 280px;
+      width: 200px;
+      height: 200px;
       border: 8px solid var(--red);
       border-radius: 50%;
       display: flex;
@@ -1006,7 +1006,7 @@
       color: var(--red);
       font-family: 'Stardos Stencil', 'Courier New', monospace;
       font-weight: bold;
-      font-size: 40px;
+      font-size: 30px;
       text-align: center;
       line-height: 1.2;
       transform: rotate(-12deg) scale(2);
@@ -1030,8 +1030,8 @@
       margin-top: 0;
       text-align: center;
       font-family: Georgia, serif;
-      font-size: 42px;
-      line-height: 1.9;
+      font-size: 30px;
+      line-height: 1.55;
       color: var(--brown-dark);
       max-width: 1240px;
     }
@@ -1041,6 +1041,109 @@
       margin-top: 36px;
       font-size: 38px;
       line-height: 1.7;
+    }
+
+    /* ===== Finale certificate (Case 28 — the final case) ===== */
+    .certificate {
+      position: relative;
+      width: 940px;
+      max-width: 94%;
+      background: linear-gradient(#fffdf4, #f6ecd2);
+      border: 3px solid var(--brown-dark);
+      box-shadow: 0 0 0 10px var(--paper), 0 0 0 13px var(--brown), 0 14px 30px rgba(0,0,0,0.28);
+      padding: 26px 52px 30px;
+      text-align: center;
+      color: var(--brown-dark);
+    }
+    .cert-star {
+      position: absolute;
+      font-size: 30px;
+      color: var(--yellow);
+      text-shadow: 0 1px 0 var(--brown);
+    }
+    .cert-star.tl { top: 12px; left: 16px; }
+    .cert-star.tr { top: 12px; right: 16px; }
+    .cert-star.bl { bottom: 12px; left: 16px; }
+    .cert-star.br { bottom: 12px; right: 16px; }
+    .cert-head {
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      font-size: 46px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: var(--red);
+    }
+    .cert-rule {
+      height: 4px;
+      width: 62%;
+      margin: 12px auto 16px;
+      background: repeating-linear-gradient(90deg, var(--brown) 0 16px, transparent 16px 26px);
+    }
+    .cert-awarded {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 26px;
+    }
+    .cert-name {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-size: 52px;
+      color: var(--brown-dark);
+      margin: 4px auto 14px;
+      border-bottom: 2px dashed var(--brown);
+      display: inline-block;
+      padding: 0 26px 6px;
+    }
+    .cert-body {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cert-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 22px;
+      padding: 0 24px;
+    }
+    .cert-seal {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 4px double var(--red);
+      color: var(--red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      transform: rotate(-10deg);
+      font-family: 'Stardos Stencil', 'Courier New', monospace;
+      flex-shrink: 0;
+    }
+    .cert-seal span {
+      font-size: 12px;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+    .cert-sign {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cert-sign-name {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-size: 34px;
+      color: var(--brown-dark);
+      border-bottom: 2px solid var(--brown-dark);
+      padding: 0 12px 2px;
+    }
+    .cert-sign-role {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      font-style: italic;
+      margin-top: 6px;
     }
 
     .confetti {
@@ -1482,14 +1585,30 @@
         <div class="stamp" id="finalStamp">CASE<br>CLOSED</div>
         <div class="final-text">
           <strong>Case #28 — The Missing Birthday Snake</strong>
-          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found UGG Chomp! Snakes love warm places, and the hot dryer vent blew warm air outside, right behind a bush. There was no sugar by the door, so the snake never went inside. He curled up behind the warm bush the whole time. Great detective work!" title="Read aloud">🔊</button>
+          <button class="speak-inline" id="finalSpeakBtn" data-speak="Congratulations, detective! You found UGG Chomp behind the warm bush. And that was your twenty-eighth case — you have solved them all! Fantastic Felix is now a fully qualified junior detective. Wonderful work!" title="Read aloud">🔊</button>
           <br>
-          UGG Chomp was BEHIND THE BUSH! Snakes love warmth, and the dryer's hot vent blew warm air outside — right where the bush is. No sugar sat by the back door, so the snake never slithered inside. He was curled up by the cozy warm vent all along.
-          <div class="felix-quote">"I, Fantastic Felix, say a good detective knows his limits — I found the snake, but moving him is Lizzy's job. Case closed."</div>
+          UGG Chomp was BEHIND THE BUSH, curled up by the warm dryer vent all along. That closes the case — and it was your <strong>28th</strong>. You solved them all!
         </div>
+
+        <div class="certificate" id="finalCert">
+          <span class="cert-star tl">★</span><span class="cert-star tr">★</span>
+          <span class="cert-star bl">★</span><span class="cert-star br">★</span>
+          <div class="cert-head">Certificate of Detection</div>
+          <div class="cert-rule"></div>
+          <div class="cert-awarded">This certifies that</div>
+          <div class="cert-name">Fantastic Felix</div>
+          <div class="cert-body">has cracked <strong>all 28 cases</strong> — every clue found and every mystery solved — and is hereby named a fully qualified <strong>Junior Detective</strong>.</div>
+          <div class="cert-foot">
+            <div class="cert-seal">🥇<span>MASTER<br>DETECTIVE</span></div>
+            <div class="cert-sign">
+              <span class="cert-sign-name">Fantastic Felix</span>
+              <span class="cert-sign-role">Chief Detective</span>
+            </div>
+          </div>
+        </div>
+
         <div class="case-nav">
-          <a class="btn" id="nextCaseBtn" href="detective_case_file_29.html">➡️ 下一案 Case #29</a>
-          <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙</a>
+          <a class="btn" id="rewardWallBtn" href="rewards_wall.html">🏆 奖励墙 Reward Wall</a>
         </div>
       </div>
     </section>
