@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>侦探奖励清单 · 待解锁（空白版）</title>
+<style>
+  :root {
+    --paper: #f5f0e1; --paper-dark: #e8e0c8; --ink: #2c2416;
+    --brown: #6b4e3d; --brown-dark: #4a3528; --red: #b83a2a;
+    --red-dark: #8f2a1d; --yellow: #e6b84a; --orange: #e07b39;
+    --shadow: rgba(44, 36, 22, 0.25);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Georgia', 'Times New Roman', serif; color: var(--ink);
+    background: #d8cdb5; padding: 24px;
+  }
+  .sheet {
+    width: 210mm; min-height: 297mm; margin: 0 auto; background: #fff;
+    padding: 16mm 14mm; box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+  }
+  header { text-align: center; border-bottom: 3px double var(--brown); padding-bottom: 10px; margin-bottom: 14px; }
+  h1 { margin: 0; font-size: 26px; font-family: 'Courier New', monospace; letter-spacing: 2px; color: var(--brown-dark); }
+  .subtitle { color: var(--brown); font-size: 13px; margin-top: 4px; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+  }
+  .card {
+    border: 1.5px dashed var(--brown); border-radius: 8px; padding: 6px 5px;
+    text-align: center; background: var(--paper-dark); position: relative;
+    break-inside: avoid; page-break-inside: avoid;
+    height: 96px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    opacity: 0.85;
+  }
+  .card.final { border: 2px dashed var(--red); border-radius: 8px; background: #fcefe0; opacity: 1; }
+  .card .num {
+    position: absolute; top: 4px; left: 6px; font-size: 10px;
+    font-family: 'Courier New', monospace; color: var(--brown); font-weight: bold;
+  }
+  .card .icon { font-size: 34px; line-height: 1.05; color: var(--brown); opacity: 0.55; }
+  .card .lock { font-size: 12px; color: var(--brown); margin-top: 4px; letter-spacing: 1px; }
+
+  .features-box {
+    margin-top: 12px; border: 2px dashed var(--red); border-radius: 8px;
+    padding: 10px 14px; background: #fcefe0; break-inside: avoid; page-break-inside: avoid;
+    height: 158px; overflow: hidden;
+  }
+  .features-box h2 {
+    margin: 0 0 6px; font-size: 15px; font-family: 'Courier New', monospace;
+    color: var(--red-dark); letter-spacing: 1px;
+  }
+  .features-box ul { list-style: none; margin: 0; padding: 0; }
+  .features-box li {
+    font-size: 12px; line-height: 1.5; padding: 2px 0; color: var(--brown);
+    border-bottom: 1px dashed rgba(107,78,61,0.3);
+  }
+  .features-box li:last-child { border-bottom: none; }
+
+  .footer { text-align: center; margin-top: 12px; font-size: 11px; color: var(--brown); }
+
+  .toolbar { text-align: center; margin-bottom: 16px; }
+  .print-btn {
+    background: var(--brown-dark); color: var(--paper); border: 2px solid var(--ink);
+    padding: 10px 26px; font-family: inherit; font-size: 15px;
+    cursor: pointer; box-shadow: 2px 2px 0 var(--shadow);
+  }
+  .print-btn:hover { background: var(--brown); }
+
+  /* ===== 打印优化 ===== */
+  @media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    body { background: #fff; padding: 0; }
+    .sheet { width: auto; min-height: auto; margin: 0; padding: 0; box-shadow: none; }
+    .toolbar { display: none; }
+    .card, .features-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="print-btn" onclick="window.print()">🖨️ 打印 / 另存为 PDF</button>
+  </div>
+
+  <div class="sheet">
+    <header>
+      <h1>🔍 FELIX'S DETECTIVE REWARDS</h1>
+      <div class="subtitle">大侦探 Felix · 28 件装备 · 待解锁清单（每破一案揭晓一件）</div>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="features-box"></div>
+
+    <div class="footer">Fantastic Felix Detective Case File · 共 28 件 · 全部待解锁 · 破案后揭晓</div>
+  </div>
+
+  <script src="rewards.js"></script>
+  <script>
+    var R = window.DetectiveRewards;
+    var grid = document.getElementById('grid');
+    // 空白清单：全部 28 件都以"待解锁"占位展示
+    R.REWARDS.forEach(function (rw) {
+      var card = document.createElement('div');
+      card.className = 'card' + (rw.id === R.TOTAL ? ' final' : '');
+      card.innerHTML =
+        '<span class="num">' + String(rw.id).padStart(2, '0') + '</span>' +
+        '<div class="icon">❓</div>' +
+        '<div class="lock">🔒 待解锁</div>';
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
